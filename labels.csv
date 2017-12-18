@@ -1,0 +1,29 @@
+Data Source,Short Name,Units
+HUMIDITY,Humidity,%
+NO,NO,ppb
+NO_24,NO_24,ppb
+NOx,NOx (24h),ppb
+NOx_24,NOx (24h),ppb
+NO2,NO2,ppb
+NO2_24,NO2_24,ppb
+O3,O3,ppb
+O3_8,O3 (8hr),ppb
+PM10,PM10,µg/m3
+PM10_24,PM10 (24hr),ppb
+PM25,PM2.5,µg/m3
+PM25_24,PM2.4 (24hr),ppb
+SO2,SO2,ppb
+SO2_24,SO2_24,ppb
+TRS,TRS,ppb
+CO,CO,ppm
+WDIR_VECT,Wind Direction,°
+WSPD_VECT,Wind Speed,m/s
+TEMP_MEAN,Temperature,°C
+PRECIPITATION,Precipitation,mm
+WSPD_SCLR,Wind speed,m/s
+WDIR_UVEC,Wind Direction,°
+BAR_PRESS_HOUR,Barometric pressure,kPa
+AQHI,AQHI, 
+FORECAST_TONIGHT, Forecast Tonight,
+FORECAST_TODAY, Forecast Today,
+FORECAST_TOMORROW, Forecast Tomorrow,
