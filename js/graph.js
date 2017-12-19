@@ -53,7 +53,7 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     parseTime = d3.timeParse("%Y-%m-%d %H:%M");
     formatTime = d3.timeFormat("%Y-%m-%d %H:%M");
     formatMonth = d3.timeFormat("%b %d %H:%M");
-    formatFullDate = d3.timeFormat("%B %d, %Y");
+    formatFullDate = d3.timeFormat("%B %d, %Y %H:%M");
 
     // if (!(initGas in data[1]))
     //     initGas = Object.keys(data[0])[1]
@@ -83,6 +83,7 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     // Meteorology measurements
     met = ['TEMP_MEAN', 'WDIR_UVEC', 'WDIR_VECT', 'WSPD_SCLR', 'WSPD_VECT','HUMIDITY']
 
+    // Threshold values for horizontal lines
     thres = {
         'PM25_24HR': 25,
         "PM10_24HR": 50,
@@ -250,6 +251,8 @@ function makeGraphs(trace, data) {
         xAxis2 = d3.axisBottom(x2),
         yAxis = d3.axisLeft(y);
 
+
+
     var brush = d3.brushX()
         .extent([
             [0, 0],
@@ -335,6 +338,23 @@ function makeGraphs(trace, data) {
     y2.domain(y.domain());
 
 
+    xGrid=focus.append("g")
+        .attr("class","grid")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x)
+            .ticks(5)
+            .tickSize(-height)
+            .tickFormat("")
+            )
+
+    yGrid=focus.append("g")
+        .attr("class","grid")
+        .call(d3.axisLeft(y)
+            .ticks(5)
+            .tickSize(-width)
+            .tickFormat("")
+            )
+
     focus.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height + ")")
@@ -363,7 +383,7 @@ function makeGraphs(trace, data) {
         .attr("class", "focus")
         .attr("clip-path", "url(#clip)");
 
-    if (trace in thres) {
+    if (trace in thres && (thres[trace]*.8 < d3.max(data, d => +d[trace])))  {
         threshold.append('path')
             .datum(data)
             .attr('d', thesLine);
@@ -480,6 +500,14 @@ function makeGraphs(trace, data) {
         Line_chart.select(".line").attr("d", line);
         focus.select(".axis--x").call(xAxis);
         context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
+
+        xGrid.call(
+            d3.axisBottom(x)
+            .scale(d3.event.transform.rescaleX(x))
+            .ticks(5)
+            .tickSize(-height)
+            .tickFormat("")
+        )
     }
 
 
@@ -510,7 +538,7 @@ function updateGraph(trace, data) {
 
     };
 
-    if (!(trace in thres)) {
+    if (!(trace in thres && (thres[trace]*.8 < d3.max(data, d => +d[trace])))) {
         y.domain([d3.min(data, function(d) {
             return +d[trace]
         }), d3.max(data, function(d) {
