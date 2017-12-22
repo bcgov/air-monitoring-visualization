@@ -73,7 +73,7 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     meas = [];
 
     //Order of buttons
-    var orderPoll = ["PM25", "PM25_24HR", "PM10", "PM10_24HR", "O3", "O3_8HR", "NO2", "NO2_24"]
+    var orderPoll = ["PM25", "PM25_24", "PM10", "PM10_24", "O3", "O3_8HR", "NO2", "NO2_24"]
 
     var orderMet = ["WSPD_SCLR", "WSPD_VECT", "TEMP_MEAN", "WDIR_VECT"]
 
@@ -85,8 +85,8 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
 
     // Threshold values for horizontal lines
     thres = {
-        'PM25_24HR': 25,
-        "PM10_24HR": 50,
+        'PM25_24': 25,
+        "PM10_24": 50,
         'O3_8hr': 63,
         'NO2': 100,
         'SO2': 70,
