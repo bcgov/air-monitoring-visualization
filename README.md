@@ -4,6 +4,9 @@ https://XXXXXXX/?id=E225267. The air monitoring station ID is appended to the en
 
 The last 30 days of measurements are displayed. The data are measured every hour, except those displayed as 24hr, which are measured (or averaged?) once every 24 hours. 
 
+This respository is managed by the Environmental Monitoring, Reporting & Economics Section, Knowledge Management Branch, Ministry of Environment and Climate Change Strategy.
+
+
 ## Data
 
 The data used in this is chart is available in the [BC Data Catalogue](https://catalogue.data.gov.bc.ca/dataset/01867404-ba2a-470e-94b7-0604607cfa30) under the [Open Govenment License](https://www2.gov.bc.ca/gov/content/data/open-data/open-government-license-bc).
