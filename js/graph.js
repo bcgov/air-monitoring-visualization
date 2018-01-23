@@ -204,7 +204,14 @@ function makeButtons(keys, data) {
                     lab = j['unit'];
                 }
             })
-            return data[0][d] + ' ' + '<span style="font-size:10pt">' + lab + '<span>';
+            if(data[data.length - 1][d] == undefined){
+                var curr = 'N/A'
+            }else{
+                var curr = data[data.length - 1][d]
+            }
+            
+            
+            return curr + ' ' + '<span style="font-size:10pt">' + lab + '<span>';
         })
 
     makeActive(buttons.filter(function(d) {
