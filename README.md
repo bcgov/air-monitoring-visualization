@@ -4,6 +4,8 @@ https://XXXXXXX/?id=E225267. The air monitoring station ID is appended to the en
 
 The last 30 days of measurements are displayed. The data are measured every hour, except those displayed as 24hr, which are measured (or averaged?) once every 24 hours. 
 
+This CSV file is parsed using DataBC's CSV-PARSER API https://csv-parser.api.gov.bc.ca/
+
 This respository is managed by the Environmental Monitoring, Reporting & Economics Section, Knowledge Management Branch, Ministry of Environment and Climate Change Strategy.
 
 
