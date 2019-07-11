@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="dc.title" content="Air Monitoring Station Readings - Province of British Columbia" />
+    <meta name="dc.description" content="Providing the latest ambient and meteorlogical readings." />
+    <meta name="dc.keywords" content="air quality, ambient readings, meteorlogical readings, PM25, air monitoring stations" />
+    <meta name="dc.creator" content="Knowledge Management Branch, Ministry of Environment" />
+    <meta name="dc.date.created" content="January 2014" />
+    <meta name="dc.date.modified" content="March, 2019" />
+    <meta name="description" content="Providing the latest ambient and meteorlogical data." />
+    <meta name="author" content="Ministry of Environment and Climate Change Strategy" />
+    <title>Air Monitoring Station - Province of British Columbia</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="../../templates-env/icons/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="../../templates-env/icons/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="../../templates-env/icons/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../../templates-env/icons/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="../../templates-env/icons/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="../../templates-env/icons/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="../../templates-env/icons/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="../../templates-env/icons/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../templates-env/icons/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../../templates-env/icons/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../../templates-env/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="../../templates-env/icons/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../../templates-env/icons/favicon-16x16.png" />
+    <link rel="manifest" href="../../templates-env/icons/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="../../templates-env/icons/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Bootstrap core CSS v3.3.6 -->
+    <link rel="stylesheet" href="../../templates-env/css/bootstrap.min.css" />
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link rel="stylesheet" href="../../templates-env/css/ie10-viewport-bug-workaround.css" />
+    <!-- Standard CSS -->
+    <link type="text/css" href="../../templates-env/css/main.css?refresh=160106102" rel="stylesheet" />
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <!-- Custom ENV CSS -->
+    <link href="../../templates-env/css/env-main.css" rel="stylesheet" />
+
+
+
+    <link rel="stylesheet" href="css/visualization.css">
+
+
+    <!-- Snowplow starts plowing - Standalone vA.2.10.2 -->
+    <script type="text/javascript">
+        ;
+        (function (p, l, o, w, i, n, g) {
+            if (!p[i]) {
+                p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || [];
+                p.GlobalSnowplowNamespace.push(i);
+                p[i] = function () {
+                    (p[i].q = p[i].q || []).push(arguments)
+                };
+                p[i].q = p[i].q || [];
+                n = l.createElement(o);
+                g = l.getElementsByTagName(o)[0];
+                n.async = 1;
+                n.src = w;
+                g.parentNode.insertBefore(n, g)
+            }
+        }(window, document, "script", "https://sp-js.apps.gov.bc.ca/MDWay3UqFnIiGVLIo7aoMi4xMC4y.js", "snowplow"));
+        var collector = 'spt.apps.gov.bc.ca';
+        window.snowplow('newTracker', 'rt', collector, {
+            appId: "Snowplow_standalone",
+            platform: 'web',
+            post: true,
+            forceSecureTracker: true,
+            contexts: {
+                webPage: true,
+                performanceTiming: true
+            }
+        });
+        window.snowplow('enableActivityTracking', 30, 30); // Ping every 30 seconds after 30 seconds
+        window.snowplow('enableLinkClickTracking');
+        window.snowplow('trackPageView');
+    </script>
+    <!-- Snowplow stop plowing -->
+
+    <script language="javascript" type="text/javascript">
+        openPage = function () {
+            var query_string = {};
+            var query = window.location.search.substring(1);
+
+            var vars = query.split("&");
+
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                // If first entry with this name
+                if (typeof query_string[pair[0]] === "undefined") {
+
+                    query_string[pair[0]] = decodeURIComponent(pair[1]);
+                    // If second entry with this name
+                } else if (typeof query_string[pair[0]] === "string") {
+                    var arr = [query_string[pair[0]], decodeURIComponent(pair[1])];
+                    query_string[pair[0]] = arr;
+                    // If third or later entry with this name
+                } else {
+                    query_string[pair[0]].push(decodeURIComponent(pair[1]));
+                }
+            }
+
+            var fullURL = "http://www.env.gov.bc.ca/epd/bcairquality/readings/map/station.html#" + query_string.id
+
+            location.href = fullURL
+        }
+    </script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div id="header" role="heading">
+        <div id="header-main" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div id="header-main-row" class="row">
+                    <!-- GOV & ENV TITLE -->
+                    <div class="col-sm-3 col-md-2 col-lg-2 header-main-left">
+                        <div id="logo">
+                            <a href="http://gov.bc.ca"><img src="../../templates-env/images/gov3_bc_logo.png" alt="Government of B.C." title="Government of B.C. logo" /></a>
+                        </div>
+                        <div id="access">
+                            <ul>
+                                <li aria-label="Keyboard Tab Skip">
+                                    <a accesskey="0" href="#main-content-anchor" aria-label="Skip to main content">Skip to main content</a>
+                                </li>
+                                <li aria-label="Keyboard Tab Skip">
+                                    <a accesskey="0" href="#navigation-anchor" aria-label="Skip to navigation">Skip to navigation</a>
+                                </li>
+                                <li aria-label="Keyboard Tab Skip">
+                                    <a accesskey="0" href="http://gov.bc.ca/webaccessibility/" aria-label="Accessibility Statement">Accessibility Statement</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <button type="button" class="navbar-toggle env-button-custom collapsed" data-toggle="collapse" data-target="#navbar">
+                            <img src="../../templates-env/images/menu-open-mobile.png" />
+                        </button>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-6 hidden-xs">
+                        <div class="bcgov-title">
+                            <h1>BC Air Quality</h1>
+                        </div>
+                    </div>
+                    <!-- /GOV & ENV TITLE -->
+                    <!-- COLLAPSING NAVBAR -->
+                    <div id="navbar" class="collapse navbar-collapse" role="navigation">
+                        <a id="main-content-anchor"></a>
+                        <ul class="nav navbar-nav">
+                            <li><a href="http://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161">Air Quality Health Index</a></li>
+                            <li><a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current Air Quality Data</a></li>
+                            <li><a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC Air Data Archive</a></li>
+                        </ul>
+                    </div>
+                    <!-- /COLLAPSING NAVBAR -->
+                </div>
+            </div>
+            <div class="navigationRibbon">
+                <div class="level2Navigation">
+                    <div class="container">
+                        <a href="http://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161">Air Quality Health Index</a>
+                        <a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current Air Quality Data</a>
+                        <a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC Air Data Archive</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /HEADER -->
+    <!-- BODY CONTENT -->
+    <div id="subthemeTemplate" class="template container env-container full-container" style="width:100%;">
+        <div id="breadcrumbContainer">
+            <!-- <ol class="breadcrumb">
+                <li>
+                    <a href="http://www.gov.bc.ca">Home</a>
+                </li>
+                <li>
+                    <a href="http://www2.gov.bc.ca/gov/content?id=8C53E2851B294D8AA18340E4C6A54D7D">Environmental Protection &amp; Sustainability</a>
+                </li>
+                <li>
+                    <a href="http://www2.gov.bc.ca/gov/content?id=A107794D5085039872470FDB7C7FE62D">Air, Land, &amp; Water</a>
+                </li>
+                <li>
+                    <a href="http://www2.gov.bc.ca/gov/content?id=F3D83262D06F42D3BDCBABF120A40DD7">Air</a>
+                </li>
+                <li>
+                    <a href="http://www2.gov.bc.ca/gov/content?id=3F498C928BB74B23A2D8E90FE6804DE5">Air Quality Data</a>
+                </li>
+                <li>
+                    <a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current Air Quality Data</a>
+                </li>
+            </ol> -->
+        </div>
+        <!-- PAGE CONTENT -->
+
+
+
+
+        <div class="row">
+            <div id="main-content" class="contentPageMainColumn col-sm-12">
+                <div class="container-fluid info">
+                    <div class="date">
+                        <h2 class="current-cond"></h2>
+                        <p class="current-date"></p>
+
+                        <h1 class="pollutant-name"></h1>
+                        <div class="container-fluid button"></div>
+                        <div class="container-fluid aqhi_banner"></div>
+                    </div>
+                </div>
+
+                <!--</div> -->
+
+                <div class="row">
+                    <div class="col-sm-10">
+                        <div class="table-responsive">
+                            <table class="table table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <td class="cell-chart-content">
+                                            <svg width="1000" height="500"></svg>
+                                            <div id="chart_container">
+
+                                                <div id="chart"></div>
+
+                                            </div>
+
+                                            <p class="selected-date"></p>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="alert alert-warning" role="alert">
+                                                <h3>Disclaimer:</h3>
+                                                <p><strong> Note:</strong> These graphs will display using Chrome, FireFox, Safari and Microsoft Edge. Internet Explorer Users can use <a onclick="javascript:openPage()" href="javascript:openPage()">an alternate version</a>.</p>
+                                                <p>Air quality data may be missing for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure.</p>
+                                                <p>Data found on this web site is accessible in raw form before all quality assurance reviews are complete. This data is preliminary and is subject to change during the review process. <a href="https://www2.gov.bc.ca/gov/content?id=D73D2DC9D7A8445195F5ED5199350D4B" target="_blank">Read more about our data and licensing agreement.</a></p>
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <hr />
+                    </div>
+                    <div class="col-sm-2">
+
+                        <h3><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Pollutant Objective</h3>
+                        <p>An Air Quality Objective is the provincial acceptable limit for the following pollutant concentrations:</p>
+                        <ul>
+                            <li>PM<sub>2.5</sub> (24hr) = <strong>25 &micro;g/m<sup>3</sup></strong></li>
+                            <li>PM<sub>10</sub> (24hr) = <strong>50 &micro;g/m<sup>3</sup></strong></li>
+                            <li>O<sub>3</sub> (8hr) = <strong>63 ppb</strong></li>
+                            <li>NO<sub>2</sub> = <strong>100 ppb</strong></li>
+                            <li>SO<sub>2</sub> = <strong>70 ppb</strong></li>
+                            <li>TRS = <strong>5 ppb</strong></li>
+                        </ul>
+                        <p>Pollutant objectives are highlighted by a <span style="color:red;font-weight:bold;">red bar</span> on the graph. <a href="http://www2.gov.bc.ca/gov/content?id=600BAE148BE642AE9CEED16BAD6BAA45">Read more about the province's Air Quality Objectives and Standards.</a></p>
+                        <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Tip: Use the grey selection tool to adjust the date range of the data set or hover over the chart and use your mouse wheel.
+                            <br /><img src="images/date-selection.png" alt="selection" /></p>
+                        <p><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the latest data from the <a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5" target="_blank">BC Air Data Archive</a>.</p>
+
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+
+
+                    <h2>Abbreviations</h2>
+
+                    <ul>
+                        <li>PM<sub>2.5</sub> = fine particles with a diameter of 2.5 microns (millionths of a metre)</li>
+                        <li>PM<sub>10</sub> = small particles with a diameter of 10 microns</li>
+                        <li>O<sub>3</sub> = ozone</li>
+                        <li>NO<sub>2</sub> = nitrogen dioxide</li>
+                        <li>SO<sub>2</sub> = sulphur dioxide</li>
+                        <li>ppb = parts per billion</li>
+                        <li>ppm = parts per million</li>
+                        <li>&micro;g/m<sup>3</sup> = micrograms per cubic metre</li>
+                        <li>N/A = Readings are monitored but are not available at this time.</li>
+                    </ul>
+                    <div class="alert alert-success" role="alert">
+                        <h3>Data</h3>
+                        <p>By accessing these datasets, you agree to the license associated with each file, as indicated in parentheses below.</p>
+
+                        <ul>
+                            <li><a href="https://catalogue.data.gov.bc.ca/dataset/air-quality-monitoring-unverified-hourly-air-quality-and-meteorological-data/resource/7fd21841-b133-4f39-b9b2-6bfa34a7cf6c" target="_blank">Air Monitoring Stations</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank">OGL-BC</a>)</li>
+                            <li><a href="https://catalogue.data.gov.bc.ca/dataset/01867404-ba2a-470e-94b7-0604607cfa30" target="_blank">Air Quality Monitoring: Unverified Hourly Air Quality and Meteorological Data</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank">OGL-BC</a>)</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- PAGE CONTENT -->
+    </div>
+    <!-- /BODY CONTENT -->
+
+
+
+    <!-- FOOTER -->
+    <div id="footer" role="contentinfo">
+        <img class="back-to-top" src="../../templates-env/images/back-to-top.png" alt="Back to top" title="Back to top" style="display: inline;">
+        <div id="footerWrapper">
+            <div id="footerAdminSection">
+                <div id="footerAdminLinksContainer" class="container">
+                    <div id="footerAdminLinks" class="row">
+                        <ul class="inline">
+                            <li>
+                                <a href="http://www.gov.bc.ca/" target="_self">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www2.gov.bc.ca/gov/content?id=3F498C928BB74B23A2D8E90FE6804DE5" target="_self">About this site</a>
+                            </li>
+                            <li>
+                                <a href="http://gov.bc.ca/disclaimer/" target="_self">Disclaimer</a>
+                            </li>
+                            <li>
+                                <a href="http://gov.bc.ca/privacy/" target="_self">Privacy</a>
+                            </li>
+                            <li>
+                                <a href="http://gov.bc.ca/webaccessibility/" target="_self">Accessibility</a>
+                            </li>
+                            <li>
+                                <a href="http://gov.bc.ca/copyright" target="_self">Copyright</a>
+                            </li>
+                            <li>
+                                <a href="http://www2.gov.bc.ca/gov/content?id=8D53E57633F94760A3BC8D5426FB1D4B" target="_self">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /FOOTER -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../../templates-env/js/bootstrap.min.js"></script>
+    <script src="../../templates-env/js/misc.js"></script>
+    <script src="../../templates-env/js/navMenu.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../templates-env/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="//d3js.org/d3.v4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <!-- <script src="https://d3js.org/queue.v1.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
+     -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/graph.js"></script>
+
+</body>
+
+</html>
