@@ -95,6 +95,9 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
         //get the date range 
         var xx_min = d3.min(data, function (d) { return new Date(d.DATE_LOCAL); });
         var xx_max = d3.max(data, function (d) { return new Date(d.DATE_LOCAL); });
+		//get date range, use PST time to fix DST issues
+        //var xx_min_PST = d3.min(data, function (d) { return new Date(d.DATE_PST); });
+        //var xx_max_PST = d3.max(data, function (d) { return new Date(d.DATE_PST); });
 
         //find an AQHI item as template
         var template = null;
@@ -107,11 +110,14 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
 
         //calculate how many item should be in the data set based on the date range
         var diff_hours = Math.abs(xx_min - xx_max) / 36e5;
-
+		//revised: assumes input data length is number of hours
+        //var diff_hours = data.length + 1; 
+		
         //populate a new date array with each time slot
         var date_array = [];
         date_array.push(xx_min);
-        for (var i = 1; i < diff_hours - 1; i++) {
+        for (var i = 0; i <= diff_hours; i++) {	 
+		
             date_array.push(d3.timeHour.offset(xx_min, i));
         }
 
@@ -131,7 +137,7 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
                     break;
                 }
             }
-            if (aqhi_data) {
+            if (aqhi_data && aqhi_data.AQHI !== '') {
                 //if an item exist for the time slot, add it into the new data set
                 new_data.push(aqhi_data);
             } else {
@@ -152,20 +158,20 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
 
     meas = [];
 
-    //Order of buttons
-    var orderPoll = ["PM25", "PM25_24", "PM10", "PM10_24", "O3", "O3_8", "NO2", "NO2_24", "SO2", "SO_24", "SO2_24", "TRS","TRS_24", "CO","CO_8HR"]
+    //Order of buttons - Not in use for AQHI. Use graph.js
+    var orderPoll = ["PM25", "PM25_24", "PM10", "PM10_24", "O3", "O3_8HR", "NO2", "NO2_24", "SO2", "SO_24", "TRS", "CO","CO_8HR"]
 
-    var orderMet = ["TEMP_MEAN", "HUMIDITY", "WSPD_SCLR", "WDIR_UVEC", "WSPD_VECT", "WDIR_VECT", "BAR_PRESS", "PRECIP", "SNOWDEPTH", ]
+    var orderMet = ["WSPD_SCLR", "WSPD_VECT", "TEMP_MEAN", "WDIR_VECT"]
 
     var direction = ["N", "E", "S", "W"]
 
     // Don't show these as buttons
-    var exclude = ['DATE_PST', 'LATITUDE', 'LONGITUDE', 'STATION', 'DATE_LOCAL', 'DATE', 'EMS_ID', 'AQHI_AREA', 'STATION_NAME', 'NOx', 'NOX_24', 'NO', 'NO_24', 'SO_24']
+    var exclude = ['DATE_PST', 'LATITUDE', 'LONGITUDE', 'STATION', 'DATE_LOCAL', 'DATE', 'EMS_ID', 'AQHI_AREA', 'STATION_NAME', 'NOx', 'NOX_24', 'NO', 'NO_24', 'NO2_24', 'SO_24', 'SO2_24','AQHI_CHAR','AQHIPLUSPARAMETER','SO2_OVER']
 
 
 
-    // Meteorology measurements
-    met = ['TEMP_MEAN', 'WDIR_UVEC', 'WDIR_VECT', 'WSPD_VECT', 'HUMIDITY', 'WSPD_SCLR', 'PRECIP', 'SNOWDEPTH', 'BAR_PRESS' ]
+    // Meteorology measurements - Not in use for AQHI. Use graph.js
+    met = ['TEMP_MEAN', 'WDIR_UVEC', 'WDIR_VECT', 'WSPD_SCLR', 'WSPD_VECT', 'HUMIDITY']
 
     // Threshold values for horizontal lines
     thres = {
@@ -198,10 +204,10 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
                 if (ind[0]['Data Source'] == 'TEMP_MEAN') {
                     ind[0]['Units'] = '\xB0C'
                 } else if (ind[0]['Data Source'] == 'PM25') {
-                    ind[0]['Units'] = '\u03BCg/m3'
+                    ind[0]['Units'] = '\u03BC g/m3'
 
                 } else if (ind[0]['Data Source'] == 'WDIR_UVEC' || ind[0]['Data Source'] == 'WDIR_VECT') {
-                    ind[0]['Units'] = 'Degrees (\xB0)'
+                    ind[0]['Units'] = '\xB0'
                 }
                 meas.push({
                     source: ind[0]['Data Source'],
@@ -240,16 +246,53 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     makeGraphs(initGas, data)
 
     //Title and date range titles
-    if (QueryString.includes('AQHI')) {
-        d3.select(".current-cond").html(data[0]["AQHI_AREA"]);
-    } else {
-        d3.select(".current-cond").html(data[0]["STATION"] + ' - Air Monitoring Station');
-    }
-    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. Current data is displayed below. <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Click on current data to view a 30-day graph of the analyser below.');
-
-document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["STATION"] + ' - Air Monitoring Station - Province of British Columbia';
     
+    
+    
+    if (QueryString.includes('AQHI')) {
+        d3.select(".current-cond").html(data[0]["AQHI_AREA"] + ' - Air Quality Health Index');
+    } else {
+        d3.select(".current-cond").html(data[0]["STATION"]);
+    }
+    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Current and forecasted AQHI data is displayed below along with a graph of the last 30-days.');
+    
+document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["AQHI_AREA"] + ' - Air Quality Health Index - Province of British Columbia';
+
 });
+
+// custom station message
+
+function getParameterByName(name, url) {
+	    if (!url) url = window.location.href;
+	    name = name.replace(/[\[\]]/g, "\\$&");
+	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+	        results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+	// Give the parameter a variable name
+	var dynamicContent = getParameterByName('id');
+ 
+	 $(document).ready(function() {
+ 
+		// Check if the URL parameter is stationID1
+		if (dynamicContent == 'AQHI-Central_Okanagan') {
+			$('#AQHI-Central_Okanagan').show();
+		} 
+		// Check if the URL parameter is stationID2
+		else if (dynamicContent == 'stationID2') {
+			$('#test2').show();
+		} 
+		// Check if the URL parameter is stationID3
+		else if (dynamicContent == 'stationID3') {
+			$('#test3').show();
+		} 
+		// Check if the URL parmeter is empty or not defined, display default content
+		else {
+			$('#default-content').show();
+		}
+	});
 
 function initAQHIText(region) {
     if (aqhi_data) {
@@ -287,7 +330,7 @@ function makeButtons(keys, data) {
         .data(keys)
         .enter()
         .append("button")
-        .attr("class", "btn btn-default")
+        .attr("class", "btn btn-default-aqhi")
         .attr('id', function (d, i) {
             // console.log(d)
             return d;
@@ -409,7 +452,7 @@ function makeGraphs(trace, data) {
 
     var svg = d3.select("svg"),
         margin = {
-            top: 20,
+            top: 10,
             right: 80,
             bottom: 110,
             left: 50
@@ -522,7 +565,8 @@ function makeGraphs(trace, data) {
     var not_null = data.filter(function (d) { return d[trace] != null; });
 	//adding more filter to account for blanks -JAR
 	not_null = not_null.filter(function (d) { return d[trace] !== ''; });
-	
+    
+
     y_domain_min = d3.min(not_null, function (d) { return +d[trace] });
     y_domain_max = d3.max(not_null, function (d) { return +d[trace] });
 
@@ -567,7 +611,7 @@ function makeGraphs(trace, data) {
         .attr("d", line)
         .style("stroke", function () {
             if (met.includes(trace)) {
-                c = '#6B8E23'
+                c = '#de2d26'
             } else {
                 c = '#2b8cbe'
             }
@@ -597,7 +641,7 @@ function makeGraphs(trace, data) {
         .attr("d", line2)
         .style("stroke", function () {
             if (met.includes(trace)) {
-                c = '#6B8E23'
+                c = '#de2d26'
             } else {
                 c = '#2b8cbe'
             }
@@ -620,7 +664,7 @@ function makeGraphs(trace, data) {
         .style("display", "none");
 
     focus1.append("circle")
-        .attr("r", 4);
+        .attr("r", 3);
 
     focus1.append("text")
         .attr("x", -20)
@@ -682,7 +726,7 @@ function makeGraphs(trace, data) {
             .append('tspan')
             .attr('dy', "1em")
             .attr('dx', "-2em")
-            .style("font-size", "20px")  
+            .style("font-size", "20px")
             .text((trace === 'AQHI' && d[trace] >= 11) ? '10+' : d[trace]);
 
 
@@ -806,17 +850,13 @@ function updateGraph(trace, data) {
             .append('tspan')
             .attr('dy', "1em")
             .attr('dx', "-2em")
-            .style("font-size", "20px") 
+            .style("font-size", "20px")
             .text(d[trace]);
-        
 
     };
 
     var y_domain_min, y_domain_max, y2_domain_min, y2_domain_max;
     var not_null = data.filter(function (d) { return d[trace] != null; });
-		//adding more filter to account for blanks -JAR
-	not_null = not_null.filter(function (d) { return d[trace] !== ''; });
-	
     y2_domain_min = d3.min(not_null, function (d) { return +d[trace] });
     y2_domain_max = d3.max(not_null, function (d) { return +d[trace] });
 
@@ -850,20 +890,7 @@ function updateGraph(trace, data) {
     }
 
 
-    if (trace === "BAR_PRESS") {
-        y_domain_max = 115;
-        y_domain_min = 85;
-        y2_domain_max = 115;
-        y2_domain_min = 85;
 
-        y.domain([y_domain_min, y_domain_max]);
-        y2.domain([y2_domain_min, y2_domain_max]);
-    } else {
-
-        y.domain([Math.floor(y_domain_min), Math.ceil(y_domain_max)]);
-        y2.domain([Math.floor(y2_domain_min), Math.ceil(y2_domain_max)]);
-    }
-    
 
     yAxis = d3.axisLeft(y);
     if (trace === "WDIR_VECT") {
@@ -945,14 +972,14 @@ function updateGraph(trace, data) {
             .classed("dot", true)
             .attr("cx", function (d, i) { return x(d.DATE_LOCAL); })
             .attr("cy", function (d) { return y(d[trace]); })
-            .attr("r", 4)
-            .style("fill", '#6B8E23')
+            .attr("r", 3)
+            .style("fill", '#de2d26')
             .style("opacity", "0");
 
         scatter.selectAll(".dot")
             .transition()
             .duration(1000)
-            .style("opacity", ".7");
+            .style("opacity", "1");
         Line_chart.select(".line")
             .transition()
             .duration(1000)
@@ -977,7 +1004,7 @@ function updateGraph(trace, data) {
         .style("stroke", function (d) {
             // console.log(d)
             if (met.includes(trace)) {
-                c = '#6B8E23'
+                c = '#de2d26'
             } else {
                 c = '#2b8cbe'
             }
@@ -988,7 +1015,7 @@ function updateGraph(trace, data) {
         .attr("d", line2)
         .style("stroke", function (d) {
             if (met.includes(trace)) {
-                c = '#6B8E23'
+                c = '#de2d26'
             } else {
                 c = '#2b8cbe'
             }
