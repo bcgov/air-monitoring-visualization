@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_parent">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="true" />
+    <title>AQHI</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.20/dijit/themes/claro/claro.css" />
+    <!-- Bootstrap core CSS v3.3.6 -->
+    <!-- <link href="http://www.env.gov.bc.ca/epd/bcairquality/templates-env/css/bootstrap.min.css" rel="stylesheet" /> -->
+
+    <!-- DATATABLES CSS -->
+    <!-- <link href="http://www.env.gov.bc.ca/epd/bcairquality/templates-env/css/dataTables.bootstrap.min.css" rel="stylesheet" /> -->
+
+
+    <!-- <link rel="stylesheet" href="../../templates-env/css/env-main.css" /> -->
+
+    
+<link href="custom/css/bcairquality-custom-maps.css" rel="stylesheet" />
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            /* used for height of overall map page */
+            width: 100%;
+            /* used for width of overall map page */
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        #map {
+            height: 100%;
+            /* used for actual height of map */
+            width: 75%;
+            /* used for actual width of map taking into account left pane width*/
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            border: solid 0.5px black;
+            border-left: none;
+        }
+        
+        #HomeButton {
+            position: absolute;
+            top: 95px;
+            left: 20px;
+            z-index: 30;
+        }
+        
+        #leftPane {
+            width: 25%;
+            height: auto;
+            margin: 0;
+            border: solid 0.5px black;
+            font-family: Myriad-Pro, Calibri, Arial, "sans serif";
+        }
+        
+        .nav {
+            padding: 5px 10px;
+            border: solid 1px grey;
+        }
+        
+        #header {
+            text-align: center;
+            height: 75px;
+            border-bottom: none;
+            font-family: Myriad-Pro, Calibri, Arial, "sans serif";
+            border-top: solid 0.5px black;
+            border-left: solid 0.5px black;
+            border-right: solid 0.5px black;
+        }
+        
+        #legend {
+            text-align: left;
+            height: 10%;
+            padding: 0;
+            margin: 5;
+            border-bottom: solid 0.5px black;
+            font-family: Myriad-Pro, Calibri, Arial, "sans serif";
+            display: none;
+            border-left: solid 0.5px black;
+            border-right: solid 0.5px black;
+        }
+        
+        table td {
+            padding: 5px;
+            text-align: center;
+        }
+        
+        .moreInfo ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 5px;
+        }
+        
+        .moreInfo ul > li {
+            background: transparent url("http://www.env.gov.bc.ca/epd/templates-env/images/bullet.png") no-repeat scroll 0 8px;
+            margin-bottom: 3px;
+            padding-left: 15px;
+        }
+    </style>
+    <!-- <script src="https://js.arcgis.com/3.19/"></script> -->
+    <script type="text/javascript" src="custom/js/arc-map/esri-init.js"></script>
+    <script type="text/javascript" src="custom/js/arc-map/init.js"></script>
+    <script type="text/javascript" src="custom/js/arc-map/labels_aqhi.js"></script>
+
+
+
+    <script>
+        require([
+        "esri/map",
+		"esri/dijit/HomeButton",
+        "esri/layers/CSVLayer",
+		"esri/layers/GraphicsLayer",
+		"esri/layers/FeatureLayer",
+		"esri/layers/KMLLayer",
+        "esri/Color",
+		"esri/graphic",
+        "esri/symbols/SimpleMarkerSymbol",
+		"esri/symbols/TextSymbol",
+		"esri/symbols/Font",
+        "esri/renderers/ClassBreaksRenderer",
+		"esri/renderers/SimpleRenderer",
+        "esri/renderers/UniqueValueRenderer",
+        "esri/InfoTemplate",
+		"esri/dijit/PopupTemplate",
+		"esri/dijit/Popup",
+		"dijit/layout/BorderContainer",
+		"dijit/layout/ContentPane",
+        "esri/urlUtils",
+		"esri/geometry/Polygon",
+		"esri/geometry/Point",
+		"esri/symbols/SimpleFillSymbol",
+        "esri/symbols/SimpleLineSymbol",
+		"dojo/ready",
+		"dojo/on",
+		"dojo/_base/connect",
+		"dojo/dom",
+		"dijit/registry",
+		"dojo/dom-construct",
+		"dojo/parser",
+		"esri/domUtils",
+		"esri/arcgis/utils"
+
+		], function (
+                Map, HomeButton, CSVLayer, GraphicsLayer, FeatureLayer, KMLLayer, Color, Graphic, SimpleMarkerSymbol, TextSymbol, Font, ClassBreaksRenderer, SimpleRenderer, UniqueValueRenderer, InfoTemplate, PopupTemplate, Popup, BorderContainer, ContentPane, urlUtils, Polygon, Point, SimpleFillSymbol, SimpleLineSymbol, ready, on, connect, dom, registry, domConstruct, parser, domUtils, arcgisUtils
+
+            )
+
+            {
+
+                parser.parse();
+
+                //setup event handlers for the next/previous buttons
+                on(dom.byId("previous"), "click", selectPrevious);
+                on(dom.byId("next"), "click", selectNext);
+
+
+                var home = new HomeButton({
+                    map: map
+                }, "HomeButton");
+                home.startup();
+
+                map.infoWindow.set("popupWindow", false);
+                initializeSidebar(window.map);
+
+
+                var symbol = new SimpleMarkerSymbol({
+                    "color": [155, 155, 155],
+                    "size": 14,
+                    "xoffset": 0,
+                    "yoffset": 0,
+                    "type": "esriSMS",
+                    "style": "esriSMSCircle",
+                    "outline": {
+                        "color": [255, 255, 255],
+                        "width": .75,
+                        "type": "esriSLS",
+                        "style": "esriSLSSolid"
+
+                    }
+                });
+
+                var renderer = new ClassBreaksRenderer(symbol, "VALUE");
+
+                renderer.addBreak({
+                    minValue: 10.5,
+                    maxValue: Infinity,
+                    label: "+ - Very High Health Risk",
+                    symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#660000"))
+                });
+
+                renderer.addBreak({
+                    minValue: 9.5,
+                    maxValue: 10.5,
+                    label: "10 - High Health Risk",
+                    symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#990000"))
+                });
+
+                renderer.addBreak({
+                    minValue: 8.5,
+                    maxValue: 9.5,
+                    label: "9 - High Health Risk",
+                    symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#cc0000"))
+                });
+
+                renderer.addBreak({
+                    minValue: 7.5,
+                    maxValue: 8.5,
+                    label: "8 - High Health Risk",
+                    symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ff0000"))
+                });
+
+                renderer.addBreak({
+                    minValue: 6.5,
+                    maxValue: 7.5,
+                    label: "7 - High Health Risk",
+                    symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ff6666"))
+                });
+
+                renderer.addBreak({
+                    minValue: 5.5,
+                    maxValue: 6.5,
+                    label: "6 - Moderate Health Risk",
+                    symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ff9933"))
+                });
+
+                renderer.addBreak({
+                    minValue: 4.5,
+                    maxValue: 5.5,
+                    label: "5 - Moderate Health Risk",
+                    symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ffcc00"))
+                });
+
+                renderer.addBreak({
+                    minValue: 3.5,
+                    maxValue: 4.5,
+                    label: "4 - Moderate Health Risk",
+                    symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ffff00"))
+                });
+
+                renderer.addBreak({
+                    minValue: 2.5,
+                    maxValue: 3.5,
+                    label: "3 - Low Health Risk",
+                    symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#006699"))
+                });
+
+                renderer.addBreak({
+                    minValue: 1.5,
+                    maxValue: 2.5,
+                    label: "2 - Low Health Risk",
+                    symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#0099cc"))
+                });
+
+                renderer.addBreak({
+                    minValue: 0,
+                    maxValue: 1.5,
+                    label: "1 - Low Health Risk",
+                    symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#00ccff"))
+                });
+
+                renderer.defaultLabel = "Currently Unavailable";
+
+
+                var csv = new CSVLayer("../aqo/csv/AQHIWeb.csv");
+                var template = new PopupTemplate({
+                    title: "<div style='font-size:1.2em;font-weight:bold;'>{AQHI_AREA}</div><div style='font-size:.8em;margin-bottom:5px;font-weight:normal;'>As of {DATE}</div>",
+                    description: "<div style='width:80%'><strong>Current AQHI</strong><ul><li><strong>Last hour (observed): <span class='aqhi{VALUE:NumberFormat(places:0)}' style='float:right;padding: 5px;'>{VALUE_CHAR}</span></strong></li></ul><strong>Maximum AQHI Forecast</strong><ul><li><p>Today: <span class='aqhi{FORECAST_TODAY:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FORECAST_TODAY_CHAR}</span></p></li><li><p>Tonight: <span class='aqhi{FORECAST_TONIGHT:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FORECAST_TONIGHT_CHAR}</span></p></li><li><p>Tomorrrow: <span class='aqhi{FORECAST_TOMORROW:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FORECAST_TOMORROW_CHAR}</span></p></li></ul><p><a href='{URL}'>View Graph</a></p></div>"
+
+                });
+
+
+                csv.setRenderer(renderer);
+                csv.setInfoTemplate(template);
+                var scale = 3000000;
+                //csv.setMaxScale(scale);	
+                var refresh = 5;
+                csv.setRefreshInterval(refresh);
+
+                map.addLayer(csv);
+
+
+
+                var infoTemplate = new InfoTemplate();
+
+                infoTemplate.setTitle("Station Summary");
+
+
+
+
+                function initializeSidebar(map) {
+                    var popup = map.infoWindow;
+
+                    //when the selection changes update the side panel to display the popup info for the 
+                    //currently selected feature. 
+                    connect.connect(popup, "onSelectionChange", function () {
+                        displayPopupContent(popup.getSelectedFeature());
+                    });
+
+                    //when the selection is cleared remove the popup content from the side panel. 
+                    connect.connect(popup, "onClearFeatures", function () {
+                        //dom.byId replaces dojo.byId
+                        dom.byId("featureCount").innerHTML = "<strong>1. Select an AQHI station on the map</strong>";
+                        //registry.byId replaces dijit.byId
+                        registry.byId("leftPane").set("content", "");
+                        domUtils.hide(dom.byId("pager"));
+                    });
+
+                    //When features are associated with the map's info window update the sidebar with the new content. 
+                    connect.connect(popup, "onSetFeatures", function () {
+                        displayPopupContent(popup.getSelectedFeature());
+                        if (popup.features.length > 1) {
+                            dom.byId("featureCount").innerHTML = "<p><strong>" + popup.features.length + " AQHI stations selected</strong></p>";
+                            //enable navigation if more than one feature is selected 
+                            domUtils.show(dom.byId("pager"))
+                        } else {
+                            dom.byId("featureCount").innerHTML = "<p><strong>" + popup.features.length + " AQHI station selected</strong></p>";
+                            domUtils.hide(dom.byId("pager"));
+                        }
+                    });
+                }
+
+                function displayPopupContent(feature) {
+                    if (feature) {
+                        var content = feature.getContent();
+                        registry.byId("leftPane").set("content", content);
+                    }
+                }
+
+                function selectPrevious() {
+                    window.map.infoWindow.selectPrevious();
+                }
+
+                function selectNext() {
+                    window.map.infoWindow.selectNext();
+                }
+
+
+                var kml = new KMLLayer("http://www.env.gov.bc.ca/epd/bcairquality/readings/MetroVan_Project.kml");
+                map.addLayer(kml);
+                kml.on('load', function (lyr) {
+                    var layers = lyr.layer.getLayers();
+                    dojo.forEach(layers, function (lyr) {
+                        lyr.setInfoTemplate(null);
+                    });
+                });
+                dojo.connect(kml, 'onLoad', function () {
+                    var lyrs = kml.getLayers();
+                    var firstGraphicsUpdate = dojo.connect(lyrs[0], "onUpdate", function () {
+                        dojo.disconnect(firstGraphicsUpdate);
+                        map.reorderLayer(lyrs[0], 0);
+                    });
+                });
+            });
+    </script>
+
+</head>
+
+<body class="claro">
+    <div id="mainWindow" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline',gutters:false" style="width:100%; height:100%;">
+        <!-- start left content -->
+
+        <div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="gutters:false" region="left" style="width: 25%;height:100%;">
+            <div id="leftPane" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'">
+
+            </div>
+            <div id="legend" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'">
+
+            </div>
+            <div id="header" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'">
+                <div id="featureCount" style="margin:5px;">
+                    <strong>1. Select an AQHI station on the map.</strong></div>
+                <div id="pager" style="display:none;">
+                    <a href='javascript:void(0);' id="previous" class='nav' style="text-decoration: none;">
+              &lt; Prev
+          </a>
+                    <a href='javascript:void(0);' id="next" class='nav' style="text-decoration: none;">
+              Next &gt;
+          </a>
+                </div>
+            </div>
+
+        </div>
+        <!-- end left content -->
+        <div id="map" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'">
+            <div id="HomeButton"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
