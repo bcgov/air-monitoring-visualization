@@ -95,6 +95,9 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
         //get the date range 
         var xx_min = d3.min(data, function (d) { return new Date(d.DATE_LOCAL); });
         var xx_max = d3.max(data, function (d) { return new Date(d.DATE_LOCAL); });
+        //get date range, use PST time to fix DST issues
+        //var xx_min_PST = d3.min(data, function (d) { return new Date(d.DATE_PST); });
+        //var xx_max_PST = d3.max(data, function (d) { return new Date(d.DATE_PST); });
 
         //find an AQHI item as template
         var template = null;

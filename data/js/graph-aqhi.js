@@ -1,4 +1,4 @@
-// Version Jan 18th
+// Version Nov. 7th, 2019 - RJT
 // This gets the station ID from the url
 var QueryString = function () {
     // This function is anonymous, is executed immediately and 
@@ -33,7 +33,7 @@ var lowIndex, moderateIndex, hightIndex, veryHighIndex;
 
 var list_of_aq_measures = []
 
-var aqhi_banner_key = ['AQHI_RP', 'AQHI_GP']
+var aqhi_banner_key = ['AQHI_PLUS', 'AQHI_RP', 'AQHI_GP']
 
 // These are the short names and units for each measurement
 d3.csv('labels.csv', function (err, data) {
@@ -85,6 +85,7 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
         }
 
         aqhi_banner_text = {
+            'AQHI_PLUS': 'NA',
             'AQHI_RP': 'NA',
             'AQHI_GP': 'NA'
         }
@@ -276,9 +277,9 @@ function getParameterByName(name, url) {
  
 	 $(document).ready(function() {
  
-		// Check if the URL parameter is stationID1
-		if (dynamicContent == 'AQHI-Central_Okanagan') {
-			$('#AQHI-Central_Okanagan').show();
+		// Check if the URL parameter is stationID1 = replace with e.g. AQHI-Central_Okanagan
+		if (dynamicContent == 'stationID1') {
+			$('#stationID1').show();
 		} 
 		// Check if the URL parameter is stationID2
 		else if (dynamicContent == 'stationID2') {
@@ -304,6 +305,7 @@ function initAQHIText(region) {
                 aqhi_btn_text['FORECAST_TONIGHT'] = a['FORECAST_TONIGHT_CHAR'] + " - " + a['AQHITONIGHT_Text1'];
                 aqhi_btn_text['FORECAST_TOMORROW'] = a['FORECAST_TOMORROW_CHAR'] + " - " + a['AQHITOMORROW_Text1'];
 
+                aqhi_banner_text['AQHI_PLUS'] = "" + a['AQHIPLUS_Text'];
                 aqhi_banner_text['AQHI_RP'] = "<strong>At risk population</strong> - " + a['AQHICURRENT_Text2'];
                 aqhi_banner_text['AQHI_GP'] = "<strong>General population</strong> - " + a['AQHICURRENT_Text3'];
             }

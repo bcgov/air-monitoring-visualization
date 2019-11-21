@@ -89,7 +89,7 @@
             var station_url_ind = 10;
             var station_name_ind = 0;
             var pst_date_ind = 3;
-            var current_index_ind = 13;
+            var current_index_ind = 18;
             var today_index_ind = 5;
             var tonight_index_ind = 6;
             var tomorrow_index_ind = 7;
@@ -104,7 +104,7 @@
         }
 
         function processError() {
-            $('#aqhi_table').append('<b>AQHI data is not available at this moment, please try again later.</b>');
+            $('#aqhi_table').append('<p><b>AQHI data is not available at this moment, please try again later.</b></p>');
         }
 
         function addAqhiTableRow(station_url, station_name, current_index, today_index, tonight_index, tomorrow_index, date) {
@@ -129,12 +129,24 @@
             case 'n/a':
                 result = '<div class="aqhiReading unavailable">N/A</div>';
                 break;
+            case 'N/A':
+                result = '<div class="aqhiReading unavailable">N/A</div>';
+                break;
+            case 'NA':
+                result = '<div class="aqhiReading unavailable">N/A</div>';
+                break;
             case '1':
                 result = '<div class="aqhiReading aqhi1" > LOW <span style = "display:block;" > ' + index + '</span ></div >';
                 break;
+            case '1*':
+                result = '<div class="aqhiReading aqhi1" > LOW <span style = "display:block;" > ' + index + '</span ></div >';
+                break;        
             case '2':
                 result = '<div class="aqhiReading aqhi2" > LOW <span style = "display:block;" > ' + index + '</span ></div >';
                 break;
+            case '2*':
+                result = '<div class="aqhiReading aqhi2" > LOW <span style = "display:block;" > ' + index + '</span ></div >';
+                break;        
             case '3':
                 result = '<div class="aqhiReading aqhi3" > LOW <span style = "display:block;" > ' + index + '</span ></div >';
                 break;
@@ -144,12 +156,21 @@
             case '4':
                 result = '<div class="aqhiReading aqhi4" > MODERATE <span style = "display:block;" > ' + index + '</span ></div >';
                 break;
+            case '4*':
+                result = '<div class="aqhiReading aqhi4" > MODERATE <span style = "display:block;" > ' + index + '</span ></div >';
+                break;        
             case '5':
                 result = '<div class="aqhiReading aqhi5" > MODERATE <span style = "display:block;" > ' + index + '</span ></div >';
                 break;
+            case '5*':
+                result = '<div class="aqhiReading aqhi5" > MODERATE <span style = "display:block;" > ' + index + '</span ></div >';
+                break;        
             case '6':
                 result = '<div class="aqhiReading aqhi6" > MODERATE <span style = "display:block;" > ' + index + '</span ></div >';
                 break;
+            case '6*':
+                result = '<div class="aqhiReading aqhi6" > MODERATE <span style = "display:block;" > ' + index + '</span ></div >';
+                break;        
             case '7':
                 result = '<div class="aqhiReading aqhi7" > HIGH <span style = "display:block;" > ' + index + '</span ></div >';
                 break;
@@ -159,14 +180,30 @@
             case '8':
                 result = '<div class="aqhiReading aqhi8" > HIGH <span style = "display:block;" > ' + index + '</span ></div >';
                 break;
+            case '8*':
+                result = '<div class="aqhiReading aqhi8" > HIGH <span style = "display:block;" > ' + index + '</span ></div >';
+                break;        
             case '9':
                 result = '<div class="aqhiReading aqhi9" > HIGH <span style = "display:block;" > ' + index + '</span ></div >';
                 break;
+            case '9*':
+                result = '<div class="aqhiReading aqhi9" > HIGH <span style = "display:block;" > ' + index + '</span ></div >';
+                break;        
             case '10':
                 result = '<div class="aqhiReading aqhi10" > HIGH <span style = "display:block;" > ' + index + '</span ></div >';
                 break;
-            default:
+            case '10*':
+                result = '<div class="aqhiReading aqhi10" > HIGH <span style = "display:block;" > ' + index + '</span ></div >';
+                break;        
+            case '10+':
                 result = '<div class="aqhiReading aqhi11" > VERY HIGH <span style = "display:block;" > ' + index + '</span ></div >';
+                break;    
+            case '11':
+                result = '<div class="aqhiReading aqhi11" > VERY HIGH <span style = "display:block;" > ' + index + '</span ></div >';
+                break;    
+            default:
+                result = '<div class="aqhiReading unavailable">N/A</div>';
+                break;
             }
 
             return result;
@@ -176,7 +213,7 @@
             var date_str = d.split(" ")[0];
             var hour_str = d.split(" ")[1];
             var date = new Date(date_str.split("-")[0], date_str.split("-")[1] - 1, date_str.split("-")[2], hour_str.split(":")[0]);
-            return getMonthDes(date.getMonth()) + '. ' + date.getDate() + ', ' + date.getFullYear() + ', ' + (date.getHours() > 12 ? date.getHours() - 12 : date.getHours()) + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + (date.getHours() >= 12 ? 'pm' : 'am') + ' PDT';
+            return getMonthDes(date.getMonth()) + '. ' + date.getDate() + ', ' + date.getFullYear() + ', ' + (date.getHours() > 12 ? date.getHours() - 12 : date.getHours()) + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + (date.getHours() >= 12 ? 'pm' : 'am') + ' PST';
         }
 
         function getMonthDes(m) {
@@ -313,11 +350,12 @@
 
             <h1>Air Quality Health Index - What's the Air Like Today?</h1>
             <div id="pageIntro">
-                <!--  <div class="alert alert-danger" role="alert">
+<!--                  <div class="alert alert-danger" role="alert">
 
-<h3>NOTICE: System Outage</h3>
-    <p>Our Air Quality Monitoring System will be <strong>OFFLINE from 9PM Friday, October 27th to 9AM Sunday, October 29th</strong> for database maintenance and patch application. </p>
-        </div> -->
+<h3>NOTICE: System Maintenance</h3>
+    <p>Our Air Quality Monitoring System will be OFFLINE on Saturday, October 19th from 9am to 2pm.</p>
+        </div>
+-->
                 <p>Find the current and forecast Air Quality Health Index (<abbr title="Air Quality Health Index">AQHI</abbr>) values to help you understand what the air quality around you means to your health. </p>
 
 
@@ -381,10 +419,11 @@
                                 </tbody>
                             </table>
                         </div>
-                        <p style="text-align:right;"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> AQHI Scale - <a href="#" data-toggle="modal" data-target="#myModal">
+                        <p style="text-align:right;"><strong><sup>*</sup></strong>Click on the station link to view special note.
+                        <br/><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> AQHI Scale - <a href="#" data-toggle="modal" data-target="#myModal">
                      Learn more about AQHI Categories and Explanations.
                 </a>
-                            <br/><strong><sup>*</sup></strong>Click on the station link to view special note.</p>
+                            </p>
                         <hr/>
                         <div id="aqhiStationHeader" style="display:none;">
                             <div id="aqhiHeaderRow2">
@@ -434,8 +473,11 @@
                         <h2>Additional Resources</h2>
 
                         <div class="alert alert-info" role="alert">
-                            <h3>Smoke Forecast</h3>
-                            <p>Visit the <a href="http://firesmoke.ca/forecasts/viewer/run/ops/BSC-CA-01/current/" target="_blank">BlueSky Canada (Western Canada)</a> smoke forecast page for up to date forecast information.</p>
+                            <h3>Smoke Related Information</h3>
+                            <ul>
+                                <li>Read the frequently asked questions about the <a href="https://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161" target="_blank">Air Quality Health Index and Wildfire Smoke</a>.</li>
+                                <li>Visit the <a href="http://firesmoke.ca/forecasts/current/" target="_blank">BlueSky Canada (Western Canada)</a> smoke forecast page for up to date forecast information.</li>
+                            </ul>
                         </div>
 
 
@@ -464,10 +506,10 @@
             <div class="row">
                 <!--OUTAGE WARNING -->
 
-                <div class="alert alert-warning" role="alert">
-                    <h3><sup><strong></strong></sup>NOTE: Kelowna College</h3>
-                    <p>The Kelowna College monitoring station in Kelowna, BC has been shut down and is in the process of being relocated to a new site in the city. A temporary monitoring station (Kelowna Raymer Ave WWTP) has been deployed to report on fine particulate (PM2.5) while the relocation proceeds. The AQHI for Central Okanagan will be based on data from the Kelowna WWTP station supplemented by data from the Vernon Science Centre monitoring station.</p>
-                </div>
+                <!-- <div class="alert alert-warning" role="alert">
+                    <h3><sup><strong></strong></sup>NOTE:</h3>
+                    <p></p>
+                </div> -->
 
 
                 <div class="alert alert-success" role="alert" aria-live="polite">
@@ -476,8 +518,8 @@
                     <p>By accessing these datasets, you agree to the license associated with each file, as indicated in parentheses below.</p>
 
                     <ul>
-                        <li><a href="https://catalogue.data.gov.bc.ca/dataset/air-quality-monitoring-unverified-hourly-air-quality-and-meteorological-data/resource/7fd21841-b133-4f39-b9b2-6bfa34a7cf6c" target="_blank">Air Monitoring Stations</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank">OGL-BC</a>)</li>
-                        <li><a href="https://catalogue.data.gov.bc.ca/dataset/01867404-ba2a-470e-94b7-0604607cfa30" target="_blank">Air Quality Monitoring: Unverified Hourly Air Quality and Meteorological Data</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank">OGL-BC</a>)</li>
+                        <li><a href="https://catalogue.data.gov.bc.ca/dataset/air-quality-monitoring-unverified-hourly-air-quality-and-meteorological-data/resource/7fd21841-b133-4f39-b9b2-6bfa34a7cf6c" target="_blank">Air Monitoring Stations</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank"><abbr title="Open Government Licence - British Columbia">OGL-BC</abbr></a>)</li>
+                        <li><a href="https://catalogue.data.gov.bc.ca/dataset/01867404-ba2a-470e-94b7-0604607cfa30" target="_blank">Air Quality Monitoring: Unverified Hourly Air Quality and Meteorological Data</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank"><abbr title="Open Government Licence - British Columbia">OGL-BC</abbr></a>)</li>
                     </ul>
 
                 </div>

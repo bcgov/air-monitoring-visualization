@@ -1,12 +1,10 @@
-html {
-  
-}
+html {}
 
 body {
- /* margin: 1em auto 4em auto;  */
-/*  position: relative;  */
-/*  tab-size: 2;  */
-/*  width: 960px; */
+    /* margin: 1em auto 4em auto;  */
+    /*  position: relative;  */
+    /*  tab-size: 2;  */
+    /*  width: 960px; */
 }
 
 #breadcrumbContainer {
@@ -15,65 +13,60 @@ body {
 
 #chart_container {
     position: absolute;
-    left:500px;
-  /*  top:180px; */
+    left: 500px;
+    /*  top:180px; */
 }
 
-
 .table > tbody > tr > td {
-    
     border-top: 0px !important;
-    
 }
 
 .cell-chart-content {
-    
-    text-align: left;
-    
+    text-align: center;
 }
 
 #distid {
-padding-left:600px;
-margin-bottom: -75px;
+    padding-left: 600px;
+    margin-bottom: -75px;
 }
+
 .btn {
     /* border-radius: 0px !important; */
     transition: linear, ease-in 0.3s !important;
     outline-color: blue;
-    border: black 1px transparent !important; 
+    border: black 1px transparent !important;
     width: auto;
 }
 
 .btn:focus {
     color: white !important;
-    color: black !important; 
+    color: black !important;
 }
 
 .btn-default {
-    color: black !important; 
-    background: transparent !important; 
-    border: black 1px transparent !important; 
+    color: black !important;
+    background: transparent !important;
+    border: black 1px transparent !important;
     padding: 1% !important;
-    margin:1px !important;
-    border-color:lightgray;
+    margin: 1px !important;
+    border-color: lightgray;
 }
 
 .btn-default-aqhi {
-    color: black !important; 
-    background: transparent !important; 
-    border: black 1px transparent !important; 
+    color: black !important;
+    background: transparent !important;
+    border: black 1px transparent !important;
     padding: 1% !important;
-    margin:1px !important;
-    border-color:none;
+    margin: 1px !important;
+    border-color: none;
 }
-
 
 .btn-default a {
     color: black !important;
 }
 
 .btn-default:hover {
-    background: #f3cd65 !important; 
+    background: #f3cd65 !important;
     border-color: black !important;
 }
 
@@ -96,45 +89,50 @@ margin-bottom: -75px;
     color: red !important;
 }
 
-#FORECAST_TODAY, #FORECAST_TONIGHT, #FORECAST_TOMORROW {
-    pointer-events:none;
+#FORECAST_TODAY,
+#FORECAST_TONIGHT,
+#FORECAST_TOMORROW {
+    pointer-events: none;
 }
 
-.controller-button{
+.controller-button {
     padding: 10px;
     margin: 10px;
 }
-.val{
+
+.val {
     font-size: 24px;
     color: steelblue;
 }
 
- .line {
-        fill: none;
-        stroke: steelblue;
-        stroke-width: 1.5px;
-    }
- .line1 {
-        fill: none;
-        stroke: steelblue;
-        /*stroke-width: 1.5px;*/
-    }
- .line2 {
-        fill: none;
-        stroke: steelblue;
-        stroke-width: 1.5px;
-    }
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
+
+.line1 {
+    fill: none;
+    stroke: steelblue;
+    /*stroke-width: 1.5px;*/
+}
+
+.line2 {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
 
 .zoom {
-  cursor: move;
-  fill: none;
-  pointer-events: all;
+    cursor: move;
+    fill: none;
+    pointer-events: all;
 }
 
 #overlay {
-  fill: none;
-  pointer-events: all;
-cursor: pointer;    
+    fill: none;
+    pointer-events: all;
+    cursor: pointer;
 }
 
 svg:not(:root) {
@@ -142,11 +140,10 @@ svg:not(:root) {
 }
 
 .focus1 circle {
-  fill: none;
-  stroke: red;
-  stroke-width:2;
+    fill: none;
+    stroke: red;
+    stroke-width: 2;
 }
-
 
 .line1 {
     fill: none;
@@ -154,74 +151,82 @@ svg:not(:root) {
     stroke-width: 1.5px;
 }
 
-.selected-date{
+.selected-date {
     /* float:left; */
     text-align: center;
 }
 
-
-#leftcolumn, #rightcolumn {
+#leftcolumn,
+#rightcolumn {
     float: left;
 }
+
 #leftcolumn {
-     width: 550px;
+    width: 550px;
 }
+
 #rightcolumn {
-     width: 250px;
+    width: 250px;
+}
+
+#right-side-column {
+    margin: 20px;
 }
 
 aside {
-  font-size: small;
-  left: 780px;
-  position: absolute;
-  text-align: right;
-  width: 180px;
+    font-size: small;
+    left: 780px;
+    position: absolute;
+    text-align: right;
+    width: 180px;
 }
 
 p {
- /* line-height: 1.5em; */
+    /* line-height: 1.5em; */
 }
 
 blockquote {
-/*  width: 640px; */
+    /*  width: 640px; */
 }
 
 li {
-  /* width: 680px; */
+    /* width: 680px; */
 }
 
 a {
-  /* color: steelblue; */
+    /* color: steelblue; */
 }
 
 a:not(:hover) {
-  text-decoration: none;
+    text-decoration: none;
 }
 
-pre, code, textarea {
- /* line-height: normal; */
+pre,
+code,
+textarea {
+    /* line-height: normal; */
 }
 
 textarea {
-/*  font-size: 100%; */
+    /*  font-size: 100%; */
 }
 
 pre {
-  border-left: solid 2px #ccc; 
-  padding-left: 18px; 
-  margin: 2em 0 2em -20px; 
-  width: 960px; */
-  overflow-x: auto;
-} 
+    border-left: solid 2px #ccc;
+    padding-left: 18px;
+    margin: 2em 0 2em -20px;
+    width: 960px;
+    */ overflow-x: auto;
+}
 
 .grid line {
-  stroke: lightgrey;
-  stroke-opacity: 0.7;
-  shape-rendering: crispEdges;
+    stroke: lightgrey;
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges;
 }
 
 .grid path {
-  stroke-width: 0;
+    stroke-width: 0;
 }
 
 .overlay {
@@ -238,6 +243,7 @@ pre {
 .fullscreen .full-container {
     padding-top: 5px !important;
 }
+
 
 /* AQHI Scale */
 
@@ -336,30 +342,31 @@ pre {
     height: 0px;
 }
 
-.aqhi_btn{
+.aqhi_btn {
     /* padding: 5px 10px 5px 10px; */
     width: 280px;
 }
 
+.table-responsive {
+    overflow-x: scroll;
+}
+
 @media (max-width: 767px) {
-#env-logo {
-    margin: 5px 0 5px 15px;
-}
-.navigationRibbon {
-    height: 0;
-    visibility: hidden;
-}
-#navbar {
-    border-top: medium none;
-    width: 100%;
-}
-.navbar-toggle {
-    margin-bottom: 0;
-    margin-right: 0;
-}
-    
-
-
+    #env-logo {
+        margin: 5px 0 5px 15px;
+    }
+    .navigationRibbon {
+        height: 0;
+        visibility: hidden;
+    }
+    #navbar {
+        border-top: medium none;
+        width: 100%;
+    }
+    .navbar-toggle {
+        margin-bottom: 0;
+        margin-right: 0;
+    }
 }
 
 @media (max-width: 700px) {
@@ -367,15 +374,11 @@ pre {
     /*  .tableMd { display: none; height: auto; } */
 }
 
-@media (max-width: 550px) {}
+@media (max-width: 550px) {
+    .cell-chart-content {
+        text-align: left;
+    }
+}
 
-.table-responsive {
-    overflow-x: scroll;
-    
-}
-.cell-chart-content {
-    
-    text-align: left;
-    
-}
+
 }

@@ -85,6 +85,8 @@
     </script>
     <!-- Snowplow stop plowing -->
 
+    
+    <!-- URL switch -->  
     <script language="javascript" type="text/javascript">
         openPage = function () {
             var query_string = {};
@@ -239,7 +241,7 @@
                                         <td>
                                             <div class="alert alert-warning" role="alert">
                                                 <h3>Disclaimer:</h3>
-                                                <p><strong> Note:</strong> These graphs will display using Chrome, FireFox, Safari and Microsoft Edge. Internet Explorer Users can use <a onclick="javascript:openPage()" href="javascript:openPage()">an alternate version</a>.</p>
+                                                <p><strong> Note: These graphs will display using Chrome, Firefox, Safari and Microsoft Edge.</strong> If you are using Internet Explorer, you can use <a onclick="javascript:openPage()" href="javascript:openPage()">an alternate version</a>.</p>
                                                 <p>Air quality data may be missing for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure.</p>
                                                 <p>Data found on this web site is accessible in raw form before all quality assurance reviews are complete. This data is preliminary and is subject to change during the review process. <a href="https://www2.gov.bc.ca/gov/content?id=D73D2DC9D7A8445195F5ED5199350D4B" target="_blank">Read more about our data and licensing agreement.</a></p>
 
@@ -255,22 +257,22 @@
                         <hr />
                     </div>
                     <div class="col-sm-2">
-
-                        <h3><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Pollutant Objective</h3>
-                        <p>An Air Quality Objective is the provincial acceptable limit for the following pollutant concentrations:</p>
-                        <ul>
-                            <li>PM<sub>2.5</sub> (24hr) = <strong>25 &micro;g/m<sup>3</sup></strong></li>
-                            <li>PM<sub>10</sub> (24hr) = <strong>50 &micro;g/m<sup>3</sup></strong></li>
-                            <li>O<sub>3</sub> (8hr) = <strong>63 ppb</strong></li>
-                            <li>NO<sub>2</sub> = <strong>100 ppb</strong></li>
-                            <li>SO<sub>2</sub> = <strong>70 ppb</strong></li>
-                            <li>TRS = <strong>5 ppb</strong></li>
-                        </ul>
-                        <p>Pollutant objectives are highlighted by a <span style="color:red;font-weight:bold;">red bar</span> on the graph. <a href="http://www2.gov.bc.ca/gov/content?id=600BAE148BE642AE9CEED16BAD6BAA45">Read more about the province's Air Quality Objectives and Standards.</a></p>
-                        <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Tip: Use the grey selection tool to adjust the date range of the data set or hover over the chart and use your mouse wheel.
-                            <br /><img src="images/date-selection.png" alt="selection" /></p>
-                        <p><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the latest data from the <a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5" target="_blank">BC Air Data Archive</a>.</p>
-
+                        <div id="right-side-column">
+                            <h3><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Pollutant Objective</h3>
+                            <p>An Air Quality Objective is the provincial acceptable limit for the following pollutant concentrations:</p>
+                            <ul>
+                                <li>PM<sub>2.5</sub> (24hr) = <strong>25 &micro;g/m<sup>3</sup></strong></li>
+                                <li>PM<sub>10</sub> (24hr) = <strong>50 &micro;g/m<sup>3</sup></strong></li>
+                                <li>O<sub>3</sub> (8hr) = <strong>63 ppb</strong></li>
+                                <li>NO<sub>2</sub> = <strong>100 ppb</strong></li>
+                                <li>SO<sub>2</sub> = <strong>70 ppb</strong></li>
+                                <li>TRS = <strong>5 ppb</strong></li>
+                            </ul>
+                            <p>Pollutant objectives are highlighted by a <span style="color:red;font-weight:bold;">red bar</span> on the graph. <a href="http://www2.gov.bc.ca/gov/content?id=600BAE148BE642AE9CEED16BAD6BAA45">Read more about the province's Air Quality Objectives and Standards.</a></p>
+                            <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Tip: Use the grey selection tool to adjust the date range of the data set or hover over the chart and use your mouse wheel.
+                                <br /><img src="images/date-selection.png" alt="selection" /></p>
+                            <p><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the latest data from the <a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5" target="_blank">BC Air Data Archive</a>.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -357,24 +359,25 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../../templates-env/js/bootstrap.min.js"></script>
     <script src="../../templates-env/js/misc.js"></script>
     <script src="../../templates-env/js/navMenu.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../templates-env/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="//d3js.org/d3.v4.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="js/d3.v4.js"></script>
+    <script src="js/topojson.min.js"></script>
+    <script src="js/underscore-min.js"></script>
     <!-- <script src="https://d3js.org/queue.v1.min.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
      -->
     <!-- Latest compiled and minified JavaScript -->
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/graph.js"></script>
+    <!-- All js files have been saved locally in data/js/ -->
 
 </body>
 
