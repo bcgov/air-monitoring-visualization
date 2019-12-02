@@ -253,7 +253,7 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
 document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["STATION"] + ' - Air Monitoring Station - Province of British Columbia';
     
 });
-
+//AQHI function below not in use
 function initAQHIText(region) {
     if (aqhi_data) {
         aqhi_data.forEach(function (a) {
@@ -411,17 +411,17 @@ function makeGraphs(trace, data) {
     })
 
     var svg = d3.select("svg"),
-        margin = {
-            top: 20,
-            right: 80,
-            bottom: 110,
-            left: 50
+       margin = {
+            top: 10,
+            right: 1,
+            bottom: 140,
+            left: 1
         },
         margin2 = {
             top: 430,
-            right: 20,
+            right: 5,
             bottom: 30,
-            left: 50
+            left: 5
         },
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
@@ -657,7 +657,7 @@ function makeGraphs(trace, data) {
 
     ylab = svg.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 0)
+        .attr("y", -50)
         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")

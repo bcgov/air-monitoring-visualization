@@ -134,7 +134,7 @@
                     </div>
                     <div class="col-sm-8 col-md-8 col-lg-6 hidden-xs">
                         <div class="bcgov-title">
-                            <h1>BC Air Quality - AQHI</h1>
+                            <h1>BC Air Quality</h1>
                         </div>
                     </div>
                     <!-- /GOV & ENV TITLE -->
@@ -192,17 +192,21 @@
 
         <div class="row">
             <div id="main-content" class="contentPageMainColumn col-sm-12">
-                <div class="container-fluid info">
+               <div id="IE11notice" class="alert alert-warning" role="alert">
+                        
+                            <p><strong> Note:</strong> Please use Chrome, FireFox, Safari or Microsoft Edge to view these graphs. Internet Explorer 11 users can an <a href="https://www2.gov.bc.ca/gov/content?id=3DE6F4F08AB14D6F8076DEA233BA359D" target="_blank">alternate version listed here</a>. These alternate versions will be discontinued by the end of the year (2019).</p>
+
+                    </div>
+                <div class="info">
                     <div class="date">
                         <h1 class="current-cond"></h1>
+                        
                         <p class="current-date"></p>
 
                         <h1 class="pollutant-name"></h1>
-                        <div class="container-fluid button"></div>
+                        <div class="button"></div>
 
-
-
-                        <div class="container-fluid aqhi_banner alert alert-info" role="alert">
+                        <div class="aqhi_banner alert alert-info" role="alert">
                             <h3>Health Message for Current Conditions:</h3></div>
                     </div>
                     <!-- Default Dynamic Section -->
@@ -237,7 +241,7 @@
                                     <tr>
                                         <td class="cell-chart-content">
 
-                                            <svg width="1000" height="500"></svg>
+                                            <svg width="1200" height="500"></svg>
                                             <div id="chart_container">
 
                                                 <div id="chart"></div>
@@ -254,8 +258,17 @@
 
                         </div>
                         <hr />
+                         <div class="alert alert-warning" role="alert">
+                        <h3>Disclaimer:</h3>
+                        <p>Air quality data may be missing for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure.</p>
+                        <p>Data found on this web site is accessible in raw form before all quality assurance reviews are complete. This data is preliminary and is subject to change during the review process. <a href="https://www2.gov.bc.ca/gov/content?id=D73D2DC9D7A8445195F5ED5199350D4B" target="_blank">Read more about our data and licensing agreement.</a></p>
+
+                        
+                    </div>
+                    <hr />
                     </div>
                     <div class="col-sm-2">
+                       <div id="right-side-column">
                         <div class="legend" style="margin-top:10px;">
 
                             <h3>AQHI Values - Health Risk</h3>
@@ -300,19 +313,12 @@
 
 
                         </div>
-
+                        </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="alert alert-warning" role="alert">
-                        <h3>Disclaimer:</h3>
-                        <p>Air quality data may be missing for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure.</p>
-                        <p>Data found on this web site is accessible in raw form before all quality assurance reviews are complete. This data is preliminary and is subject to change during the review process. <a href="https://www2.gov.bc.ca/gov/content?id=D73D2DC9D7A8445195F5ED5199350D4B" target="_blank">Read more about our data and licensing agreement.</a></p>
-
-                        <p><strong> Note:</strong> These graphs will display using Chrome, FireFox, Safari and Microsoft Edge. Internet Explorer Users should <a href="https://www2.gov.bc.ca/gov/content?id=3DE6F4F08AB14D6F8076DEA233BA359D" target="_blank">click here</a> for an alternate version.</p>
-
-                    </div>
+                   
 
 
                     <div class="alert alert-success" role="alert">

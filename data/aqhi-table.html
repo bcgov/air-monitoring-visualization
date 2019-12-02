@@ -52,8 +52,8 @@
 
 
     <!-- FONTS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-    <!-- <link rel="stylesheet" href="../../templates-env/css/font-awesome.min.css" /> -->
+    
+    <link rel="stylesheet" href="../../templates-env/css/font-awesome.min.css" />
 
     <!-- CUSTOM ENV CSS -->
     <link href="../../templates-env/css/env-main.css" rel="stylesheet" />
@@ -66,7 +66,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
             $.ajax({
@@ -321,7 +321,7 @@
     <!-- /HEADER -->
     <!-- BODY CONTENT -->
     <div id="main-content" class="template container env-container">
-        <div id="breadcrumbContainer">
+       <!-- <div id="breadcrumbContainer">
             <ol class="breadcrumb">
                 <li>
                     <a href="http://www.gov.bc.ca">Home</a>
@@ -340,13 +340,14 @@
                 </li>
 
 
-            </ol>
-        </div>
+            </ol> 
+        </div>-->
 
         <!-- PAGE CONTENT -->
+        <div id="main-content" class="contentPageMainColumn col-xs-12">
         <div class="row">
             <!-- AQHI content -->
-            <!--   <div id="main-content" class="contentPageMainColumn col-xs-12"> -->
+            <!--    -->
 
             <h1>Air Quality Health Index - What's the Air Like Today?</h1>
             <div id="pageIntro">
@@ -356,7 +357,7 @@
     <p>Our Air Quality Monitoring System will be OFFLINE on Saturday, October 19th from 9am to 2pm.</p>
         </div>
 -->
-                <p>Find the current and forecast Air Quality Health Index (<abbr title="Air Quality Health Index">AQHI</abbr>) values to help you understand what the air quality around you means to your health. </p>
+                <p>Find the current and forecast Air Quality Health Index (AQHI) values to help you understand what the air quality around you means to your health. </p>
 
 
 
@@ -450,28 +451,25 @@
                 </div>
 
                 <div class="contentPageRightColumn col-md-12 col-lg-5">
-
-                    <h2>View Current Air Monitoring Station Data</h2>
-                    <p><a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">View a list of air monitoring stations</a> or use our <a href="../readings/find-stations-map.html">interactive map</a> below to view current air quality data in your area.
-                    </p>
-
-
-                    <div class="row">
-                        <a href="../readings/find-stations-map.html"><img src="images/interactive-map-thumb.png" width="100%" /></a>
-                        <div class="alert alert-warning" role="alert">
+                
+                 <div class="row">
+ <div class="alert alert-warning" role="alert">
                             <h3>Disclaimer</h3>
                             <p> Air quality data may be missing for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure. Data found on this web site is accessible in raw form before all quality assurance reviews are complete. This data is preliminary and is subject to change during the review process. <a href="https://www2.gov.bc.ca/gov/content?id=D73D2DC9D7A8445195F5ED5199350D4B">Read more about our data and licensing agreement</a>.</p>
                         </div>
-
-
-
-
-                    </div>
                     <hr/>
+                      </div>
+                  
                     <div class="row">
 
                         <h2>Additional Resources</h2>
-
+                        
+                        <div class="alert alert-info" role="alert">
+                        
+                        <h3>Current Air Monitoring Station Data</h3>
+                    <p><a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">View a list of air monitoring stations</a> or use our <a href="../readings/find-stations-map.html">interactive map</a> below to view current air quality data in your area.</p><p>
+                    <a href="../readings/find-stations-map.html"><img src="images/interactive-map-thumb.png" width="95%" /></a></p>
+                        </div>
                         <div class="alert alert-info" role="alert">
                             <h3>Smoke Related Information</h3>
                             <ul>
@@ -479,27 +477,22 @@
                                 <li>Visit the <a href="http://firesmoke.ca/forecasts/current/" target="_blank">BlueSky Canada (Western Canada)</a> smoke forecast page for up to date forecast information.</li>
                             </ul>
                         </div>
-
-
-                        <p style="text-align:center;">
-                            <a href="http://open.alberta.ca/interact/aqhi-canada" target="_blank"><img src="images/AQ-Canada-App-logo.jpg" alt="AQHI Canada App" /></a>
-                        </p>
-                        <p>New <a href="http://open.alberta.ca/interact/aqhi-canada" target="_blank">National app</a> from the Government of Alberta for mobile platform.</p>
-                        <p style="text-align:center;">
-                            <a href="https://www.canada.ca/en/environment-climate-change/services/weather-general-tools-resources/weathercan.html" target="_blank"><img src="images/WeatherCAN-Icon-200px.png" width="100px" alt="WeatherCAN" />
-                            </a>
-                        </p>
-                        <p>Receive weather alert notifications in your area, as well as in your saved locations, wherever you are in Canada. Get your latest forecast information directly from <a href="https://www.canada.ca/en/environment-climate-change/services/weather-general-tools-resources/weathercan.html" target="_blank">Canada’s official weather source</a>.</p>
-
-                        <hr/>
+                        
+                        <div class="alert alert-info" role="alert">
+                            <h3>Mobile Device Apps with Alert Notifications</h3>      
+                        <div class="flex-container">
+  <div style="margin: 10px;width: 100%;"><a href="http://open.alberta.ca/interact/aqhi-canada" target="_blank"><img src="images/AQSS-icon-64px.png" alt="Air Quality Subscription Service" /></a> <a href="https://www2.gov.bc.ca/gov/content?id=2F89F266A1BE40EC8926C45A05E28BCD" target="_blank">Air Quality Subscription Service</a></div>
+                             <div style="margin: 10px;width: 100%;"><a href="http://open.alberta.ca/interact/aqhi-canada" target="_blank"><img src="images/AQ-Canada-App-icon.png" alt="AQHI Canada App" /></a> <a href="http://open.alberta.ca/interact/aqhi-canada" target="_blank">AQHI Canada App</a> from the Government of Alberta.</div>
+                            <div style="margin: 10px;width: 100%;"> <a href="https://www.canada.ca/en/environment-climate-change/services/weather-general-tools-resources/weathercan.html" target="_blank"><img src="images/WeatherCAN-Icon.png" alt="WeatherCAN" /></a> Get weather alerts from <a href="https://www.canada.ca/en/environment-climate-change/services/weather-general-tools-resources/weathercan.html" target="_blank">Canada’s WeatherCAN App</a>.</div>
+ 
+</div>
+     
+                        </div>
+                <hr/>
                         <p>If you have a comment or concern about the air quality content on this website <a href="http://www2.gov.bc.ca/gov/content?id=8D53E57633F94760A3BC8D5426FB1D4B">please contact us.</a></p>
 
                     </div>
-
-
-
-
-                </div>
+ </div>
             </div>
 
             <hr />
@@ -525,6 +518,7 @@
                 </div>
             </div>
 
+        </div>
         </div>
         <!-- PAGE CONTENT -->
     </div>
@@ -650,8 +644,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../../templates-env/js/bootstrap.min.js"></script>
     <script src="../../templates-env/js/misc.js"></script>

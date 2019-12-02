@@ -45,10 +45,8 @@
     <!-- Custom ENV CSS -->
     <link href="../../templates-env/css/env-main.css" rel="stylesheet" />
 
-
-
     <link rel="stylesheet" href="css/visualization.css">
-
+    <link rel="stylesheet" href="css/graphs.css">
 
     <!-- Snowplow starts plowing - Standalone vA.2.10.2 -->
     <script type="text/javascript">
@@ -206,14 +204,20 @@
 
         <div class="row">
             <div id="main-content" class="contentPageMainColumn col-sm-12">
-                <div class="container-fluid info">
+               <div id="IE11notice" class="alert alert-warning" role="alert">
+                        
+                            <p><strong> Note:</strong> Please use Chrome, FireFox, Safari or Microsoft Edge to view these graphs. If you are using Internet Explorer 11, you can use <a onclick="javascript:openPage()" href="javascript:openPage()">an alternate version</a>. These alternate versions will be discontinued by the end of the year (2019).</p>
+
+                    </div>
+                <div class="info">
                     <div class="date">
-                        <h2 class="current-cond"></h2>
+                        <h1 class="current-cond"></h1>
+                         
                         <p class="current-date"></p>
 
                         <h1 class="pollutant-name"></h1>
-                        <div class="container-fluid button"></div>
-                        <div class="container-fluid aqhi_banner"></div>
+                        <div class="button"></div>
+                        <div class="aqhi_banner"></div>
                     </div>
                 </div>
 
@@ -226,7 +230,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="cell-chart-content">
-                                            <svg width="1000" height="500"></svg>
+                                            <svg width="1200" height="500"></svg>
                                             <div id="chart_container">
 
                                                 <div id="chart"></div>
@@ -239,7 +243,16 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div class="alert alert-warning" role="alert">
+                                            
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <hr />
+                        
+<div class="alert alert-warning" role="alert">
                                                 <h3>Disclaimer:</h3>
                                                 <p><strong> Note: These graphs will display using Chrome, Firefox, Safari and Microsoft Edge.</strong> If you are using Internet Explorer, you can use <a onclick="javascript:openPage()" href="javascript:openPage()">an alternate version</a>.</p>
                                                 <p>Air quality data may be missing for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure.</p>
@@ -247,13 +260,7 @@
 
 
                                             </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                        </div>
-
+                                          
                         <hr />
                     </div>
                     <div class="col-sm-2">

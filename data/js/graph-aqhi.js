@@ -455,15 +455,15 @@ function makeGraphs(trace, data) {
     var svg = d3.select("svg"),
         margin = {
             top: 10,
-            right: 80,
-            bottom: 110,
-            left: 50
+            right: 1,
+            bottom: 140,
+            left: 1
         },
         margin2 = {
             top: 430,
-            right: 20,
+            right: 5,
             bottom: 30,
-            left: 50
+            left: 5
         },
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,

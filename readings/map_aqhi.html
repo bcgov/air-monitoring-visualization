@@ -11,8 +11,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="HandheldFriendly" content="true" />
     <title>AQHI</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
-    <link rel="stylesheet" href="https://js.arcgis.com/3.20/dijit/themes/claro/claro.css" />
+    <link rel="stylesheet" href="custom/css/esri.css">
+    <link rel="stylesheet" href="custom/css/claro.css" />
     <!-- Bootstrap core CSS v3.3.6 -->
     <!-- <link href="http://www.env.gov.bc.ca/epd/bcairquality/templates-env/css/bootstrap.min.css" rel="stylesheet" /> -->
 
@@ -26,6 +26,35 @@
 <link href="custom/css/bcairquality-custom-maps.css" rel="stylesheet" />
 
     <style>
+        
+        
+        @font-face{
+font-family: 'BCSans';
+font-style: normal;
+src: url('../../templates-env/fonts/BCSans-Regular.woff') format('woff'), /** Modern Browsers **/
+url('../../templates-env/fonts/BCSans-Regular.woff2') format('woff2'); /** Optimized for very modern browsers **/
+}
+@font-face{
+font-family: 'BCSans';
+font-style: italic;
+src: url('../../templates-env/fonts/BCSans-Italic.woff') format('woff'), /** Modern Browsers **/
+url('../../templates-env/fonts/BCSans-Italic.woff2') format('woff2'); /** Optimized for very modern browsers **/
+}
+@font-face{
+font-family: 'BCSans';
+font-weight: 700;
+src: url('../../templates-env/fonts/BCSans-Bold.woff') format('woff'), /** Modern Browsers **/
+url('../../templates-env/fonts/BCSans-Bold.woff2') format('woff2'); /** Optimized for very modern browsers **/
+}
+@font-face{
+font-family: 'BCSans';
+font-style: italic;
+font-weight: 700;
+src: url('../../templates-env/fonts/BCSans-BoldItalic.woff') format('woff'), /** Modern Browsers **/
+url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Optimized for very modern browsers **/
+}
+        
+        
         html,
         body {
             height: 100%;
@@ -35,6 +64,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            font-family: 'BCSans', 'Noto Sans', Verdana, Arial, sans-serif;
         }
         
         #map {
@@ -61,7 +91,7 @@
             height: auto;
             margin: 0;
             border: solid 0.5px black;
-            font-family: Myriad-Pro, Calibri, Arial, "sans serif";
+    
         }
         
         .nav {
@@ -73,7 +103,6 @@
             text-align: center;
             height: 75px;
             border-bottom: none;
-            font-family: Myriad-Pro, Calibri, Arial, "sans serif";
             border-top: solid 0.5px black;
             border-left: solid 0.5px black;
             border-right: solid 0.5px black;
@@ -85,7 +114,6 @@
             padding: 0;
             margin: 5;
             border-bottom: solid 0.5px black;
-            font-family: Myriad-Pro, Calibri, Arial, "sans serif";
             display: none;
             border-left: solid 0.5px black;
             border-right: solid 0.5px black;
@@ -273,9 +301,10 @@
 
 
                 var csv = new CSVLayer("../aqo/csv/AQHIWeb.csv");
+				<!--var csv = new CSVLayer({url:"https://envistaweb.env.gov.bc.ca/aqo/csv/AQHIWeb.csv",copyright: "BC"});-->
                 var template = new PopupTemplate({
                     title: "<div style='font-size:1.2em;font-weight:bold;'>{AQHI_AREA}</div><div style='font-size:.8em;margin-bottom:5px;font-weight:normal;'>As of {DATE}</div>",
-                    description: "<div style='width:80%'><strong>Current AQHI</strong><ul><li><strong>Last hour (observed): <span class='aqhi{VALUE:NumberFormat(places:0)}' style='float:right;padding: 5px;'>{VALUE_CHAR}</span></strong></li></ul><strong>Maximum AQHI Forecast</strong><ul><li><p>Today: <span class='aqhi{FORECAST_TODAY:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FORECAST_TODAY_CHAR}</span></p></li><li><p>Tonight: <span class='aqhi{FORECAST_TONIGHT:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FORECAST_TONIGHT_CHAR}</span></p></li><li><p>Tomorrrow: <span class='aqhi{FORECAST_TOMORROW:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FORECAST_TOMORROW_CHAR}</span></p></li></ul><p><a href='{URL}'>View Graph</a></p></div>"
+                    description: "<div style='width:80%'><strong>Current AQHI</strong><ul><li><strong>Last hour (observed): <span class='aqhi{VALUE:NumberFormat(places:0)}' style='float:right;padding: 5px;'>{VALUE_CHAR}</span></strong></li></ul><p>{AQHIPLUS_Text}</p><strong>Maximum AQHI Forecast</strong><ul><li><p>Today: <span class='aqhi{FORECAST_TODAY:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FORECAST_TODAY_CHAR}</span></p></li><li><p>Tonight: <span class='aqhi{FORECAST_TONIGHT:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FORECAST_TONIGHT_CHAR}</span></p></li><li><p>Tomorrrow: <span class='aqhi{FORECAST_TOMORROW:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FORECAST_TOMORROW_CHAR}</span></p></li></ul><p><a href='{URL}'>View Health Messages and Graph</a></p></div>"
 
                 });
 

@@ -4,12 +4,23 @@
 }
 
 .aqhi_banner {
-margin: 15px;
+margin-top: 15px;
 /* font-size: 1.25em; */
 }
 
     #chart {
     
+}
+
+#IE11notice {
+    display: none;
+}
+
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    #IE11notice {
+    display:block;
+}
 }
     
 

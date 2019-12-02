@@ -14,7 +14,7 @@
 <xsl:output method="html" encoding="utf-8" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
 
 <xsl:variable name="readings" select=
-"document('../aqo/xml/Current_Hour.xml')/AQO_TYPE/STATIONS"/> 
+"document('../aqo/csv/xml/kitimat.xml')/AQO_TYPE/STATIONS"/> 
 
 <!--  <xsl:variable name="readings" select=
 "document('Current_Hour-NAworking.xml')/AQO_TYPE/STATIONS"/>  -->

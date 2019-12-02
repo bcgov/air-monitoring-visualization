@@ -135,6 +135,8 @@ body {
     cursor: pointer;
 }
 
+
+
 svg:not(:root) {
     overflow: visible;
 }
@@ -252,6 +254,7 @@ pre {
     color: #ffffff;
     font-weight: bold;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .aqhi2 {
@@ -259,6 +262,7 @@ pre {
     color: #ffffff;
     font-weight: bold;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .aqhi3 {
@@ -266,6 +270,7 @@ pre {
     color: #ffffff;
     font-weight: bold;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .aqhi4 {
@@ -273,6 +278,7 @@ pre {
     color: #000000;
     font-weight: bold;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .aqhi5 {
@@ -280,6 +286,7 @@ pre {
     color: #000000;
     font-weight: bold;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .aqhi6 {
@@ -287,6 +294,7 @@ pre {
     color: #000000;
     font-weight: bold;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .aqhi7 {
@@ -294,6 +302,7 @@ pre {
     color: #ffffff;
     font-weight: bold;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .aqhi8 {
@@ -301,6 +310,7 @@ pre {
     color: #ffffff;
     font-weight: bold;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .aqhi9 {
@@ -308,6 +318,7 @@ pre {
     color: #ffffff;
     font-weight: bold;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .aqhi10 {
@@ -315,6 +326,7 @@ pre {
     color: #ffffff;
     font-weight: bold;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .aqhi11 {
@@ -322,6 +334,7 @@ pre {
     color: #ffffff;
     font-weight: bold;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .aqhiNA {
@@ -329,6 +342,7 @@ pre {
     color: #ffffff;
     font-weight: bold;
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .unavailable {

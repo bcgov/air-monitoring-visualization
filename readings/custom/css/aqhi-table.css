@@ -1,26 +1,21 @@
 /** Custom AQHI Table CSS by RJT **/
 
-
-#breadcrumbContainer {
-        height: 0;
-    }
-
 table {
     padding: 0px;
     margin: 0;
     border: 1px solid #666666;
 }
 
-    table.aqhiScale {
-        padding: 0px;
-        margin: 0;
-        border-spacing: 0;
-        font: inherit;
-        font-weight: bold;
-        color: #FFFFFF;
-        border: none;
-        width: 100%;
-    }
+table.aqhiScale {
+    padding: 0px;
+    margin: 0;
+    border-spacing: 0;
+    font: inherit;
+    font-weight: bold;
+    color: #FFFFFF;
+    border: none;
+    width: 100%;
+}
 
 td {
     text-align: center;
@@ -30,9 +25,9 @@ td {
     padding-bottom: 4px;
 }
 
-    td.left {
-        text-align: left;
-    }
+td.left {
+    text-align: left;
+}
 
 .aqhi1 {
     background-color: #00ccff;
@@ -118,13 +113,6 @@ td {
     padding-top: 5px;
 }
 
-.aqhiSO {
-    background-color: #fff;
-    font-weight: bold;
-    color: #494949;
-    padding-top: 5px;
-}
-
 .unavailable {
     padding-bottom: 5px;
     padding-top: 15px;
@@ -136,11 +124,9 @@ td.aqhiRisk {
     font-weight: bold;
 }
 
-p.subtitle {
-}
+p.subtitle {}
 
-td.stationName {
-}
+td.stationName {}
 
 td.aqhiDate {
     text-align: left;
@@ -156,12 +142,13 @@ table.aqhiTable {
 }
 
 .tableMd {
-    display: none;
-    height: 0;
-}
+        display: none;
+        height: 0;
+    }
 
 #aqhiContent {
     width: 100%;
+    font-family: Myriad-Pro, Calibri, Arial, "sans serif";
 }
 
 #aqhiStation {
@@ -220,7 +207,6 @@ th {
     text-align: center;
     border: 1px solid #EBEBEB;
     height: auto;
-    overflow: hidden;
 }
 
 .aqhiReadingLabel {
@@ -238,6 +224,8 @@ th {
 .aqhiRow {
     border-bottom: 1px solid #EBEBEB;
     position: relative;
+  /*  min-height: 45px; */
+  /*  padding-bottom: 5px; */
 }
 
 .aqhiLabel {
@@ -254,74 +242,63 @@ th {
     float: left;
 }
 
+
 @media (max-width: 700px) {
     .headerStnName {
         width: 30%;
     }
-
-    .headerStnNameLabel {
-    }
-
-    .tableLg {
+    .headerStnNameLabel {}
+    
+     .tableLg {
         display: none;
         height: 0;
     }
-
+    
     .tableMd {
-        display: inline;
+        display:inline; 
         height: auto;
     }
 }
 
 @media (max-width: 550px) {
     .aqhiRow {
-        width: 100%;
+        width: 100%; 
         min-height: auto;
     }
-
     .aqhiLabel {
-        width: 100%;
+        width: 100%;  #was 100%
         min-height: 85px;
     }
-
     .aqhiReadingLabel {
         font-size: x-small;
         width: 44px;
         border: medium none;
     }
-
     .aqhiRowDate {
         float: none;
-        width: 32%;
+        width: 32%; #was 32%
     }
-
     .headerStnName {
         width: 32%;
         font-size: larger;
     }
-
     .headerStnNameLabel {
-        width: 44%;
+        width: 22%;  #was 44%
     }
-
     .aqhiReading {
         width: 45px;
     }
-
     .headerOther {
         width: 50px;
         font-size: small;
         padding-left: 2px;
     }
-
     #aqhiStationHeader {
         padding-left: 0;
     }
-
     #aqhiHeaderRow1 {
         display: none;
     }
-
     #aqhiHeaderRow2 {
         text-align: left;
     }

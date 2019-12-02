@@ -1,0 +1,282 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+#breadcrumbContainer {
+    height: 0;
+}
+
+/* ArcGIS Map CSS */
+
+.embed-container {
+    position: relative;
+    padding-bottom: 52%; 
+    height: 700px;
+    max-width: 100%;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+small {
+    position: absolute;
+    z-index: 40;
+    bottom: 0;
+    margin-bottom: -15px;
+}
+
+.legend {
+    padding-left: 15px;
+}
+
+#exTab1 .tab-content {
+    /* color : white;
+   background-color: #428bca; 
+  padding : 5px 15px; */
+}
+
+
+/* remove border radius for the tab */
+
+#exTab1 .nav-pills > li > a {
+    border-radius: 0;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    background-color: #f3bd48;
+    color: #000;
+}
+
+#exTab1 li:hover:after {
+	content: ' ';
+	position: absolute;
+	border: solid 10px transparent;
+	border-top: solid 0px transparent;
+	border-width: 10px;
+	left: 50%;
+	margin-left: -10px;
+	border-color: #38598a transparent transparent transparent;
+}
+
+.active:after {
+	content: ' ';
+	position: absolute;
+	border: solid 10px transparent;
+	border-top: solid 0px transparent;
+	border-width: 10px;
+	left: 50%;
+	margin-left: -10px;
+	border-color: #38598a transparent transparent transparent;
+}
+/* AQHI Scale */
+
+.aqhi1 {
+    background-color: #00ccff;
+    color: #ffffff;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.aqhi2 {
+    background-color: #0099cc;
+    color: #ffffff;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.aqhi3 {
+    background-color: #006699;
+    color: #ffffff;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.aqhi4 {
+    background-color: #ffff00;
+    color: #000000;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.aqhi5 {
+    background-color: #ffcc00;
+    color: #000000;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.aqhi6 {
+    background-color: #ff9933;
+    color: #000000;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.aqhi7 {
+    background-color: #ff6666;
+    color: #ffffff;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.aqhi8 {
+    background-color: #ff0000;
+    color: #ffffff;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.aqhi9 {
+    background-color: #cc0000;
+    color: #ffffff;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.aqhi10 {
+    background-color: #990000;
+    color: #ffffff;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.aqhi11 {
+    background-color: #660000;
+    color: #ffffff;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.aqhiNA {
+    background-color: #ebebeb;
+    color: #ffffff;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.unavailable {
+    border: medium none !important;
+    padding-bottom: 5px;
+    padding-top: 15px;
+}
+
+.tableLg {
+    display: none;
+    height: 0px;
+}
+
+
+/** Full Screen Switch **/
+
+/* The switch - the box around the slider */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 23px;
+}
+
+
+.switch input {
+    display: none;
+}
+
+
+/* The slider */
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+
+/* rounded sliders */
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+.fullscreen #header,
+.fullscreen #breadcrumbContainer,
+.fullscreen #footer,
+.fullscreen #moreInfo {
+    display: none;
+}
+
+.fullscreen .full-container {
+    padding-top: 5px !important;
+}
+
+@media (max-width: 767px) {
+#env-logo {
+    margin: 5px 0 5px 15px;
+}
+.navigationRibbon {
+    height: 0;
+    visibility: hidden;
+}
+#navbar {
+    border-top: medium none;
+    width: 100%;
+}
+.navbar-toggle {
+    margin-bottom: 0;
+    margin-right: 0;
+}
+}
+
+@media (max-width: 700px) {
+    /*  .tableLg { display: inline; height: 0px; } */
+    /*  .tableMd { display: none; height: auto; } */
+}
+
+@media (max-width: 550px) {}
+
+
+}

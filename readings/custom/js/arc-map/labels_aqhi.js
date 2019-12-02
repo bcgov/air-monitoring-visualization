@@ -172,7 +172,7 @@ var aqhifont = new Font ("12", Font.STYLE_NORMAL, Font.VARIANT_NORMAL, Font.WEIG
 		var smith= new GraphicsLayer();
 		var ptsmith=  new Point([-127.16854, 54.77849]);		
 		var smithers =  new TextSymbol("Smithers").setColor(
-		new Color([0,0,0])).setFont(aqhifont).setAlign(TextSymbol.ALIGN_START).setOffset(5,10);
+		new Color([0,0,0])).setFont(aqhifont).setAlign(TextSymbol.ALIGN_START).setOffset(5,15);
         var grasmith = new Graphic(ptsmith,smithers);
 		smith.setMaxScale(scale1);		
 		smith.add(grasmith);	
@@ -186,6 +186,19 @@ var aqhifont = new Font ("12", Font.STYLE_NORMAL, Font.VARIANT_NORMAL, Font.WEIG
 		terr.setMaxScale(scale1);		
 		terr.add(graterr);	
         map.addLayer(terr);	
+    
+    
+        var kiti= new GraphicsLayer();
+		var ptkiti=  new Point([-128.639131, 54.066909]);		
+		var kitimat =  new TextSymbol("Kitimat").setColor(
+		new Color([0,0,0])).setFont(aqhifont).setAlign(TextSymbol.ALIGN_START).setOffset(16,-10);
+        var grakiti = new Graphic(ptkiti,kitimat);
+		kiti.setMaxScale(scale1);		
+		kiti.add(grakiti);	
+        map.addLayer(kiti);	
+    
+    
+    
 		var bur= new GraphicsLayer();
 		var ptbur=  new Point([-122.9711, 49.2794]);		
 		var burrard =  new TextSymbol("Metro Vancouver NW").setColor(
