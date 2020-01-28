@@ -1,7 +1,8 @@
 # Air Monitoring Station Data Visualization Chart
 This repository contains the code for the Air Monitoring Station Data Visulization System for BC Air Quality.
 * [Air Monitoring Station Interactive Map] (http://www.env.gov.bc.ca/epd/bcairquality/readings/find-stations-map.html)
-* [Air Quality Data Graphs] (http://www.env.gov.bc.ca/epd/bcairquality/data/aqhi.html?id=AQHI-Smithers)
+* [Air Quality Health Index Data Graphs] (http://www.env.gov.bc.ca/epd/bcairquality/data/aqhi.html?id=AQHI-Smithers)
+* [Air Monitoring Station] (http://www.env.gov.bc.ca/epd/bcairquality/data/station.html?id=E315110)
 
 The last 30 days of measurements are displayed. The data are measured every hour, except those displayed as 24hr, which are measured (or averaged?) once every 24 hours. 
 
