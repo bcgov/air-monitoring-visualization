@@ -413,9 +413,9 @@ function makeGraphs(trace, data) {
     var svg = d3.select("svg"),
        margin = {
             top: 10,
-            right: 1,
+            right: 70,
             bottom: 140,
-            left: 1
+            left: 10
         },
         margin2 = {
             top: 430,
@@ -878,13 +878,13 @@ function updateGraph(trace, data) {
             .tickFormat(function (d) { if (d == 0) { return "0" } else if (d == 90) { return "90"; } else if (d == 180) { return "180"; } else if (d == 270) { return "270" } else if (d == 360) { return "360" } else { return "" } });
         yGrid.call(d3.axisLeft(y)
             .tickValues([0, 90, 180, 270, 360])
-            .tickSize(-870)
+            .tickSize(-1120)  // Was 870 and horizontal gridlines did not go all the way across graph
             .tickFormat("")
         );
     } else {
         yAxisRight = d3.axisRight(y);
         yGrid.transition().call(d3.axisLeft(y)
-            .tickSize(-870)
+            .tickSize(-1120)  // Was 870 and horizontal gridlines did not go all the way across graph
             .tickFormat(""));
     }
 
@@ -938,7 +938,8 @@ function updateGraph(trace, data) {
             scatter = d3.select("svg")
                 .append("g")
                 .attr('id', 'scatter')
-                .attr("transform", "translate(50,20)")
+                //.attr("transform", "translate(50,20)")  // 50,20 causes offset graph markings
+				.attr("transform", "translate(10,10)")    // 10,10 aligns with origin
                 .attr("clip-path", "url(#clip)");
         }
 
