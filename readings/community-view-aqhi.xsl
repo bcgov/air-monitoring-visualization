@@ -63,7 +63,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="Cache-control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="refresh" CONTENT="10;http://www.env.gov.bc.ca/epd/bcairquality/data/aqhi-table.html" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="Current and Forecasted Air Quality Health Index (AQHI)"/>
     <meta name="author" content="Ministry of Environment"/>
@@ -389,19 +391,13 @@ monthNameArray = new Array ("Jan", "Feb", "Mar", "Apr", "May", "June", "July", "
                 <h2>Current Air Quality Health Index (AQHI) for <xsl:value-of select="$communityName" /></h2>
                 
                 <div class="alert alert-warning" role="alert">
-        <p><strong><span style="color:red">NOTICE:</span> This graph will be discontinued by the end of the year (2019). A newer version of the graph with forecast AQHI values is available by clicking on the community name in the <a href="http://www.env.gov.bc.ca/epd/bcairquality/data/aqhi-table.html">following table </a> and requires updated web browsers such as Chrome, Firefox, Safari and Microsoft Edge. Please update your bookmarks.</strong></p>
+        <p><strong><span style="color:red">NOTICE:</span> This graph has been discontinued. View the latest AQHI values by clicking on a community on the <a href="http://www.env.gov.bc.ca/epd/bcairquality/data/aqhi-table.html">following table.</a></strong></p><p><strong>Please update your bookmarks.</strong></p>
+                    <p>Your web browser will redirect you to that page shortly.</p>
                 </div>
-                <!-- Left-hand text and date for Current AQHI -->
-  <xsl:if test="$stationID = '0500886'">
-                                                <div class="alert alert-warning" role="alert">
-                                                    <h3>Monitoring Status</h3>
-                                                    <p>The Kelowna College monitoring station in Kelowna, BC has been shut down and is in the process of being relocated to a new site in the city. A temporary monitoring station (Kelowna Raymer Ave WWTP) has been deployed to report on fine particulate (PM2.5) while the relocation proceeds. The AQHI for Central Okanagan will be based on data from the Kelowna WWTP station supplemented by data from the Vernon Science Centre monitoring station. </p>
-                                                </div>
-
-                                            </xsl:if>
+               
 			
 
-<div id="currentTimeFloat">
+<div id="currentTimeFloat" style="display:none;">
    <div id="currentTime">Calculated as of:
     
 <!-- Daylight savings -->
@@ -505,7 +501,7 @@ monthNameArray = new Array ("Jan", "Feb", "Mar", "Apr", "May", "June", "July", "
 <!-- end: Left-hand text and date for Current AQHI -->
             <div class="contentPageMainColumn col-md-8 col-lg-7">
 <!-- aqhi content -->           
-<div id="aqhi">
+<div id="aqhi" style="display:none;">
 
 <!-- Current AQHI -->
 <div id="currentAQHI">
@@ -783,7 +779,7 @@ monthNameArray = new Array ("Jan", "Feb", "Mar", "Apr", "May", "June", "July", "
 <div class="clearAll">&nbsp;</div>
                </div> <!-- end aqhi content -->
                 </div>      <!-- end contentPageMainColumn -->                     
-                <div class="contentPageRightColumn col-md-4 col-lg-5">                
+                <div class="contentPageRightColumn col-md-4 col-lg-5" style="display:none;">                
 <!-- AQHI forecast values and health messaging -->
                    
 <div class="forecastContainBig">
@@ -941,7 +937,7 @@ monthNameArray = new Array ("Jan", "Feb", "Mar", "Apr", "May", "June", "July", "
     
        
  </div><!-- end row -->
-<div class="row">
+<div class="row" style="display:none;">
     
 
 <div class="flot-chart-contain">

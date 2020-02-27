@@ -12,13 +12,17 @@ body {
 }
 
 #chart_container {
-    position: absolute;
+    position:relative; 
     left: 500px;
     /*  top:180px; */
 }
 
 .table > tbody > tr > td {
     border-top: 0px !important;
+}
+
+#chart-area {
+    
 }
 
 .cell-chart-content {
@@ -101,8 +105,7 @@ body {
 }
 
 .val {
-    font-size: 24px;
-    color: steelblue;
+    font-size: 20px;
 }
 
 .line {
@@ -358,7 +361,7 @@ pre {
 
 .aqhi_btn {
     /* padding: 5px 10px 5px 10px; */
-    width: 280px;
+    width: 270px;
 }
 
 .table-responsive {

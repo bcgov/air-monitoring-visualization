@@ -40,7 +40,7 @@ d3.csv('labels.csv', function (err, data) {
     labels = data
 });
 
-d3.csv('http://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/AQHIWeb.csv', function (err, data) {
+d3.csv('http://wwwt.env.gov.bc.ca/epd/bcairquality/aqo/csv_test/AQHIWeb.csv', function (err, data) {
     //if(err) throw err;
     aqhi_data = data
 });
@@ -49,7 +49,7 @@ d3.csv('http://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/AQHIWeb.csv', function
 
 
 // use csv-parser to load data using station ID
-d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/outgoing/AIR/Hourly_Raw_Air_Data/Station/' + QueryString + '.csv&format=json', function (err, data) {
+d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/outgoing/AIR_TEST/Hourly_Raw_Air_Data/Station/' + QueryString + '.csv&format=json', function (err, data) {
 
     //console.log(QueryString.includes('AQHI'))
 
@@ -255,7 +255,7 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     } else {
         d3.select(".current-cond").html(data[0]["STATION"]);
     }
-    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. Current and forecasted AQHI data is displayed below along with a graph of the last 30-days <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>.<br/>Learn more about <a href="#" data-toggle="modal" data-target="#myModal">AQHI Categories and Explanations.</a> and please read our <a href="#data-disclaimer">air quality data disclaimer</a> below.');
+    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Current and forecasted AQHI data is displayed below along with a graph of the last 30-days.');
     
 document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["AQHI_AREA"] + ' - Air Quality Health Index - Province of British Columbia';
 
@@ -455,15 +455,15 @@ function makeGraphs(trace, data) {
     var svg = d3.select("svg"),
         margin = {
             top: 10,
-            right: 70,
-            bottom: 140,
-            left: 10
+            right: 80,
+            bottom: 110,
+            left: 50
         },
         margin2 = {
             top: 430,
-            right: 5,
+            right: 20,
             bottom: 30,
-            left: 5
+            left: 50
         },
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
