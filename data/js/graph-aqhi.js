@@ -278,22 +278,24 @@ function getParameterByName(name, url) {
 	 $(document).ready(function() {
  
 		// Check if the URL parameter is stationID1 = replace with e.g. AQHI-Central_Okanagan
-		if (dynamicContent == 'stationID1') {
-			$('#stationID1').show();
+		if (dynamicContent == 'AQHI-Quesnel') {
+			$('#message1').show();
 		} 
 		// Check if the URL parameter is stationID2
 		else if (dynamicContent == 'stationID2') {
-			$('#test2').show();
+			$('#message2').show();
 		} 
 		// Check if the URL parameter is stationID3
 		else if (dynamicContent == 'stationID3') {
-			$('#test3').show();
+			$('#message3').show();
 		} 
 		// Check if the URL parmeter is empty or not defined, display default content
 		else {
 			$('#default-content').show();
 		}
 	});
+
+//
 
 function initAQHIText(region) {
     if (aqhi_data) {

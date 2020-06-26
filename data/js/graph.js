@@ -253,6 +253,44 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
 document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["STATION"] + ' - Air Monitoring Station - Province of British Columbia';
     
 });
+
+
+// custom station message
+
+function getParameterByName(name, url) {
+	    if (!url) url = window.location.href;
+	    name = name.replace(/[\[\]]/g, "\\$&");
+	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+	        results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+	// Give the parameter a variable name
+	var dynamicContent = getParameterByName('id');
+ 
+	 $(document).ready(function() {
+ 
+		// Check if the URL parameter is stationID1 = replace with e.g. E208096
+		if (dynamicContent == 'E208096') {
+			$('#message1').show();
+		} 
+		// Check if the URL parameter is stationID2
+		else if (dynamicContent == 'stationID2') {
+			$('#message2').show();
+		} 
+		// Check if the URL parameter is stationID3
+		else if (dynamicContent == 'stationID3') {
+			$('#message3').show();
+		} 
+		// Check if the URL parmeter is empty or not defined, display default content
+		else {
+			$('#default-content').show();
+		}
+	});
+
+//
+
 //AQHI function below not in use
 function initAQHIText(region) {
     if (aqhi_data) {

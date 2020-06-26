@@ -82,7 +82,7 @@
     </script>
     <!-- Snowplow stop plowing -->
 
-    <script language="javascript" type="text/javascript">
+<!--    <script language="javascript" type="text/javascript">
         openPage = function () {
             var query_string = {};
             var query = window.location.search.substring(1);
@@ -96,7 +96,7 @@
 
             location.href = fullURL
         }
-    </script>
+    </script> -->
 
 
 
@@ -165,26 +165,7 @@
     <!-- BODY CONTENT -->
     <div id="subthemeTemplate" class="template container env-container full-container" style="width:100%;">
         <div id="breadcrumbContainer">
-            <!-- <ol class="breadcrumb">
-                <li>
-                    <a href="http://www.gov.bc.ca">Home</a>
-                </li>
-                <li>
-                    <a href="http://www2.gov.bc.ca/gov/content?id=8C53E2851B294D8AA18340E4C6A54D7D">Environmental Protection &amp; Sustainability</a>
-                </li>
-                <li>
-                    <a href="http://www2.gov.bc.ca/gov/content?id=A107794D5085039872470FDB7C7FE62D">Air, Land, &amp; Water</a>
-                </li>
-                <li>
-                    <a href="http://www2.gov.bc.ca/gov/content?id=F3D83262D06F42D3BDCBABF120A40DD7">Air</a>
-                </li>
-                <li>
-                    <a href="http://www2.gov.bc.ca/gov/content?id=3F498C928BB74B23A2D8E90FE6804DE5">Air Quality Data</a>
-                </li>
-                <li>
-                    <a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current Air Quality Data</a>
-                </li>
-            </ol> -->
+       
         </div>
         <!-- PAGE CONTENT -->
 
@@ -192,11 +173,8 @@
 
         <div class="row">
             <div id="main-content" class="contentPageMainColumn col-sm-12">
-               <div id="IE11notice" class="alert alert-warning" role="alert">
-                        
-                            <p><strong> Note:</strong> Please use Chrome, FireFox, Safari or Microsoft Edge to view these graphs.</p>
-
-                    </div>
+              
+              <!--  <div class="alert alert-warning" role="alert"><p>Our air monitoring graphs are currently offline and undergoing maintenance. We expect to be back online shortly.</p> </div> -->
                 <div class="info">
                     <div class="date">
                         <h1 class="current-cond"></h1>
@@ -209,30 +187,31 @@
                         <div class="aqhi_banner alert alert-info" role="alert">
                             <h3>Health Message for Current Conditions:</h3></div>
                     </div>
-                    <!-- Default Dynamic Section -->
+                    
+                </div>
+
+<!-- Default Dynamic Section -->
+                <div>
                     <div id="default-content" class="dynamic-content">
 
                     </div>
                     <!-- Dynamic Section 1 -->
-                    <div id="" class="dynamic-content aqhi_banner">
-                       <!-- <div class="alert alert-warning" role="alert">
+                    <div id="message1" class="dynamic-content aqhi_banner">
+                        <div class="alert alert-warning" role="alert">
                             <h3>Monitoring Status</h3>
-                            <p></p>
+                            <p>The Air Quality Health Index for Quesnel is based on data from a temporary operational site.</p>
 
-                        </div> -->
+                        </div> 
                     </div>
                     <!-- Dynamic Section 2 -->
-                    <div id="test2" class="dynamic-content">
+                    <div id="message2" class="dynamic-content">
 
                     </div>
                     <!-- Dynamic Section 3 -->
-                    <div id="test3" class="dynamic-content">
+                    <div id="message3" class="dynamic-content">
 
                     </div>
-                </div>
-
-
-                <!--</div> -->
+             </div>
                 <div class="row">
                     <div class="col-md-10">
                         <div class="table-responsive">

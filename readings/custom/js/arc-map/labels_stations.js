@@ -451,7 +451,7 @@ var robs= new GraphicsLayer();
 		map.addLayer(robs);
 var scot= new GraphicsLayer();
 		var ptscot=  new Point([-117.8297, 49.3427]);		
-		var scotty =  new TextSymbol("Scottys Marina").setColor(
+		var scotty =  new TextSymbol("Scottie's Marina").setColor(
 		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_END).setOffset(-4,8).setAngle(0);
         var grascot = new Graphic(ptscot,scotty);
 		scot.setMinScale(scale2);		
@@ -473,14 +473,6 @@ var verns= new GraphicsLayer();
 		verns.setMinScale(scale2);		
 		verns.add(graverns);
 		map.addLayer(verns);
-var lbs= new GraphicsLayer();
-		var ptlbs=  new Point([-119.10674, 50.23081]);		
-		var lavington =  new TextSymbol("Lavington Baptist Church").setColor(
-		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_END).setOffset(-4,-8).setAngle(0);
-        var gralbs = new Graphic(ptlbs,lavington);
-		lbs.setMinScale(scale2);		
-		lbs.add(gralbs);
-		map.addLayer(lbs);
 var kamf= new GraphicsLayer();
 		var ptkamf=  new Point([-120.334016, 50.67477]);		
 		var kamloopsf =  new TextSymbol("Kamloops Federal Building").setColor(
@@ -505,15 +497,23 @@ var willc= new GraphicsLayer();
 		willc.setMinScale(scale2);		
 		willc.add(grawillc);
 		map.addLayer(willc);
-var qss= new GraphicsLayer();
-		var ptqss=  new Point([-122.493227, 52.981686]);		
-		var quesnelss =  new TextSymbol("Quesnel Senior Secondary").setColor(
-		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_END).setOffset(-16,-10).setAngle(0);
-        var graqss = new Graphic(ptqss,quesnelss);
-		qss.setMinScale(scale2);		
-		qss.add(graqss);
-		map.addLayer(qss);
+// var qss= new GraphicsLayer();
+	//	var ptqss=  new Point([-122.493227, 52.981686]);		
+	//	var quesnelss =  new TextSymbol("Quesnel Senior Secondary").setColor(
+	//	new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_END).setOffset(-16,-10).setAngle(0);
+    //  var graqss = new Graphic(ptqss,quesnelss);
+	//	qss.setMinScale(scale2);		
+	//	qss.add(graqss);
+	//	map.addLayer(qss);
 
+var qms= new GraphicsLayer();
+	var ptqms=  new Point([-122.49364, 52.97951]);		
+	var quesnelms =  new TextSymbol("Quesnel Kinchant St").setColor(
+	new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_END).setOffset(-16,-10).setAngle(0);
+    var graqms = new Graphic(ptqms,quesnelms);
+	qms.setMinScale(scale2);		
+	qms.add(graqms);
+	map.addLayer(qms);    
 
 var harmm= new GraphicsLayer();
 		var ptharmm=  new Point([-123.8475, 49.1352]);		
@@ -611,14 +611,6 @@ var goldl= new GraphicsLayer();
 		goldl.setMinScale(scale2);		
 		goldl.add(gragoldl);
 		map.addLayer(goldl);
-var willcan= new GraphicsLayer();
-		var ptwillcan=  new Point([-122.1313, 52.1175]);		
-		var williamscan =  new TextSymbol("Williams Lake Canadian Tire").setColor(
-		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_END).setOffset(-10,-4).setAngle(0);
-        var grawillcan = new Graphic(ptwillcan,williamscan);
-		willcan.setMinScale(scale2);		
-		willcan.add(grawillcan);
-		map.addLayer(willcan);
 var quescp= new GraphicsLayer();
 		var ptquescp=  new Point([-122.4883, 52.9919]);		
 		var quesnelcp =  new TextSymbol("Quesnel CP").setColor(
@@ -835,6 +827,14 @@ var kithv= new GraphicsLayer();
 		kithv.setMinScale(scale2);		
 		kithv.add(grakithv);
 		map.addLayer(kithv);
+var kitia= new GraphicsLayer();
+		var ptkitia=  new Point([-128.688, 54.061]);		
+		var kitindus =  new TextSymbol("Kitimat Industrial Ave").setColor(
+		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_START).setOffset(4,4).setAngle(0);
+        var grakitia = new Graphic(ptkitia,kitindus);
+		kitia.setMinScale(scale2);		
+		kitia.add(grakitia);
+		map.addLayer(kitia);    
 var prrp= new GraphicsLayer();
 		var ptprrp=  new Point([-130.3269, 54.3064]);		
 		var princerupertrp =  new TextSymbol("Prince Rupert Roosevelt Park School").setColor(
@@ -963,6 +963,15 @@ var blue= new GraphicsLayer();
 		blue.setMinScale(scale2);		
 		blue.add(grablue);
 		map.addLayer(blue);	
+    
+var vancd= new GraphicsLayer();
+		var ptvancd=  new Point([-123.077811, 49.260290]);		
+		var vanclarkdr =  new TextSymbol("Vancouver Clark Drive").setColor(
+		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_START).setOffset(4,4).setAngle(0);
+        var gravancd = new Graphic(ptvancd,vanclarkdr);
+		vancd.setMinScale(scale2);		
+		vancd.add(gravancd);
+		map.addLayer(vancd);	    
     
 //var nels= new GraphicsLayer();
 //		var ptnels=  new Point([-117.290909, 49.489039]);		

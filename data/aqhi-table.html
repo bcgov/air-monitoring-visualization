@@ -85,7 +85,7 @@
         function processData(allText) {
             var datarows = allText.split(/\r\n|\n/);
 
-            //column index from the CSV file 
+            //column index from the CSV file - For PST & PDT, change column number in var pst_date_ind to point to correct time
             var station_url_ind = 10;
             var station_name_ind = 0;
             var pst_date_ind = 3;
@@ -208,12 +208,12 @@
 
             return result;
         }
-
+// For Time Change, change to PST or PDT
         function formatDate(d) {
             var date_str = d.split(" ")[0];
             var hour_str = d.split(" ")[1];
             var date = new Date(date_str.split("-")[0], date_str.split("-")[1] - 1, date_str.split("-")[2], hour_str.split(":")[0]);
-            return getMonthDes(date.getMonth()) + '. ' + date.getDate() + ', ' + date.getFullYear() + ', ' + (date.getHours() > 12 ? date.getHours() - 12 : date.getHours()) + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + (date.getHours() >= 12 ? 'pm' : 'am') + ' PST';
+            return getMonthDes(date.getMonth()) + '. ' + date.getDate() + ', ' + date.getFullYear() + ', ' + (date.getHours() > 12 ? date.getHours() - 12 : date.getHours()) + ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + (date.getHours() >= 12 ? 'pm' : 'am') + ' PDT';
         }
 
         function getMonthDes(m) {
@@ -339,6 +339,8 @@
     <p>Our Air Quality Monitoring System will be OFFLINE on Saturday, October 19th from 9am to 2pm.</p>
         </div>
 -->
+
+
                 <p>Find the current and forecast Air Quality Health Index (AQHI) values to help you understand what the air quality around you means to your health. </p>
 
 
@@ -483,9 +485,12 @@
 
                 <!-- <div class="alert alert-warning" role="alert">
                     <h3><sup><strong></strong></sup>NOTE:</h3>
-                    <p></p>
+                    <p>Insert Message here</p>
                 </div> -->
-
+                <div class="alert alert-warning" role="alert">
+                    <h3><sup><strong></strong></sup>NOTE:</h3>
+                    <p>The Air Quality Health Index for Quesnel is based on data from a temporary operational site.</p>
+                </div>
 
                 <div class="alert alert-success" role="alert" aria-live="polite">
 

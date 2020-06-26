@@ -1,0 +1,1436 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/Official.dwt" codeOutsideHTMLIsLocked="false" -->
+
+	<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!--set view port and allow mobile users to choose between responsive and large views-->
+	<!-- check view port cookie -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- InstanceBeginEditable name="doctitle" -->
+	<title>Current And Forecasted Air Quality Health Index (AQHI)</title>
+	<meta name="title" content="EMS WR Application Specific Instructions">
+	<meta name="navigaton_title" content="Application Specific Instructions">
+	<meta name="DCTERMS.publisher" content="Province of British Columbia">
+	<meta name="DCTERMS.created" content="2015-06-12">
+	<meta name="DCTERMS.modified" content="2015-09-10">
+	<meta name="keywords" content="Environmental Monitoring System, EMS, Web Reporting Instructions, Search Monitoring Locations">
+	<meta name="description" content="Information on Searching for Monitoring Locations for the Environmental Monitoring Systems in operation within the province of British Columbia.  ">
+	<meta name="DCTERMS.audience" content="General Public">
+	<meta name="DCTERMS.language" content="eng">
+	<meta name="DCTERMS.creator" content="Ministry of Environment">
+	<meta name="DCSext.creator" content="Ministry of Environment">
+	<meta name="MBCTERMS.subjectCategory" content="Health and Safety">
+	<meta name="DCTERMS.subject" content="Environmental impact">
+	<meta name="DCTERMS.subject" content="Environmental quality">
+	<meta name="DCTERMS.subject" content="Environmental protection">
+	<meta name="security_classification" content="Low">
+	<meta name="security_label" content="Public ">
+	<meta name="content_group" content="CMF_gov_csnr">
+	<meta name="content_group_id" content="0825B09A8E5A4A9AA3AFD5941B31884B">
+	<meta name="level1" content="Environmental Protection & Sustainability">
+	<meta name="DCSext.level1" content="Environmental Protection & Sustainability">
+	<meta name="level1_id" content="8C53E2851B294D8AA18340E4C6A54D7D">
+	<meta name="level2" content="Research, Monitoring & Reporting">
+	<meta name="DCSext.level2" content="Research, Monitoring & Reporting">
+	<meta name="level2_id" content="3AA8459D7BBB83148579662A6237100D">
+	<meta name="level3" content="Reporting">
+	<meta name="DCSext.level3" content="Reporting">
+	<meta name="level3_id" content="1D10F4B281F5460AB2743C906637EAB1">
+	<meta name="level4" content="Environmental Reporting (EMS)">
+	<meta name="DCSext.level4" content="Environmental Reporting (EMS)">
+	<meta name="level4_id" content="47D094EF8CF94B5A85F62F03D4956C0C">
+	<meta name="level5" content="Web Reporting (EMS WR)">
+	<meta name="DCSext.level5" content="Web Reporting (EMS WR)">
+	<meta name="level5_id" content="4F59E9DA4A514236ACB57627FBBAB314">
+	<meta name="level6" content="Application Specific Instructions">
+	<meta name="DCSext.level6" content="Application Specific Instructions">
+	<meta name="level6_id" content="6E083990DD504AE798F874A5D9D3A94D">
+	<meta name="current_page" content="Application Specific Instructions">
+	<meta name="DCSext.current_page" content="Application Specific Instructions">
+	<meta name="current_page_id" content="6E083990DD504AE798F874A5D9D3A94D">
+	<meta name="WT.cg_s" content="6E083990DD504AE798F874A5D9D3A94D">
+	<meta name="WT.cg_n" content="Environmental Protection & Sustainability;Research, Monitoring & Reporting">
+	<!-- InstanceEndEditable -->
+	<link type="text/css" href="http://www2.gov.bc.ca//StaticWebResources/static/shared/bootstrap-3.2.0/css/bootstrap.min.css?refresh=150924102" rel="stylesheet" />
+	<link type="text/css" href="http://www2.gov.bc.ca//StaticWebResources/static/gov3/css/main.css" rel="stylesheet"/>
+	<link type="text/css" href="http://www2.gov.bc.ca//StaticWebResources/static/gov3/css/navMenu.css" rel="stylesheet"/>
+	<link type="text/css" href="http://www2.gov.bc.ca//StaticWebResources/static/gov3/css/imageSlider.css" rel="stylesheet"/>
+	<link type="text/css" href="http://www2.gov.bc.ca//StaticWebResources/static/gov3/css/enSearch.css" rel="stylesheet"/>
+	<link type="text/css" href="http://www2.gov.bc.ca//StaticWebResources/static/gov3/css/serviceFinder.css" rel="stylesheet"/>
+	<link type="text/css" href="http://www2.gov.bc.ca//StaticWebResources/static/gov3/css/flickrSlider.css" rel="stylesheet"/>
+	<script src="http://www2.gov.bc.ca//StaticWebResources/static/shared/scripts/jquery/jquery-1.11.1.min.js"></script>
+	<script src="http://www2.gov.bc.ca//StaticWebResources/static/shared/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+	<script src="http://www2.gov.bc.ca//StaticWebResources/static/shared/scripts/placeholders.min.js"></script>
+	<script src="http://www2.gov.bc.ca//StaticWebResources/static/gov3/js/misc.js"></script>
+	<script src="http://www2.gov.bc.ca//StaticWebResources/static/gov3/js/navMenu.js"></script>
+	<script src="http://www2.gov.bc.ca//StaticWebResources/static/gov3/js/imageSlider.js"></script>
+	<script src="http://www2.gov.bc.ca//StaticWebResources/static/gov3/js/flickrSlider.js"></script>
+	<script src="http://www2.gov.bc.ca//StaticWebResources/static/gov3/js/informationTiles.js"></script>
+	<!-- 		<script type="text/javascript" src="//use.typekit.net/dee0hsr.js"></script> -->
+	<!-- 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script> -->
+	<!-- if the page type is search and dynNav is to be displayed, need to include 'dyn_nav_compiled.js' -->
+	<!-- google scripts -->
+	<script src='http://www2.gov.bc.ca//StaticWebResources/static/shared/scripts/gsa/common.js'></script>
+	<script src='http://www2.gov.bc.ca//StaticWebResources/static/shared/scripts/gsa/xmlhttp.js'></script>
+	<script src='http://www2.gov.bc.ca//StaticWebResources/static/shared/scripts/gsa/uri.js'></script>
+	<script language="JavaScript">
+<!--http://stackoverflow.com/questions/153152/resizing-an-iframe-based-on-content
+function autoResize(id){
+    var newheight;
+    var newwidth;
+
+    if(document.getElementById){
+        newheight=document.getElementById(id).contentWindow.document .body.scrollHeight;
+        newwidth=document.getElementById(id).contentWindow.document .body.scrollWidth;
+    }
+
+    document.getElementById(id).height= (newheight) + "px";
+    document.getElementById(id).width= (newwidth) + "px";
+}
+//-->
+    </script>
+	<script>
+	/**
+	 * HTML element names for the search form, the spellchecking suggestion, and the
+	 * cluster suggestions. The search form must have the following input elements:
+	 * "q" (for search box), "site", "client".
+	 * @type {string}
+	 */
+	var ss_form_element = 'suggestion_form'; // search form
+	
+	/**
+	 * Name of search suggestion drop down.
+	 * @type {string}
+	 */
+	var ss_popup_element = 'search_suggest'; // search suggestion drop-down
+	
+	/**
+	 * Types of suggestions to include.  Just one options now, but reserving the
+	 * code for more types
+	 *   g - suggest server
+	 * Array sequence determines how different suggestion types are shown.
+	 * Empty array would effectively turn off suggestions.
+	 * @type {object}
+	 */
+	var ss_seq = [ 'g' ];
+	
+	/**
+	 * Suggestion type name to display when there is only one suggestion.
+	 * @type {string}
+	 */
+	var ss_g_one_name_to_display =
+	    "Suggestion";
+	
+	/**
+	 * Suggestion type name to display when there are more than one suggestions.
+	 * @type {string}
+	 */
+	var ss_g_more_names_to_display =
+	    "Suggestions";
+	
+	/**
+	 * The max suggestions to display for different suggestion types.
+	 * No-positive values are equivalent to unlimited.
+	 * For key matches, -1 means using GSA default (not tagging numgm parameter),
+	 * 0 means unlimited.
+	 * Be aware that GSA has a published max limit of 10 for key matches.
+	 * @type {number}
+	 */
+	var ss_g_max_to_display = 10;
+	
+	/**
+	 * The max suggestions to display for all suggestion types.
+	 * No-positive values are equivalent to unlimited.
+	 * @type {number}
+	 */
+	var ss_max_to_display = 12;
+	
+	/**
+	 * Idling interval for fast typers.
+	 * @type {number}
+	 */
+	var ss_wait_millisec = 300;
+	
+	/**
+	 * Delay time to avoid contention when drawing the suggestion box by various
+	 * parallel processes.
+	 * @type {number}
+	 */
+	var ss_delay_millisec = 30;
+	
+	/**
+	 * Host name or IP address of GSA.
+	 * Null value can be used if the JS code loads from the GSA.
+	 * For local test, use null if there is a <base> tag pointing to the GSA,
+	 * otherwise use the full GSA host name
+	 * @type {string}
+	 */
+	 //############################### provide your proxy url here
+	//var ss_gsa_host = ":8080/enSearch/callMyProxy";
+	
+	/**
+	 * Constant that represents legacy output format.
+	 * @type {string}
+	 */
+	var SS_OUTPUT_FORMAT_LEGACY = 'legacy';
+	
+	/**
+	 * Constant that represents OpenSearch output format.
+	 * @type {string}
+	 */
+	var SS_OUTPUT_FORMAT_OPEN_SEARCH = 'os';
+	
+	/**
+	 * Constant that represents rich output format.
+	 * @type {string}
+	 */
+	var SS_OUTPUT_FORMAT_RICH = 'rich';
+	
+	/**
+	 * What suggest request API to use.
+	 *   legacy - use current protocol in 6.0
+	 *            Request: /suggest?token=<query>&max_matches=<num>&use_similar=0
+	 *            Response: [ "<term 1>", "<term 2>", ..., "<term n>" ]
+	 *                   or
+	 *                      [] (if no result)
+	 *   os -     use OpenSearch protocol
+	 *            Request: /suggest?q=<query>&max=<num>&site=<collection>&client=<frontend>&access=p&format=os
+	 *            Response: [
+	 *                        "<query>",
+	 *                        [ "<term 1>", "<term 2>", ... "<term n>" ],
+	 *                        [ "<content 1>", "<content 2>", ..., "<content n>" ],
+	 *                        [ "<url 1>", "<url 2>", ..., "<url n>" ]
+	 *                      ] (where the last two elements content and url are optional)
+	 *                   or
+	 *                      [ <query>, [] ] (if no result)
+	 *   rich -   use rich protocol from search-as-you-type
+	 *            Request: /suggest?q=<query>&max=<num>&site=<collection>&client=<frontend>&access=p&format=rich
+	 *            Response: {
+	 *                        "query": "<query>",
+	 *                        "results": [
+	 *                          { "name": "<term 1>", "type": "suggest", "content": "<content 1>", "style": "<style 1>", "moreDetailsUrl": "<url 1>" },
+	 *                          { "name": "<term 2>", "type": "suggest", "content": "<content 2>", "style": "<style 2>", "moreDetailsUrl": "<url 2>" },
+	 *                          ...,
+	 *                          { "name": "<term n>", "type": "suggest", "content": "<content n>", "style": "<style n>", "moreDetailsUrl": "<url n>" }
+	 *                        ]
+	 *                      } (where type, content, style, moreDetailsUrl are optional)
+	 *                   or
+	 *                      { "query": <query>, "results": [] } (if no result)
+	 * If unspecified or null, using legacy protocol.
+	 * @type {string}
+	 */
+	var ss_protocol = SS_OUTPUT_FORMAT_RICH;
+	
+	/**
+	 * Whether to allow non-query suggestion items.
+	 * Setting it to false can bring results from "os" and "rich" responses into
+	 * backward compatible with "legacy".
+	 * @type {boolean}
+	 */
+	var ss_allow_non_query = true;
+	
+	/**
+	 * Default title text when the non-query suggestion item does not have a useful
+	 * title.
+	 * The default display text should be internalionalized.
+	 * @type {string}
+	 */
+	var ss_non_query_empty_title =
+	    "No Title";
+	
+	/**
+	 * Whether debugging is allowed.  If so, toggle with F2 key.
+	 * @type {boolean}
+	 */
+	var ss_allow_debug = false;
+	</script>
+	<script src='http://www2.gov.bc.ca//StaticWebResources/static/shared/scripts/gsa/ss.js'></script>
+	<!--[if lt IE 9]>
+		  <script src="http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		  <script src="http://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	<!-- InstanceBeginEditable name="head" -->
+	<!-- InstanceEndEditable -->
+	<!-- InstanceParam name="OptionalRegion1" type="boolean" value="true" -->
+	</head>
+
+
+	
+
+<body class="environment-qa">
+<!-- googleoff:all -->
+		<div id="header">
+
+	<div id="header-main" class="navbar navbar-default navbar-fixed-top">	
+		
+		<div class="qa-banner" style="display: none;">
+				<div class="container">
+					<span class="qa-banner-text" >This is the QA Environment. The content you are viewing is not final and is subject to change.</span>			
+				</div>
+			</div>
+		<div class="container">				
+			<div id="header-main-row1" class="row">
+				<div class="col-sm-4 col-md-5 col-lg-6 header-main-left">
+					<div id="logo">
+						<a href="http://www2.gov.bc.ca//gov/content/home"><img src="http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/homepage/gov3_bc_logo.png" alt="Government of B.C." title="Government of B.C." /></a>
+						</div>
+					<div id="access">
+						<ul>
+							<li>
+								<a tabindex="1" accesskey="1" href="#main-content-anchor">Skip to
+									main content</a>
+							</li>
+							<li>
+								<a tabindex="2" accesskey="n" href="#" onclick="$('.menu-button').focus();">Skip to
+									navigation</a>
+							</li>
+							<li>
+								<a tabindex="3" accesskey="0" href="http://www2.gov.bc.ca//gov/content/accessibility">Accessibility
+									Statement</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="navbar-header">
+					<button data-target="#header-main-row2" data-toggle="collapse" class="menu-button navbar-toggle mini-menu-trigger" type="button" aria-expanded="true">
+			          </button>
+			
+		 	<button data-target="#header-main-row1 .header-search.navbar-collapse" data-toggle="collapse" class="search-button navbar-toggle mini-menu-trigger" type="button" aria-expanded="true">
+			          </button>
+          	</div>
+	          	
+                
+                
+<!--                <div class="header-search navbar-collapse collapse">
+	          		<div class="search-boarder-arror visible-xs-block"></div>
+					<div class="col-sm-8 col-md-7 col-lg-6 header-main-right">
+						<div class="search"> 
+			 <form role="form" class="" method="get" action="/gov/search" id="suggestion_form">							
+							<label style="display:none;" for="global-search">Search</label>
+							  	<input type="hidden" value="2E4C7D6BCAA4470AAAD2DCADF662E6A0" name="id">
+							  	<input type="text" onkeyup="searchBoxKeypress(event)" autocomplete="off" value="" name="q" 
+							  		placeholder="Enter a keyword or phrase to search" class="searchbox" id="global-search"> 
+							    <div style="display:none" id="hiddenVals">
+									<span id="site">default_collection</span>
+									<span id="client">default_frontend</span>
+								</div> 
+							    <table id="search_suggest" style="width: 94%; visibility: hidden;" class="ss-gac-m"></table>
+						  		<div class="search-trigger"> </div>
+							</form>
+							
+							<script>
+								var timeoutId = 0;
+								function searchBoxKeypress(event){
+								    clearTimeout(timeoutId); 
+								    timeoutId = setTimeout(function () {
+											        ss_handleKey(event);
+											    }, 500);
+								}
+							</script>
+							
+			</div>   
+					</div>
+				</div>  -->
+			</div>
+			<div id="header-main-row2" class="row navbar-collapse collapse">
+				<div class="col-sm-8 col-md-7 col-lg-6 header-main-right col-sm-push-4 col-md-push-5 col-lg-push-6">
+					<div id="header-links">
+						<ul class="inline nav navbar-nav">
+							<li id="replicantData_90ACCB09540A4FF3B65B5B52EA115802" data-order="0">
+									<a href="http://www2.gov.bc.ca//gov/content/governments/careers" target="_self">Careers</a>
+
+</li>														
+							<li id="replicantData_C55AC040D74F4A51A47D75BDB2371256" data-order="1">
+									<a href="http://www2.gov.bc.ca//gov/content/home/services-a-z" target="_self">Services A-Z</a>
+
+</li>														
+							<li id="replicantData_0198598E0CB947648ED30C3CF56C9951" data-order="2">
+									<a href="http://www2.gov.bc.ca//gov/content/home/organizations-a-z" target="_self">Organizations A-Z</a>
+
+</li>														
+							<li id="replicantData_451F364B8E104B39B2D0B7802832168D" data-order="3">
+									<a href="http://www2.gov.bc.ca//gov/content/home/forms-a-z" target="_self">Forms A-Z</a>
+
+</li>														
+							<li id="replicantData_57EF1691C18741BF9EF0A99FDFE1D7D6" data-order="4">
+									<a href="https://news.gov.bc.ca/ " target="_self">News</a>
+
+</li>														
+							<li id="replicantData_2A1C50FD421A499C849E8D0CFBCEB1A2" data-order="5">
+									<a href="https://extranet.gov.bc.ca/forms/gov/contact/index.html" target="_self">Contact Us</a>
+
+</li>														
+							</ul>						
+					</div>	
+				</div>
+							<div class="col-sm-4 col-md-5 col-lg-6 header-main-left col-sm-pull-8 col-md-pull-7 col-lg-pull-6">				
+                    <div tabindex="0" id="govNavMenuToggle" class="menu-button hidden-xs">
+	                    <img src="http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/menu-ico-sm.png" title="Menu" alt="Menu" /><span>MENU</span>
+                    </div>
+					<div id="govNavMenu" class="hidden">
+   	<nav class="govNav" id="govMainMenu">
+   	<ul class="firstLevel nav navbar-nav">		
+		<!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/governments">  British Columbians & Our Governments</a>
+					<span class="level-trigger"></span>
+													
+							<div class="British Columbians & Our Governments issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_britishcolumbians.png')">
+							<h2 class="hidden-xs">
+									British Columbians &amp; Our Governments</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_1BCDDAA9ED30487784F29ADC800E5DCB"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/governments/organizational-structure">
+													Organizational Structure</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/governments/about-the-bc-government">
+													Initiatives, Plans &amp; Strategies</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/governments/aboriginal-people">
+													Aboriginal People</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/governments/laws-policies-and-publications">
+													Laws, Policies &amp; Publications</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/governments/services-for-government">
+													Services for Government</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/governments/open-government">
+													Open Government</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/governments/our-history">
+													Our History</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/governments/celebrating-british-columbia">
+													Celebrating British Columbia</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/vital-statistics">  Birth, Adoption, Death, Marriage & Divorce</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Birth, Adoption, Death, Marriage & Divorce issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_births.png')">
+							<h2 class="hidden-xs">
+									Birth, Adoption, Death, Marriage &amp; Divorce</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_90CA4E68AA484987B5B74587FB5B0764"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/vital-statistics/births-adoptions">
+													Births &amp; Adoptions</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/vital-statistics/marriages">
+													Marriages</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+
+												<a href="http://www2.gov.bc.ca//gov/content/vital-statistics/deaths">
+													Deaths</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/vital-statistics/divorce">
+													Divorce</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/vital-statistics/legal-changes-of-name">
+													Legal Changes of Name</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/vital-statistics/statistics-reports">
+													Statistics &amp; Reports</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/vital-statistics/order-certificates-copies">
+													Order Certificates &amp; Copies</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/vital-statistics/government-id">
+													Government ID</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/health">  Health</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Health issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_health.png')">
+							<h2 class="hidden-xs">
+									Health</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_EC75FD2ECA044D2C9CCB32361905348A"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/health/about-bc-s-health-care-system">
+													About B.C.&#039;s Health Care System</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/health/accessing-health-care">
+													Accessing Health Care</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/health/health-drug-coverage">
+													Health &amp; Drug Coverage</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/health/managing-your-health">
+													Managing Your Health</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/health/keeping-bc-healthy-safe">
+													Keeping B.C. Healthy &amp; Safe</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/health/conducting-health-research-evaluation">
+													Conducting Health Research &amp; Evaluation</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/health/health-forms">
+													Health Forms</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/health/practitioner-professional-resources">
+													Practitioner &amp; Professional Resources</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/education-training">  Education & Training</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Education & Training issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_education.png')">
+							<h2 class="hidden-xs">
+									Education &amp; Training</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_205DE48374094784A6B7202B9614CD69"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/education-training/early-learning">
+													Early Learning</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/education-training/k-12">
+													Kindergarten to Grade 12</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/education-training/post-secondary-education">
+													Post-secondary Education</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/education-training/adult-education">
+													Adult Education</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/education-training/ways-to-learn">
+													Ways to Learn</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/education-training/administration">
+													Administration</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/education-training/job-career-training">
+													Job &amp; Career Training</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/transportation">  Driving & Transportation</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Driving & Transportation issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_driving.png')">
+							<h2 class="hidden-xs">
+									Driving &amp; Transportation</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_A7B3531E17F34FE9AF2B5553E2BE212A"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/transportation/driving-and-cycling">
+													Driving &amp; Cycling</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/transportation/passenger-travel">
+													Passenger Travel</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/transportation/vehicle-safety-enforcement">
+													Vehicle Safety &amp; Enforcement</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/transportation/funding-programs-and-engagement">
+													Funding, Programs &amp; Engagement</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/transportation/transportation-infrastructure">
+													Transportation Infrastructure</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/transportation/transportation-reports-and-reference">
+													Transportation Reports &amp; Reference</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/safety">  Public Safety & Emergency Services</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Public Safety & Emergency Services issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_publicsafety.png')">
+							<h2 class="hidden-xs">
+									Public Safety &amp; Emergency Services</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_B1756B8E482543338B861392B8615439"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/safety/public-safety">
+													Public Safety</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/safety/emergency-preparedness-response-recovery">
+													Emergency Preparedness, Response &amp; Recovery</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/safety/consumer-protection">
+													Consumer Protection</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/safety/wildfire-services">
+													Wildfire Services</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/justice">  Law, Crime & Justice</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Law, Crime & Justice issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_lawcrime.png')">
+							<h2 class="hidden-xs">
+									Law, Crime &amp; Justice</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_24EEB3C6DAAE49B5AA4EB916CF5C930F"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/justice/legal-information">
+													Legal Information</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/justice/legal-assistance">
+													Legal Assistance</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/justice/legal-aid">
+													Legal Aid</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/justice/justice-services">
+													Justice Services</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/justice/family-justice-help">
+													Family Justice Help</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/justice/resolving-a-dispute-out-of-court">
+													Resolving a Dispute Out of Court</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/justice/about-bcs-justice-system">
+													About B.C.&#039;s Justice System</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/taxes">  Taxes & Tax Credits</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Taxes & Tax Credits issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_taxes.png')">
+							<h2 class="hidden-xs">
+									Taxes &amp; Tax Credits</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_32D3378678624AF8A905FEE82427C82F"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/taxes/sales-taxes">
+													Sales Taxes</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/taxes/income-taxes">
+													Income Taxes</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/taxes/property-taxes">
+													Property Taxes</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/taxes/natural-resource-taxes">
+													Natural Resource Taxes</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/taxes/insurance-taxes">
+													Insurance Taxes</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/taxes/audit-ruling-appeal">
+													Tax Audits, Rulings &amp; Appeals</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/housing-tenancy">  Housing & Tenancy</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Housing & Tenancy issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_housing.png')">
+							<h2 class="hidden-xs">
+									Housing &amp; Tenancy</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_981982BEA20341FB81B611675492A653"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/housing-tenancy/residential-tenancies">
+													Residential Tenancies</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/housing-tenancy/strata-housing">
+													Strata Housing</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/housing-tenancy/owning-a-home">
+													Owning a Home</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/housing-tenancy/seniors-housing">
+													Seniors Housing</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/housing-tenancy/social-housing">
+													Social Housing</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/housing-tenancy/local-governments">
+													Local Governments</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/housing-tenancy/building-or-renovating">
+													Building or Renovating</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/housing-tenancy/buying-and-selling">
+													Buying &amp; Selling</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/sports-culture">  Sports, Recreation, Arts & Culture</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Sports, Recreation, Arts & Culture issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_sportsrec.png')">
+							<h2 class="hidden-xs">
+									Sports, Recreation, Arts &amp; Culture</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_7E0910AE24054217AFE2E62D117A2687"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/sports-culture/sports">
+													Sports</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/sports-culture/outdoor-recreation">
+													Outdoor Recreation</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/sports-culture/arts-culture">
+													Arts &amp; Culture</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/sports-culture/events-hosting">
+													Event Hosting</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/sports-culture/multiculturalism-anti-racism">
+													Multiculturalism &amp; Anti-Racism</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/environment">  Environmental Protection & Sustainability</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Environmental Protection & Sustainability issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_environment.png')">
+							<h2 class="hidden-xs">
+									Environmental Protection &amp; Sustainability</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_8C53E2851B294D8AA18340E4C6A54D7D"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/environment/climate-change">
+													Climate Change</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/environment/pesticides-pest-management">
+													Pesticides &amp; Pest Management</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/environment/plants-animals-ecosystems">
+													Plants, Animals &amp; Ecosystems</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/environment/waste-management">
+													Waste Management</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/environment/air-land-water">
+													Air, Land, &amp; Water</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a class="current" href="http://www2.gov.bc.ca//gov/content/environment/research-monitoring-reporting">
+													Research, Monitoring &amp; Reporting</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							          	<li>
+												<a href="http://www2.gov.bc.ca//gov/content/environment/natural-resource-stewardship">
+													Natural Resource Stewardship</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/industry">  Farming, Natural Resources & Industry</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Farming, Natural Resources & Industry issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_farmingindustry.png')">
+							<h2 class="hidden-xs">
+									Farming, Natural Resources &amp; Industry</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_A389E49687F74532A306249A234EDF29"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/industry/agriculture-seafood">
+													Agriculture &amp; Seafood</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/industry/construction-industry">
+													Construction Industry</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/industry/electricity-alternative-energy">
+													Electricity &amp; Alternative Energy</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/industry/forestry">
+													Forestry</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/industry/mineral-exploration-mining">
+													Mineral Exploration &amp; Mining</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/industry/natural-gas-oil">
+													Natural Gas &amp; Oil</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/industry/service-industries">
+													Service Industries</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/industry/natural-resource-use">
+													Natural Resource Use</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/employment-business">  Employment, Business & Economic Development</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Employment, Business & Economic Development issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_employment.png')">
+							<h2 class="hidden-xs">
+									Employment, Business &amp; Economic Development</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_820A75B4A1AF426C9450E4ADF0D1D783"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/employment-business/business">
+													Business</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/employment-business/employment-assistance-programs">
+													Employment Assistance Programs</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/employment-business/job-seekers-employees">
+													Job Seekers &amp; Employees</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/employment-business/employers">
+													Employers</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/employment-business/employment-standards-advice">
+													Employment Standards &amp; Advice</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/employment-business/economic-development">
+													Economic Development</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/employment-business/international-investment-and-trade">
+													International Investment &amp; Trade</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/tourism-immigration">  Tourism & Immigration</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Tourism & Immigration issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_tourism.png')">
+							<h2 class="hidden-xs">
+									Tourism &amp; Immigration</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_D6E183CFBFED46B282F80342BA3F69D0"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/tourism-immigration/immigrating-to-bc">
+													Immigrating to B.C.</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/tourism-immigration/travel">
+													Travel</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/family-social-supports">  Family & Social Supports</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Family & Social Supports issub" style="background-image:url('http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/theme/menu/thememenu_familysocial.png')">
+							<h2 class="hidden-xs">
+									Family &amp; Social Supports</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_FD488413D1B74C5B931B2F6B0E00C61D"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/family-social-supports/seniors">
+													Seniors</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/family-social-supports/employment-and-income-assistance">
+													Employment &amp; Income Assistance</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/family-social-supports/services-for-people-with-disabilities">
+													Services for People with Disabilities</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/family-social-supports/child-care">
+													Child Care</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/family-social-supports/services-and-supports-for-parents-with-young-children">
+													Services &amp; Supports for Parents with Young Children</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/family-social-supports/services-for-youth">
+													Services for Youth</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/family-social-supports/foster-parenting">
+													Foster Parenting</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/family-social-supports/social-innovation">
+													Social Innovation</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            <!-- Output subtheme navigation links only if this is a theme page or deeper -->
+                  
+				<li class="hassub clearfix">
+					<a href="http://www2.gov.bc.ca//gov/content/careers">  Careers</a>
+					<span class="level-trigger"></span>
+													
+							<div class="Careers issub">
+							<h2 class="hidden-xs">
+									Careers</h2>
+			                   	<ul class="secondLevel childMenu nav navbar-nav" id="child_C6D1F618844441778AD409A9C99C1CD3"> 
+						        <li>
+												<a href="http://www2.gov.bc.ca//gov/content/careers/job-seekers">
+													For Job Seekers</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/careers/current-employees">
+													For Current Employees</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/careers/retirees">
+													For Retirees</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/careers/hiring-managers">
+													For Hiring Managers</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/careers/supervisors-and-managers">
+													For Supervisors &amp; Managers</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/careers/for-executives">
+													For Executives</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/careers/hr-forms">
+													HR Forms</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            <li>
+												<a href="http://www2.gov.bc.ca//gov/content/careers/about-the-bc-public-service">
+													About the BC Public Service</a>
+												<span class="no-trigger visible-xs-block"></span>
+											</li>
+							            </ul>	
+			        		</div>					
+						</li>
+            </ul>
+	       </nav>
+        </div></div>
+			</div>
+		</div>
+		
+		<div class="navigationRibbon hidden-xs">		
+			<div class="level2Navigation">
+								<div class="container">
+									<a href="http://www2.gov.bc.ca//gov/content/environment/climate-change">Climate Change</a>	
+					                    	<a href="http://www2.gov.bc.ca//gov/content/environment/pesticides-pest-management">Pesticides & Pest Management</a>	
+					                    	<a href="http://www2.gov.bc.ca//gov/content/environment/plants-animals-ecosystems">Plants, Animals & Ecosystems</a>	
+					                    	<a href="http://www2.gov.bc.ca//gov/content/environment/waste-management">Waste Management</a>	
+					                    	<a href="http://www2.gov.bc.ca//gov/content/environment/air-land-water">Air, Land, & Water</a>	
+					                    	<a class="current" href="http://www2.gov.bc.ca//gov/content/environment/research-monitoring-reporting">Research, Monitoring & Reporting</a>	
+					                    	<a href="http://www2.gov.bc.ca//gov/content/environment/natural-resource-stewardship">Natural Resource Stewardship</a>	
+					                    	</div>
+							</div>					
+						<div class="level3Navigation">	
+								<div class="container">		
+									<a href="http://www2.gov.bc.ca//gov/content/environment/research-monitoring-reporting/research">Research</a>	
+					                    	<a href="http://www2.gov.bc.ca//gov/content/environment/research-monitoring-reporting/monitoring">Monitoring</a>	
+					                    	<a class="current" href="http://www2.gov.bc.ca//gov/content/environment/research-monitoring-reporting/reporting">Reporting</a>	
+					                    	<a href="http://www2.gov.bc.ca//gov/content/environment/research-monitoring-reporting/libraries-publication-catalogues">Libraries & Publication Catalogues</a>	
+					                    	</div>	
+							</div>			
+						</div>
+					
+	</div>
+</div>	
+
+<script>
+	// if there is no level 3 navigation, do not display the blue arrow for the current level 2 nav item
+	if($(".level3Navigation a").length == 0) {
+		$(".level2Navigation a.current").css("background-image", "none");
+	}
+</script>
+
+
+
+
+
+	
+<!-- googleon:all -->
+		<div id="topicTemplate" class="template container">
+	
+	<!-- googleoff:all -->
+	<div id="breadcrumbContainer"><!-- InstanceBeginEditable name="topnavbreadcrumb" -->
+	  <ol class="breadcrumb">
+	    <li><a href="http://www2.gov.bc.ca//gov/content/home">Home</a></li>
+	    <li><a href="http://www2.gov.bc.ca//gov/content/environment">Environmental Protection & Sustainability</a></li>
+	    <li><a href="https://www2.gov.bc.ca/gov/content/environment/air-land-water">Air, Land, &amp; Water</a></li>
+	    <li><a href="https://www2.gov.bc.ca/gov/content/environment/air-land-water/air">Air</a> </li>
+    </ol>
+	<!-- InstanceEndEditable --></div>
+<!-- googleon:all -->
+	
+	<div class="row">	
+		<!-- googleoff:all -->
+			
+            
+            <div class="contentPageLeftNavigation col-sm-3 col-md-3">
+				<div id="topicLeftNav" class="navbar">
+    <div class="navbar-header">
+        
+   	</div> 	
+	<div class="row navbar-collapse collapse">
+	<div class="col-xs-12"><!-- InstanceBeginEditable name="leftnav1" -->
+    <ul class="leftNav nav navbar-nav">
+      <li>
+        <div class="leftNav-item-wrapper"> <a href="https://www2.gov.bc.ca/gov/content/environment/air-land-water/air/air-pollution">Air Pollution</a> <span class="level-trigger"></span></div>
+      </li>
+      <li>
+        <div class="leftNav-item-wrapper"> <a href="http://www2.gov.bc.ca/gov/content/environment/air-land-water/air/air-quality">Air Quality</a> <span class="level-trigger"></span></div>
+      </li>
+      <li>
+        <div class="leftNav-item-wrapper"> <a href="http://www2.gov.bc.ca/gov/content/environment/air-land-water/air/air-quality-management">Air Quality Management</a> <span class="level-trigger"></span></div>
+      </li>
+      <li>
+        <div class="leftNav-item-wrapper"> <a href="http://www2.gov.bc.ca/gov/content/environment/air-land-water/air/reports-publications">Reports & Publications</a> <span class="level-trigger"></span></div>
+      </li>
+    </ul>
+    <!-- InstanceEndEditable --></div>	
+	</div>
+</div>
+				
+</div>
+			<!-- googleon:all -->
+			<div id="main-content" class="contentPageMainColumn col-sm-9 col-md-5 col-lg-6">
+			  <h1><!-- InstanceBeginEditable name="ContentHeader" -->Current And Forecasted Air Quality Health Index (AQHI)<!-- InstanceEndEditable --></h1>
+			
+			  <div id="body"><!-- InstanceBeginEditable name="maincontent" -->
+			    <iframe src="http://wwwt.env.gov.bc.ca/epd/bcairquality/readings/aqhi.xml" scrolling="no" width="750" height="1600" id="iframe1" marginheight="0" frameborder="0" onload="autoResize('iframe1');"></iframe>
+			  <!-- InstanceEndEditable --></div>
+		</div>
+			<div class="contentPageRightColumn col-sm-9 col-md-4 col-lg-3 col-sm-offset-3 col-md-offset-0">
+				<div id="replicantData_0006F08846DB4CA7AAD35E897A3765FB" data-order="0" style="display: none;">	
+			<h2 class="blue-heading-bar">Related Links</h2>
+			<div class="relatedLinks rightColumnBox">	
+				<div>
+						<p><a href="http://www.env.gov.bc.ca/emswr/" target="_blank">Access the Environmental Monitoring System Web Reporting (EMS WR) application </a></p>
+</div>
+</div>
+		</div>
+	<div id="replicantData_E7E365A0ABC84F8AA6A62F97C50E7398" data-order="0" style="display: none;">	
+			<h2 class="blue-heading-bar">Useful Contacts</h2>            
+			<div class="usefulContacts rightColumnBox table-responsive">	
+	            <p>Please <a href="http://www2.gov.bc.ca//gov/content/environment/research-monitoring-reporting/reporting/environmental-monitoring-system/web-reporting/help-desk" target="_self">contact the EMS help desk</a> if you have questions.&nbsp;</p>
+<div class="contacts table">
+					</div>
+			</div>
+		</div>
+	</div>
+		</div>					
+</div>
+
+<!-- googleoff:all -->
+		<div id="footer">
+	<div id="footerWrapper">
+		<div id="footerToggle">
+			<a class="footerExpand" href="#"><img src="http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/footer_expandbutton.png" alt="Expand footer" title="Expand footer" /></a>
+			<a class="footerCollapse" href="#" style="display:none"><img src="http://www2.gov.bc.ca//StaticWebResources/static/gov3/images/footer_collapsebutton.png" alt="Collapse footer" title="Collapse footer" /></a>		
+		</div>
+	
+		<div id="footerCollapsible">
+	
+			<div id="footerContainer" class="container">
+				
+				<div id="footerMediaLinks" class="row">
+					<h2 class="pull-left">Connect With Us</h2>
+						<div class="col-xs-12 col-sm-9">
+						<ul class="inline">
+							<li id="replicantData_1609935C8708460794A8E89DB857A187" data-order="0">
+									<a href="https://news.gov.bc.ca/" target="_blank">BC Gov News</a>
+
+</li>														
+							<li id="replicantData_B17A9ACA5CC1446AB10B577F8E7A9D92" data-order="1">
+									<a href="https://www.facebook.com/BCProvincialGovernment" target="_blank">Facebook</a>
+
+</li>														
+							<li id="replicantData_22825D3BFB2143F18A212F34729EB0A5" data-order="2">
+									<a href="https://twitter.com/BCGovNews" target="_blank">Twitter</a>
+
+</li>														
+							<li id="replicantData_5BDAA4CF843E429AAF599551C6669E38" data-order="3">
+									<a href="https://www.flickr.com/photos/bcgovphotos/" target="_blank">Photos</a>
+
+</li>														
+							<li id="replicantData_80174741084340B3A67D96CA144A17DC" data-order="4">
+									<a href="https://www.youtube.com/user/ProvinceofBC" target="_blank">Videos</a>
+
+</li>														
+							<li id="replicantData_53EC245D7C1D47C6BDCC7DB87028DFC9" data-order="5">
+									<a href="https://news.gov.bc.ca/newsletters" target="_blank">Newsletters</a>
+
+</li>														
+							<li id="replicantData_2439F37713DD486EA2C0BF78D89B0053" data-order="6">
+									<a href="https://news.gov.bc.ca/connect#rss" target="_blank">RSS Feeds</a>
+
+</li>														
+							</ul>
+					</div>
+					
+					<hr class="col-xs-12" />
+				</div>
+			
+				<div id="footerAZLinks" class="row hidden-xs">				
+					<h2>Government A-Z</h2>
+						<div class="col-sm-4">
+						<ul class="bulleted">
+							<li id="replicantData_461EB6AD9D76408B82B694E9FBDEFE32" data-order="0">
+										<a href="http://www2.gov.bc.ca//gov/content/home/services-a-z" target="_self">Services A-Z</a>
+
+</li>
+								</ul>
+					</div>
+					<div class="col-sm-4">
+						<ul class="bulleted">
+							<li id="replicantData_F0EA3631778F4368BC0987587A9985B7" data-order="1">
+										<a href="http://www2.gov.bc.ca//gov/content/home/organizations-a-z" target="_self">Organizations A-Z</a>
+
+</li>
+								</ul>
+					</div>
+					<div class="col-sm-4">
+						<ul class="bulleted">
+							<li id="replicantData_4DC9D94C2FFD4FFBAEA035FE68828407" data-order="2">
+										<a href="http://www2.gov.bc.ca//gov/content/home/forms-a-z" target="_self">Forms A-Z</a>
+
+</li>
+								</ul>
+						
+					</div>
+					
+					<hr class="hidden-md hidden-lg col-xs-12" />
+				</div>
+			
+				<div id="footerThemeLinks" class="row hidden-xs">
+					<h2>Services and Information Topics</h2>
+						
+					<div class="col-sm-4">
+						<ul class="bulleted">
+							<li><a href="http://www2.gov.bc.ca//gov/content/governments">British Columbians & Our Governments</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/vital-statistics">Birth, Adoption, Death, Marriage & Divorce</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/health">Health</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/education-training">Education & Training</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/transportation">Driving & Transportation</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/safety">Public Safety & Emergency Services</a></li>
+								</ul>
+					</div>
+					<div class="col-sm-4">
+						<ul class="bulleted">
+							<li><a href="http://www2.gov.bc.ca//gov/content/justice">Law, Crime & Justice</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/taxes">Taxes & Tax Credits</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/housing-tenancy">Housing & Tenancy</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/sports-culture">Sports, Recreation, Arts & Culture</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/environment">Environmental Protection & Sustainability</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/industry">Farming, Natural Resources & Industry</a></li>
+								</ul>
+					</div>
+					<div class="col-sm-4">
+						<ul class="bulleted">
+							<li><a href="http://www2.gov.bc.ca//gov/content/employment-business">Employment, Business & Economic Development</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/tourism-immigration">Tourism & Immigration</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/family-social-supports">Family & Social Supports</a></li>
+								<li><a href="http://www2.gov.bc.ca//gov/content/careers">Careers</a></li>
+								</ul>
+					</div>
+					
+					<hr class=" col-xs-12" />
+				</div>	
+				
+			</div>	
+		</div>
+	
+		<div id="footerAdminSection">
+			<div id="footerAdminLinksContainer" class="container">
+				<div id="footerAdminLinks" class="row">
+					<ul class="inline">
+						<li id="replicantData_64BB7AFB6346453E96CF3F8EFE745151" data-order="0">
+								<a href="http://www2.gov.bc.ca//gov/content/home" target="_self">Home</a>
+
+</li>														
+						<li id="replicantData_2E18DFD9524A4C95A9601ABF261EC70E" data-order="1">
+								<a href="http://www2.gov.bc.ca//gov/content/home/disclaimer" target="_self">Disclaimer</a>
+
+</li>														
+						<li id="replicantData_F960821F16BB43799D89D309EB9C1318" data-order="2">
+								<a href="http://www2.gov.bc.ca//gov/content/home/privacy" target="_self">Privacy</a>
+
+</li>														
+						<li id="replicantData_0123F79F761A47EDB9B7DE8FE4EB591A" data-order="3">
+								<a href="http://www2.gov.bc.ca//gov/content/home/accessibility" target="_self">Accessibility</a>
+
+</li>														
+						<li id="replicantData_68A5C36D97E445EDB9C87F10D9C3472F" data-order="4">
+								<a href="http://www2.gov.bc.ca//gov/content/home/copyright" target="_self">Copyright</a>
+
+</li>														
+						<li id="replicantData_5C329F040B414B62A8802DFC7072C39E" data-order="5">
+								<a href="https://extranet.gov.bc.ca/forms/gov/contact/index.html" target="_self">Contact Us</a>
+
+</li>														
+						<!-- viewport toggle - set view port cookie and reload current page -->
+						<li class="mobileToggle  hidden-lg hidden-md">
+										<a target="_self" href="javascript:location.reload();" onClick="document.cookie = 'forseLargeViewport=true; path=/';">Desktop View</a>
+								</li>
+							</ul>
+				</div>
+			</div>	
+		</div>
+	</div>		
+</div>
+<!-- googleon:all -->	
+		<div id="webtrends">
+	
+		<!-- START OF SmartSource Data Collector TAG v10.4.1 -->
+		<!-- Copyright (c) 2014 Webtrends Inc.  All rights reserved. -->
+		<script type="text/javascript">
+		      window.webtrendsAsyncInit=function(){
+		          var dcs=new Webtrends.dcs().init({
+		              dcsid:"",
+		              domain:"sdc.gov.bc.ca",
+		              timezone:-8,
+			      i18n:false,
+			      adimpressions:true,
+			      adsparam:"WT.ac",
+			      offsite:true,
+			      download:true,
+			      downloadtypes:"xls,xlsx,doc,docx,dotx,pdf,txt,csv,zip,mov,axd,mpeg,swf,mp3,m4v,potx,ppt,pptx,pps,ppsx,lpt,tar,arj,kml,kmz,shp,wms,rdf",
+			      anchor:true,
+			      metanames:"WT.owner,WT.audience,WT.theme,WT.subject",
+			      onsitedoms:"gov.bc.ca",
+		              fpcdom:".gov.bc.ca",
+		               plugins:{
+		                  //hm:{src:"//s.webtrends.com/js/webtrends.hm.js"},
+		                  yt:{src:"http://www.gov.bc.ca/shared/scripts/yt_dcs_tag.js",
+		      			//optional  
+		                  mode: "manual"}
+		              }
+		              }).track();
+		      };
+		      (function(){
+		          var s=document.createElement("script"); s.async=true; s.src="https://gww.lcs.gov.bc.ca/shared/scripts/persistent_dcs_tag.js";    
+		          var s2=document.getElementsByTagName("script")[0]; s2.parentNode.insertBefore(s,s2);
+		      }());
+		      </script>
+		<noscript>
+			<div>
+				<img src="http://sdc.gov.bc.ca//njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=10.4.1" height="1" width="1" alt="dcsimg">
+					</div>
+		</noscript>
+		<!-- END OF SmartSource Data Collector TAG v10.4.1 -->
+	
+	</div>
+</body>
+
+<!-- InstanceEnd --></html>
