@@ -12,6 +12,10 @@ margin-top: 15px;
     
 }
 
+.aqhiScale {
+background-color: white;
+}
+
 #IE11notice {
     display: none;
 }

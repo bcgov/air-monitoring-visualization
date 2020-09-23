@@ -10,7 +10,7 @@
     <meta name="dc.keywords" content="air quality, ambient readings, meterological readings, AQHI, air quality health index" />
     <meta name="dc.creator" content="Knowledge Management Branch, Ministry of Environment and Climate Change Strategy" />
     <meta name="dc.date.created" content="January 2014" />
-    <meta name="dc.date.modified" content="March, 2019" />
+    <meta name="dc.date.modified" content="September, 2020" />
     <meta name="description" content="Providing the latest ambient and meteorlogical data." />
     <meta name="author" content="Ministry of Environment and Climate Change Strategy" />
     <title>AQHI Station Data - BC Air Quality - Province of British Columbia</title>
@@ -47,61 +47,29 @@
     <link rel="stylesheet" href="css/visualization.css" />
     <link rel="stylesheet" href="css/graphs.css" />
 
-    <!-- Snowplow starts plowing - Standalone vA.2.10.2 -->
+   <!-- Snowplow starts plowing - Standalone vE.2.14.0 -->
     <script type="text/javascript">
-        ;
-        (function (p, l, o, w, i, n, g) {
-            if (!p[i]) {
-                p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || [];
-                p.GlobalSnowplowNamespace.push(i);
-                p[i] = function () {
-                    (p[i].q = p[i].q || []).push(arguments)
-                };
-                p[i].q = p[i].q || [];
-                n = l.createElement(o);
-                g = l.getElementsByTagName(o)[0];
-                n.async = 1;
-                n.src = w;
-                g.parentNode.insertBefore(n, g)
-            }
-        }(window, document, "script", "https://sp-js.apps.gov.bc.ca/MDWay3UqFnIiGVLIo7aoMi4xMC4y.js", "snowplow"));
-        var collector = 'spt.apps.gov.bc.ca';
-        window.snowplow('newTracker', 'rt', collector, {
-            appId: "Snowplow_standalone",
-            platform: 'web',
-            post: true,
-            forceSecureTracker: true,
-            contexts: {
-                webPage: true,
-                performanceTiming: true
-            }
-        });
-        window.snowplow('enableActivityTracking', 30, 30); // Ping every 30 seconds after 30 seconds
-        window.snowplow('enableLinkClickTracking');
-        window.snowplow('trackPageView');
+       ;(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];
+ p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
+ };p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
+ n.src=w;g.parentNode.insertBefore(n,g)}}(window,document,"script","https://www2.gov.bc.ca/StaticWebResources/static/sp/sp-2-14-0.js","snowplow"));
+var collector = 'spt.apps.gov.bc.ca';
+ window.snowplow('newTracker','rt',collector, {
+  appId: "Snowplow_standalone",
+  cookieLifetime: 86400 * 548,
+  platform: 'web',
+  post: true,
+  forceSecureTracker: true,
+  contexts: {
+   webPage: true,
+   performanceTiming: true
+  }
+ });
+ window.snowplow('enableActivityTracking', 30, 30); // Ping every 30 seconds after 30 seconds
+ window.snowplow('enableLinkClickTracking');
+ window.snowplow('trackPageView');
     </script>
     <!-- Snowplow stop plowing -->
-
-<!--    <script language="javascript" type="text/javascript">
-        openPage = function () {
-            var query_string = {};
-            var query = window.location.search.substring(1);
-
-            var aqhi_area = query.toLowerCase();
-
-            aqhi_area = aqhi_area.replace(/_/g, "-");
-            aqhi_area = aqhi_area.substring(8, );
-
-            var fullURL = "http://www.env.gov.bc.ca/epd/bcairquality/readings/" + aqhi_area + "-aqhi.xml"
-
-            location.href = fullURL
-        }
-    </script> -->
-
-
-
-
-
 </head>
 
 <body>
@@ -124,12 +92,12 @@
                                     <a accesskey="0" href="#navigation-anchor" aria-label="Skip to navigation">Skip to navigation</a>
                                 </li>
                                 <li aria-label="Keyboard Tab Skip">
-                                    <a accesskey="0" href="http://gov.bc.ca/webaccessibility/" aria-label="Accessibility Statement">Accessibility Statement</a>
+                                    <a accesskey="0" href="http://gov.bc.ca/webaccessibility/" aria-label="Accessibility Statement">Accessibility statement</a>
                                 </li>
                             </ul>
                         </div>
-                        <button type="button" class="navbar-toggle env-button-custom collapsed" data-toggle="collapse" data-target="#navbar">
-                            <img src="../../templates-env/images/menu-open-mobile.png" />
+                        <button type="button" aria-label="button" class="navbar-toggle env-button-custom collapsed" data-toggle="collapse" data-target="#navbar">
+                            <img src="../../templates-env/images/menu-open-mobile.png" alt="menu button" />
                         </button>
                     </div>
                     <div class="col-sm-8 col-md-8 col-lg-6 hidden-xs">
@@ -143,8 +111,9 @@
                         <a id="main-content-anchor"></a>
                         <ul class="nav navbar-nav">
                             <li><a href="http://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161">Air Quality Health Index</a></li>
-                            <li><a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current Air Quality Data</a></li>
-                            <li><a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC Air Data Archive</a></li>
+                            <li><a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current air quality data</a></li>
+                            <li><a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air quality advisories</a></li>
+                            <li><a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC air data archive</a></li>
                         </ul>
                     </div>
                     <!-- /COLLAPSING NAVBAR -->
@@ -154,8 +123,9 @@
                 <div class="level2Navigation">
                     <div class="container">
                         <a href="http://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161">Air Quality Health Index</a>
-                        <a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current Air Quality Data</a>
-                        <a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC Air Data Archive</a>
+                        <a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current air quality data</a>
+                         <a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air quality advisories</a>
+                        <a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC air data archive</a>
                     </div>
                 </div>
             </div>
@@ -185,7 +155,7 @@
                         <div class="button"></div>
 
                         <div class="aqhi_banner alert alert-info" role="alert">
-                            <h3>Health Message for Current Conditions:</h3></div>
+                            <h3>Health message for current conditions:</h3></div>
                     </div>
                     
                 </div>
@@ -198,7 +168,7 @@
                     <!-- Dynamic Section 1 -->
                     <div id="message1" class="dynamic-content aqhi_banner">
                         <div class="alert alert-warning" role="alert">
-                            <h3>Monitoring Status</h3>
+                            <h3>Monitoring status</h3>
                             <p>The Air Quality Health Index for Quesnel is based on data from a temporary operational site.</p>
 
                         </div> 
@@ -213,7 +183,7 @@
                     </div>
              </div>
                 <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-lg-10">
                         <div class="table-responsive">
                             <table id="chart-area" class="table">
                                 <tbody>
@@ -228,7 +198,7 @@
                                             </div>
 
                                             <p class="selected-date"></p>
-
+<div><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Tip: Use the grey selection tool above to adjust the date range of the data set or hover over the chart and use your mouse wheel. <img src="images/date-selection.png" alt="selection" /></div>
                                         </td>
                                     </tr>
 
@@ -236,21 +206,13 @@
                             </table>
 
                         </div>
-                        <hr />
-                         <div class="alert alert-warning" role="alert">
-                        <h3>Disclaimer:</h3>
-                        <p>Air quality data may be missing for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure.</p>
-                        <p>Data found on this web site is accessible in raw form before all quality assurance reviews are complete. This data is preliminary and is subject to change during the review process. <a href="https://www2.gov.bc.ca/gov/content?id=D73D2DC9D7A8445195F5ED5199350D4B" target="_blank">Read more about our data and licensing agreement.</a></p>
-
                         
                     </div>
-                    <hr />
-                    </div>
-                    <div class="col-md-2">
+                    <div class="col-lg-2">
                        <div id="right-side-column">
-                        <div class="legend" style="margin-top:10px;">
+                        <div class="alert alert-information" role="alert" aria-live="polite">
 
-                            <h3>AQHI Values - Health Risk</h3>
+                            <h3>Air Quality Health Index - Health risk</h3>
                             <div class="table-responsive tableMd">
                                 <table class="table aqhiScale table-bordered table-striped">
                                     <tr>
@@ -280,24 +242,22 @@
                                 </table>
                                 <!--<p><a href="#" data-toggle="modal" data-target="#myModal">See health message related to this AQHI/SO<sup>2</sup> alert.</a></p> -->
                             </div>
-                            <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> If the AQHI index has increased to 7 (high health risk), it is usually because of high concentrations of smoke particles (PM2.5) in this community. Learn more about <a href="#" data-toggle="modal" data-target="#myModal">AQHI Categories and Explanations.</a></p>
+                            <div>If the Air Quality Health Index has increased to 7 (high health risk), it is usually because of high concentrations of smoke particles (PM2.5) in this community. Learn more about <a href="#" data-toggle="modal" data-target="#myModal">AQHI Health messages.</a></div>
 
                         </div>
-                        <div class="row">
-
-
-
-                            <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Tip: Use the grey selection tool to adjust the date range of the data set.
-                                <br /><img src="images/date-selection.png" alt="selection" /></p>
-
-
-                        </div>
+                    
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                   
+                   <div class="alert alert-warning" role="alert">
+                        <h3>Disclaimer:</h3><a name="data-disclaimer"></a>
+                        <p>Air quality data may be missing for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure.</p>
+                        <p>Data found on this web site is accessible in raw form before all quality assurance reviews are complete. This data is preliminary and is subject to change during the review process. <a href="https://www2.gov.bc.ca/gov/content?id=D73D2DC9D7A8445195F5ED5199350D4B" target="_blank">Read more about our data and licensing agreement.</a></p>
+
+                        
+                    </div>
 
 
                     <div class="alert alert-success" role="alert">
@@ -305,11 +265,11 @@
                         <p>By accessing these datasets, you agree to the license associated with each file, as indicated in parentheses below.</p>
 
                         <ul>
-                            <li><a href="https://catalogue.data.gov.bc.ca/dataset/air-quality-monitoring-unverified-hourly-air-quality-and-meteorological-data/resource/7fd21841-b133-4f39-b9b2-6bfa34a7cf6c" target="_blank">Air Monitoring Stations</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank">OGL-BC</a>)</li>
-                            <li><a href="https://catalogue.data.gov.bc.ca/dataset/01867404-ba2a-470e-94b7-0604607cfa30" target="_blank">Air Quality Monitoring: Unverified Hourly Air Quality and Meteorological Data</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank">OGL-BC</a>)</li>
+                            <li><a href="https://catalogue.data.gov.bc.ca/dataset/air-quality-monitoring-unverified-hourly-air-quality-and-meteorological-data/resource/7fd21841-b133-4f39-b9b2-6bfa34a7cf6c" target="_blank">Air monitoring stations</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank">OGL-BC</a>)</li>
+                            <li><a href="https://catalogue.data.gov.bc.ca/dataset/01867404-ba2a-470e-94b7-0604607cfa30" target="_blank">Air quality monitoring: Unverified hourly air quality and meteorological data</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank">OGL-BC</a>)</li>
 
                         </ul>
-                        <p><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the latest data from the <a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5" target="_blank">BC Air Data Archive</a>.</p>
+                        <p><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the latest data from the <a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5" target="_blank">BC air data archive</a>.</p>
 
                     </div>
 
@@ -365,16 +325,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Learn more about AQHI Categories and Explanations</h4>
+                    <h4 class="modal-title" id="myModalLabel">Air Quality Health Index health messages</h4>
                 </div>
                 <div class="modal-body">
-                    <h4>Air Quality Health Index Categories and Health Messages</h4>
+                   
                     <div>
 
-                        <h3>The <abbr title="Air Quality Health Index">AQHI</abbr> uses a scale to show the health risk associated with the air pollution we breathe.</h3>
+                        <p>The <abbr title="Air Quality Health Index">AQHI</abbr> uses a scale to show the health risk associated with the air pollution we breathe.</p>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover" id="table1">
-                                <caption>The following table provides the health messages for &#8216;at risk&#8217; individuals and the general public for each of the <abbr title="Air Quality Health Index">AQHI</abbr> Health Risk Categories.</caption>
+                                <caption>The following table provides the health messages for &#8216;at risk&#8217; individuals and the general public for each of the AQHI Health Risk Categories.</caption>
                                 <thead>
                                     <tr>
                                         <th rowspan="2">Health
@@ -448,9 +408,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- <script src="../../templates-env/js/bootstrap.min.js"></script> -->
     <script src="../../templates-env/js/misc.js"></script>
     <script src="../../templates-env/js/navMenu.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

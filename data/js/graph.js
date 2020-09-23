@@ -163,7 +163,7 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     var direction = ["N", "E", "S", "W"]
 
     // Don't show these as buttons
-    var exclude = ['DATE_PST', 'LATITUDE', 'LONGITUDE', 'STATION', 'DATE_LOCAL', 'DATE', 'EMS_ID', 'AQHI_AREA', 'STATION_NAME', 'NOx', 'NOX_24', 'NO', 'NO_24', 'SO_24']
+    var exclude = ['DATE_PST', 'LATITUDE', 'LONGITUDE', 'STATION', 'DATE_LOCAL', 'DATE', 'EMS_ID', 'AQHI_AREA', 'STATION_NAME', 'NOx', 'NOX_24', 'NO', 'NO_24', 'SO_24', 'VAPOUR_PRESSURE']
 
 
 
@@ -246,11 +246,11 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     if (QueryString.includes('AQHI')) {
         d3.select(".current-cond").html(data[0]["AQHI_AREA"]);
     } else {
-        d3.select(".current-cond").html(data[0]["STATION"] + ' - Air Monitoring Station');
+        d3.select(".current-cond").html(data[0]["STATION"] + ' - Air monitoring station');
     }
-    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. Current data is displayed below. <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Click on current data to view a 30-day graph of the analyser below.');
+    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. Current data is displayed below and you can select each one to view a 30-day graph <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> of the analyser.');
 
-document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["STATION"] + ' - Air Monitoring Station - Province of British Columbia';
+document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["STATION"] + ' - Air monitoring station - Province of British Columbia';
     
 });
 
@@ -451,15 +451,15 @@ function makeGraphs(trace, data) {
     var svg = d3.select("svg"),
        margin = {
             top: 10,
-            right: 70,
+            right: 100,
             bottom: 140,
-            left: 10
+            left: 15
         },
         margin2 = {
             top: 430,
             right: 5,
             bottom: 30,
-            left: 5
+            left: 15
         },
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
@@ -695,7 +695,7 @@ function makeGraphs(trace, data) {
 
     ylab = svg.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", -50)
+        .attr("y", -40)
         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")
@@ -831,7 +831,24 @@ function updateGraph(trace, data) {
         }
     })
 
-
+    var svg = d3.select("svg"),
+       margin = {
+            top: 10,
+            right: 100,
+            bottom: 140,
+            left: 15
+        },
+        margin2 = {
+            top: 430,
+            right: 5,
+            bottom: 30,
+            left: 15
+        },
+        width = +svg.attr("width") - margin.left - margin.right,
+        height = +svg.attr("height") - margin.top - margin.bottom,
+        height2 = +svg.attr("height") - margin2.top - margin2.bottom;
+	
+	
     function mousemove() {
         var x0 = x.invert(d3.mouse(this)[0])
         i = bisectDate(data, x0, 1)
@@ -906,6 +923,8 @@ function updateGraph(trace, data) {
     }
     
 
+
+	
     yAxis = d3.axisLeft(y);
     if (trace === "WDIR_VECT") {
         yAxisRight = d3.axisRight(y)
@@ -916,13 +935,13 @@ function updateGraph(trace, data) {
             .tickFormat(function (d) { if (d == 0) { return "0" } else if (d == 90) { return "90"; } else if (d == 180) { return "180"; } else if (d == 270) { return "270" } else if (d == 360) { return "360" } else { return "" } });
         yGrid.call(d3.axisLeft(y)
             .tickValues([0, 90, 180, 270, 360])
-            .tickSize(-1120)  // Was 870 and horizontal gridlines did not go all the way across graph
+            .tickSize(-width)  // Was 870 and horizontal gridlines did not go all the way across graph.  Was -1120 prior to changing to -width
             .tickFormat("")
         );
     } else {
         yAxisRight = d3.axisRight(y);
         yGrid.transition().call(d3.axisLeft(y)
-            .tickSize(-1120)  // Was 870 and horizontal gridlines did not go all the way across graph
+            .tickSize(-width)  // Was 870 and horizontal gridlines did not go all the way across graph. Was -1120 prior to changing to -width
             .tickFormat(""));
     }
 
@@ -977,7 +996,8 @@ function updateGraph(trace, data) {
                 .append("g")
                 .attr('id', 'scatter')
                 //.attr("transform", "translate(50,20)")  // 50,20 causes offset graph markings
-				.attr("transform", "translate(10,10)")    // 10,10 aligns with origin
+				//.attr("transform", "translate(10,10)")    // 10,10 aligns with origin
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
                 .attr("clip-path", "url(#clip)");
         }
 

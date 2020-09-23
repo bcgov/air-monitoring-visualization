@@ -175,7 +175,7 @@ svg:not(:root) {
 }
 
 #right-side-column {
-    margin: 20px;
+   /* margin: 15px; */
 }
 
 aside {
@@ -249,6 +249,15 @@ pre {
     padding-top: 5px !important;
 }
 
+.aqhi_btn {
+    /* padding: 5px 10px 5px 10px; */
+    width: 280px;
+    background-color: #660000;
+    color: #ffffff;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
 
 /* AQHI Scale */
 
@@ -359,10 +368,7 @@ pre {
     height: 0px;
 }
 
-.aqhi_btn {
-    /* padding: 5px 10px 5px 10px; */
-    width: 270px;
-}
+
 
 .table-responsive {
     overflow-x: scroll;

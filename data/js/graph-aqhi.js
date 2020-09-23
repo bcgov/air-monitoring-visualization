@@ -1,4 +1,4 @@
-// Version Nov. 7th, 2019 - RJT
+// Version Sept. 1, 2020 - RJT
 // This gets the station ID from the url
 var QueryString = function () {
     // This function is anonymous, is executed immediately and 
@@ -255,7 +255,7 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     } else {
         d3.select(".current-cond").html(data[0]["STATION"]);
     }
-    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. Current and forecasted AQHI data is displayed below along with a graph of the last 30-days <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>.<br/>Learn more about <a href="#" data-toggle="modal" data-target="#myModal">AQHI Categories and Explanations.</a> and please read our <a href="#data-disclaimer">air quality data disclaimer</a> below.');
+    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. Current and forecasted Air Quality Health Index (AQHI) data is displayed below along with a graph <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> of the last 30-days.<br/>Learn more about <a href="#" data-toggle="modal" data-target="#myModal">AQHI Categories and Explanations.</a> and please read our <a href="#data-disclaimer">air quality data disclaimer</a> below.');
     
 document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["AQHI_AREA"] + ' - Air Quality Health Index - Province of British Columbia';
 
@@ -354,7 +354,8 @@ function makeButtons(keys, data) {
                 t += 1
                 makeActive(d3.select(this));
 
-                updateGraph(d, data)
+                //updateGraph(d, data)  
+
             }
 
         })
@@ -457,9 +458,9 @@ function makeGraphs(trace, data) {
     var svg = d3.select("svg"),
         margin = {
             top: 10,
-            right: 70,
+            right: 90,
             bottom: 140,
-            left: 10
+            left: 20
         },
         margin2 = {
             top: 430,
@@ -571,10 +572,11 @@ function makeGraphs(trace, data) {
 	not_null = not_null.filter(function (d) { return d[trace] !== ''; });
     
 
-    y_domain_min = d3.min(not_null, function (d) { return +d[trace] });
+    //y_domain_min = d3.min(not_null, function (d) { return +d[trace] });
+	y_domain_min = 1;
     y_domain_max = d3.max(not_null, function (d) { return +d[trace] });
 
-    y.domain([Math.floor(y_domain_min), Math.ceil(y_domain_max)]);
+    y.domain([Math.floor(y_domain_min), (Math.ceil(y_domain_max)+0.5)]);
 
     x2.domain(x.domain());
     y2.domain(y.domain());
@@ -764,8 +766,9 @@ function makeGraphs(trace, data) {
 
         dataFiltered = dataFiltered.filter(function (d) { return d[trace] != null; });
 
-        var y_domain_min = Math.floor(d3.min(dataFiltered.map(function (d) { return +d[param] })));
-        var y_domain_max = Math.ceil(d3.max(dataFiltered.map(function (d) { return +d[param] })));
+        //var y_domain_min = Math.floor(d3.min(dataFiltered.map(function (d) { return +d[param] })));
+		var y_domain_min = 1
+        var y_domain_max = Math.ceil(d3.max(dataFiltered.map(function (d) { return +d[param] })))+0.5;
 
         if (param == "WDIR_VECT") {
             y_domain_max = 378;
@@ -872,7 +875,8 @@ function updateGraph(trace, data) {
             }
         });
 
-        y_domain_min = d3.min(dataFiltered, function (d) { return +d[trace] });
+        //y_domain_min = d3.min(dataFiltered, function (d) { return +d[trace] });
+		y_domain_min = 1;
         y_domain_max = d3.max(dataFiltered, function (d) { return +d[trace] });
     } else {
         y_domain_min = y2_domain_min;
