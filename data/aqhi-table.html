@@ -7,19 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="HandheldFriendly" content="true" />
-    <meta name="description" content="Real-time air quality readings for British Columbia through an interactive map, including the Air Quality Health Index (AQHI) and AQHI forecasts." />
+    <meta name="description" content="Real-time air quality readings for British Columbia through an interactive map, including the Air Quality Health Index (AQHI) and AQHI forecasts. The Air Quality Health Index is available to more than 80 percent of the population in 14 communities — throughout Metro Vancouver and the Lower Fraser Valley, as well as in Kamloops, Kelowna, Nanaimo, Prince George, Vernon, Victoria and the South Okanagan" />
     <meta name="author" content="Ministry of Environment and Climate Change Strategy" />
     <meta name="navigaton_title" content="Air Quality Health Index - BC Air Quality" />
     <meta name="dcterms.publisher" content="Province of British Columbia" />
     <meta name="dcterms.created" content="2019-02-14" />
-    <meta name="dcterms.modified" content="2019-02-19" />
+    <meta name="dcterms.modified" content="2020-09-23" />
     <meta name="security_label" content="Public" />
     <meta name="security_classification" content="Low" />
     <meta name="dcterms.subject" content="Science and Technology" />
     <meta name="dcterms.creator" content="Ministry of Environment and Climate Change Strategy" />
     <meta name="dcsext.creator" content="Ministry of Environment and Climate Change Strategy" />
     <meta name="dcterms.language" content="eng" />
-    <meta name="keywords" content="Air Quality Health Index, AQHI">
+    <meta name="keywords" content="Air Quality Health Index, AQHI, Castlegar, Okanagan (Central), Comox Valley, Cranbrook, Duncan, Fraser Valley (Central), Fraser Valley (Eastern), Fort St. John, Kamloops, Kitimat, Okanagan (North), Metro Vancouver North, East, Metro Vancouver North West, Metro Vancouver South East, Metro Vancouver South West, Nanaimo / Parksville, Prince George, Quesnel, Smithers, Okanagan (South), Squamish, Terrace, Victoria / Saanich, West Shore, Whistler, Williams Lake">
     <link rel="apple-touch-icon" sizes="57x57" href="../../templates-env/icons/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="../../templates-env/icons/apple-icon-60x60.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="../../templates-env/icons/apple-icon-72x72.png" />
@@ -104,7 +104,7 @@
         }
 
         function processError() {
-            $('#aqhi_table').append('<p><b>AQHI data is not available at this moment, please try again later.</b></p>');
+            $('#aqhi_table').append('<p><b>Air Quality Health Index data is not available at this moment, please try again later.</b></p>');
         }
 
         function addAqhiTableRow(station_url, station_name, current_index, today_index, tonight_index, tomorrow_index, date) {
@@ -273,7 +273,7 @@ var collector = 'spt.apps.gov.bc.ca';
                             </ul>
                         </div>
                         <button type="button" class="navbar-toggle env-button-custom collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-label="Burger Navigation">
-                            <img src="../../templates-env/images/menu-open-mobile.png" />
+                            <img src="../../templates-env/images/menu-open-mobile.png" alt="menu button" />
                         </button>
                     </div>
                     <div class="col-sm-8 col-md-8 col-lg-6 hidden-xs">
@@ -284,12 +284,12 @@ var collector = 'spt.apps.gov.bc.ca';
                     <!-- GOV TITLE -->
                     <!-- COLLAPSING NAVBAR -->
                     <div id="navbar" class="collapse navbar-collapse" role="navigation">
-                        <a id="main-content-anchor"></a>
+                        <a id="navigation-anchor"></a>
                         <ul class="nav navbar-nav">
                             <li><a href="https://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161">Air Quality Health Index</a></li>
-                            <li><a href="https://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current Air Quality Data</a></li>
-                            <li><a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air Quality Advisories</a></li>
-                            <li><a href="https://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC Air Data Archive</a></li>
+                            <li><a href="https://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current air quality data</a></li>
+                            <li><a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air quality advisories</a></li>
+                            <li><a href="https://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC air data archive</a></li>
                         </ul>
                     </div>
                     <!-- /COLLAPSING NAVBAR -->
@@ -299,9 +299,9 @@ var collector = 'spt.apps.gov.bc.ca';
                 <div class="level2Navigation">
                     <div class="container">
                         <a href="https://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161">Air Quality Health Index</a>
-                        <a href="https://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current Air Quality Data</a>
-                        <a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air Quality Advisories</a>
-                        <a href="https://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC Air Data Archive</a>
+                        <a href="https://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current air quality data</a>
+                        <a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air quality advisories</a>
+                        <a href="https://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC air data archive</a>
 
 
                     </div>
@@ -318,9 +318,9 @@ var collector = 'spt.apps.gov.bc.ca';
         <div id="main-content" class="contentPageMainColumn col-xs-12">
         <div class="row">
             <!-- AQHI content -->
-            <!--    -->
+            <a id="main-content-anchor"></a>
 
-            <h1>Air Quality Health Index - What's the Air Like Today?</h1>
+            <h1>Air Quality Health Index - What's the air like today?</h1>
             <div id="pageIntro">
 <!--                  <div class="alert alert-danger" role="alert">
 
@@ -355,9 +355,9 @@ var collector = 'spt.apps.gov.bc.ca';
                                         <td class="aqhi11" colspan="2">+</td>
                                     </tr>
                                     <tr>
-                                        <td class="aqhiRisk" colspan="3"><a href="#" data-toggle="modal" data-target="#myModal">LOW<span style="display:block">Health Risk</span></a></td>
-                                        <td class="aqhiRisk" colspan="3"><a href="#" data-toggle="modal" data-target="#myModal">MODERATE<span style="display:block">Health Risk</span></a></td>
-                                        <td class="aqhiRisk" colspan="4"><a href="#" data-toggle="modal" data-target="#myModal">HIGH<span style="display:block">Health Risk</span></a></td>
+                                        <td class="aqhiRisk" colspan="3"><a href="#" data-toggle="modal" data-target="#myModal">LOW<span style="display:block">Health risk</span></a></td>
+                                        <td class="aqhiRisk" colspan="3"><a href="#" data-toggle="modal" data-target="#myModal">MODERATE<span style="display:block">Health risk</span></a></td>
+                                        <td class="aqhiRisk" colspan="4"><a href="#" data-toggle="modal" data-target="#myModal">HIGH<span style="display:block">Health risk</span></a></td>
                                         <td class="aqhiRisk" colspan="2"><a href="#" data-toggle="modal" data-target="#myModal">VERY<span style="display:block">HIGH</span></a></td>
 
                                     </tr>
@@ -371,20 +371,20 @@ var collector = 'spt.apps.gov.bc.ca';
                                         <td class="aqhi1">1</td>
                                         <td class="aqhi2">2</td>
                                         <td class="aqhi3">3</td>
-                                        <td class="aqhiRisk" colspan="2"><a href="#" data-toggle="modal" data-target="#myModal">LOW Health Risk</a></td>
+                                        <td class="aqhiRisk" colspan="2"><a href="#" data-toggle="modal" data-target="#myModal">LOW Health risk</a></td>
                                     </tr>
                                     <tr>
                                         <td class="aqhi4">4</td>
                                         <td class="aqhi5">5</td>
                                         <td class="aqhi6">6</td>
-                                        <td class="aqhiRisk" colspan="2"><a href="#" data-toggle="modal" data-target="#myModal">MODERATE Health Risk</a></td>
+                                        <td class="aqhiRisk" colspan="2"><a href="#" data-toggle="modal" data-target="#myModal">MODERATE Health risk</a></td>
                                     </tr>
                                     <tr>
                                         <td class="aqhi7">7</td>
                                         <td class="aqhi8">8</td>
                                         <td class="aqhi9">9</td>
                                         <td class="aqhi10">10</td>
-                                        <td class="aqhiRisk"><a href="#" data-toggle="modal" data-target="#myModal">HIGH Health Risk</a></td>
+                                        <td class="aqhiRisk"><a href="#" data-toggle="modal" data-target="#myModal">HIGH Health risk</a></td>
                                     </tr>
                                     <tr>
                                         <td class="aqhi11" colspan="2">+</td>
@@ -392,11 +392,9 @@ var collector = 'spt.apps.gov.bc.ca';
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                        <p style="text-align:right;"><strong><sup>*</sup></strong>Click on the station link to view special note.
-                        <br/><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> AQHI Scale - <a href="#" data-toggle="modal" data-target="#myModal">
-                     Learn more about AQHI Categories and Explanations.
-                </a>
+                        </div><p style="text-align:right;"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <a href="#" data-toggle="modal" data-target="#myModal">Learn more about Air Quality Health Index health messages.</a><br/>
+                        <strong><sup>*</sup></strong>Click on the station link to view special note.
+                        
                             </p>
                         <hr/>
                         <div id="aqhiStationHeader" style="display:none;">
@@ -409,7 +407,7 @@ var collector = 'spt.apps.gov.bc.ca';
                             </div>
                         </div>
                         <div class="aqhiRowLabel">
-                            <div style="text-align: right; margin-right:2.5em;font-weight:bold;font-size:large">Maximum AQHI Forecast</div>
+                            <div style="text-align: right; margin-right:2.5em;font-weight:bold;font-size:large">Maximum AQHI forecast</div>
                             <div class="headerStnNameLabel">Station</div>
                             <div class="aqhiReadingLabel">Tomorrow</div>
                             <div class="aqhiReadingLabel">Tonight</div>
@@ -425,26 +423,25 @@ var collector = 'spt.apps.gov.bc.ca';
 
                 <div class="contentPageRightColumn col-md-12 col-lg-5">
                 
-                 <div class="row">
- <div class="alert alert-warning" role="alert">
-                            <h3>Disclaimer</h3>
-                            <p> Air quality data may be missing for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure. Data found on this web site is accessible in raw form before all quality assurance reviews are complete. This data is preliminary and is subject to change during the review process. <a href="https://www2.gov.bc.ca/gov/content?id=D73D2DC9D7A8445195F5ED5199350D4B">Read more about our data and licensing agreement</a>.</p>
-                        </div>
-                    
-                      </div>
-                  <hr/>
                     <div class="row">
 
                       
                         
                         <div class="alert alert-info" role="alert">
                         
-                        <h3>Current Air Monitoring Station Data</h3>
+                        <h3>Current air monitoring station data</h3>
                     <p><a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">View a list of air monitoring stations</a> or use our <a href="../readings/find-stations-map.html">interactive map</a> below to view current air quality data in your area.</p><p>
                     <a href="../readings/find-stations-map.html"><img src="images/interactive-map-thumb.png" width="95%" /></a></p>
                         </div>
+                       
+ <div class="alert alert-warning" role="alert">
+                            <h3>Disclaimer</h3>
+                            <p> Air quality data may be missing for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure. Data found on this web site is accessible in raw form before all quality assurance reviews are complete. This data is preliminary and is subject to change during the review process. <a href="https://www2.gov.bc.ca/gov/content?id=D73D2DC9D7A8445195F5ED5199350D4B">Read more about our data and licensing agreement</a>.</p>
+                        </div>
+                    
+                      <hr />
                         <div class="alert alert-info" role="alert">
-                            <h3>Smoke Related Information</h3>
+                            <h3>Smoke related information</h3>
                             <ul>
                                 <li>Read the frequently asked questions about the <a href="https://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161" target="_blank">Air Quality Health Index and Wildfire Smoke</a>.</li>
                                 <li>Visit the <a href="http://firesmoke.ca/forecasts/current/" target="_blank">BlueSky Canada (Western Canada)</a> smoke forecast page for up to date forecast information.</li>
@@ -452,9 +449,9 @@ var collector = 'spt.apps.gov.bc.ca';
                         </div>
                         
                         <div class="alert alert-info" role="alert">
-                            <h3>Mobile Device Apps with Alert Notifications</h3>      
+                            <h3>Mobile device apps with alert notifications</h3>      
                         <div class="flex-container">
-  <div style="margin: 10px;width: 100%;"><a href="http://open.alberta.ca/interact/aqhi-canada" target="_blank"><img src="images/AQSS-icon-64px.png" alt="Air Quality Subscription Service" /></a> <a href="https://www2.gov.bc.ca/gov/content?id=2F89F266A1BE40EC8926C45A05E28BCD" target="_blank">Air Quality Subscription Service</a></div>
+  <div style="margin: 10px;width: 100%;"><a href="http://open.alberta.ca/interact/aqhi-canada" target="_blank"><img src="images/AQSS-icon-64px.png" alt="Air Quality Subscription Service" /></a> <a href="https://www2.gov.bc.ca/gov/content?id=2F89F266A1BE40EC8926C45A05E28BCD" target="_blank">Air quality subscription service</a></div>
                              <div style="margin: 10px;width: 100%;"><a href="http://open.alberta.ca/interact/aqhi-canada" target="_blank"><img src="images/AQ-Canada-App-icon.png" alt="AQHI Canada App" /></a> <a href="http://open.alberta.ca/interact/aqhi-canada" target="_blank">AQHI Canada App</a> from the Government of Alberta.</div>
                             <div style="margin: 10px;width: 100%;"> <a href="https://www.canada.ca/en/environment-climate-change/services/weather-general-tools-resources/weathercan.html" target="_blank"><img src="images/WeatherCAN-Icon.png" alt="WeatherCAN" /></a> Get weather alerts from <a href="https://www.canada.ca/en/environment-climate-change/services/weather-general-tools-resources/weathercan.html" target="_blank">Canada’s WeatherCAN App</a>.</div>
  
@@ -487,8 +484,8 @@ var collector = 'spt.apps.gov.bc.ca';
                     <p>By accessing these datasets, you agree to the license associated with each file, as indicated in parentheses below.</p>
 
                     <ul>
-                        <li><a href="https://catalogue.data.gov.bc.ca/dataset/air-quality-monitoring-unverified-hourly-air-quality-and-meteorological-data/resource/7fd21841-b133-4f39-b9b2-6bfa34a7cf6c" target="_blank">Air Monitoring Stations</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank"><abbr title="Open Government Licence - British Columbia">OGL-BC</abbr></a>)</li>
-                        <li><a href="https://catalogue.data.gov.bc.ca/dataset/01867404-ba2a-470e-94b7-0604607cfa30" target="_blank">Air Quality Monitoring: Unverified Hourly Air Quality and Meteorological Data</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank"><abbr title="Open Government Licence - British Columbia">OGL-BC</abbr></a>)</li>
+                        <li><a href="https://catalogue.data.gov.bc.ca/dataset/air-quality-monitoring-unverified-hourly-air-quality-and-meteorological-data/resource/7fd21841-b133-4f39-b9b2-6bfa34a7cf6c" target="_blank">Air monitoring stations</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank"><abbr title="Open Government Licence - British Columbia">OGL-BC</abbr></a>)</li>
+                        <li><a href="https://catalogue.data.gov.bc.ca/dataset/01867404-ba2a-470e-94b7-0604607cfa30" target="_blank">Air quality monitoring: Unverified hourly air quality and meteorological data</a> (Licence: <a href="http://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61" target="_blank"><abbr title="Open Government Licence - British Columbia">OGL-BC</abbr></a>)</li>
                     </ul>
 
                 </div>
@@ -548,7 +545,7 @@ var collector = 'spt.apps.gov.bc.ca';
                     <h4 class="modal-title" id="myModalLabel">Learn more about AQHI Categories and Explanations</h4>
                 </div>
                 <div class="modal-body">
-                    <h4>Air Quality Health Index Categories and Health Messages</h4>
+                    <h4>Air Quality Health Index Health Messages</h4>
                     <div>
 
 

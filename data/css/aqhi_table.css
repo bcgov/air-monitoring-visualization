@@ -277,6 +277,7 @@ th {
     .aqhiRow {
         width: 100%;
         min-height: auto;
+        margin-top: 20px;
     }
 
     .aqhiLabel {
@@ -286,18 +287,19 @@ th {
 
     .aqhiReadingLabel {
         font-size: x-small;
-        width: 44px;
+        width: 45px;
         border: medium none;
     }
 
     .aqhiRowDate {
-        float: none;
-        width: 32%;
+        float: left;
+        width: 40%;
+        font-size: x-small;
     }
 
     .headerStnName {
-        width: 32%;
-        font-size: larger;
+        width: 40%;
+        font-size: medium;
     }
 
     .headerStnNameLabel {

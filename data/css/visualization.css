@@ -390,6 +390,16 @@ pre {
         margin-bottom: 0;
         margin-right: 0;
     }
+    
+     }
+    .btn {
+    width: 360px;
+    
+    }
+    .aqhi_btn {
+    width: 100%;
+    }
+    
 }
 
 @media (max-width: 700px) {
@@ -400,6 +410,13 @@ pre {
 @media (max-width: 550px) {
     .cell-chart-content {
         text-align: left;
+    }
+    .btn {
+    width: 100%;
+    
+    }
+    .aqhi_btn {
+    width: inherit;
     }
 }
 
