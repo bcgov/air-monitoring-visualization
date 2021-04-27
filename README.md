@@ -1,3 +1,4 @@
+[![img](https://img.shields.io/badge/Lifecycle-Stable-97ca00)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
 # Air Monitoring Station Data Visualization Chart
 This repository contains the code for the Air Monitoring Station Data Visulization System for BC Air Quality.
 * [Air Monitoring Station Interactive Map] (http://www.env.gov.bc.ca/epd/bcairquality/readings/find-stations-map.html)
