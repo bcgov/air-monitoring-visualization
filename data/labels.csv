@@ -17,6 +17,8 @@ SO2_24,SO2 (24hr),ppb,
 TRS,TRS,ppb,1
 TRS_24,TRS (24hr),ppb,1
 CO,CO,ppm,
+H2S_24,HS2 (24hr),ppb,
+H2S,H2S,ppb,
 WDIR_VECT,Wind Direction,Degrees (°),0
 WSPD_VECT,Wind Speed,m/s,
 TEMP_MEAN,Temperature,Degrees (°)C,

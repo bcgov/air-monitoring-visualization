@@ -17,7 +17,7 @@ var bounds = new Extent({
 		  extent: bounds,
 		  minScale: 20000000
      });
-	var layer = new esri.layers.ArcGISTiledMapServiceLayer("http://maps.gov.bc.ca/arcgis/rest/services/province/roads_wm/MapServer");
+	var layer = new esri.layers.ArcGISTiledMapServiceLayer("https://maps.gov.bc.ca/arcgis/rest/services/province/roads_wm/MapServer");
 	map.addLayer(layer);
 	//map.setMinScale(1500000);
 

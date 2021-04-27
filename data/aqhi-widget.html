@@ -5,15 +5,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="dc.title" content="Air Monitoring Station Readings - Province of British Columbia" />
-    <meta name="dc.description" content="Providing the latest ambient and meteorlogical readings." />
-    <meta name="dc.keywords" content="air quality, ambient readings, meterological readings, AQHI, air quality health index" />
+    <meta name="dc.title" content="Air Quality Health Index - Province of British Columbia" />
+    <meta name="dc.description" content="Providing the latest Air Quality Health Index for communities in BC." />
     <meta name="dc.creator" content="Knowledge Management Branch, Ministry of Environment and Climate Change Strategy" />
     <meta name="dc.date.created" content="January 2014" />
     <meta name="dc.date.modified" content="March, 2019" />
-    <meta name="description" content="Providing the latest ambient and meteorlogical data." />
+    <meta name="description" content="Providing the latest Air Quality Health Index for communities in BC." />
     <meta name="author" content="Ministry of Environment and Climate Change Strategy" />
-    <title>AQHI Station Data - BC Air Quality - Province of British Columbia</title>
+    <title>Air Quality Health Index widget - BC Air Quality - Province of British Columbia</title>
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="theme-color" content="#ffffff" />
 
@@ -22,8 +21,6 @@
 
     <!-- Standard CSS -->
     <link type="text/css" href="../../templates-env/css/main.css?refresh=160106102" rel="stylesheet" />
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 
     <!-- Custom ENV CSS -->
     <link rel="stylesheet" href="css/visualization-widget.css" />
@@ -81,9 +78,8 @@
             <div class="pollutant-name"></div>
             <div class="button"></div>
         </div>
-        <div class="alert alert-info" role="alert">
-            <p>Learn more about <a href="#">AQHI Categories and Explanations.</a> and please read our <a href="#data-disclaimer">air quality data disclaimer</a>.</p>
-        </div>
+        <div class="current-date"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Learn more about the <a href="https://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161" target="_blank">Air Quality Health Index and related health messages</a>. This AQHI data widget is provided by the Ministry of Environment and Climate Change, Province of British Columbia.</div>
+        
 
 
 
@@ -96,8 +92,8 @@
     <script src="js/topojson.min.js"></script>
     <script src="js/underscore-min.js"></script>
     <script src="js/jquery-1.12.0.min.js"></script>
-    <script src="js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/jquery-migrate-1.2.1.min.js"></script> --> 
+    <!-- <script src="js/bootstrap.min.js"></script> -->
     <script src="js/widget-aqhi.js"></script>
 
 </body>

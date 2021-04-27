@@ -1,4 +1,4 @@
-// Version Nov. 7th, 2019 - RJT
+// AQHI data widget version Oct. 22, 2020 - Ministry of Environment and Climate Change Strategy, Province of British Columbia
 // This gets the station ID from the url
 var QueryString = function () {
     // This function is anonymous, is executed immediately and 
@@ -186,18 +186,16 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     
 
     makeButtons(list_of_aq_measures, data);
-    makeGraphs(initGas, data)
+    //makeGraphs(initGas, data)
 
     //Title and date range titles
-
-
 
     if (QueryString.includes('AQHI')) {
         d3.select(".current-cond").html(data[0]["AQHI_AREA"]);
     } else {
         d3.select(".current-cond").html(data[0]["STATION"]);
     }
-    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>.');
+    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <a href="http://www.env.gov.bc.ca/epd/bcairquality/data/aqhi.html?id='+ QueryString +'" target=_blank;">View graph</a>.');
 
     document.querySelector.apply(document, ['title']).innerHTML = '' + data[0]["AQHI_AREA"] + ' - Air Quality Health Index - Province of British Columbia';
 
@@ -335,23 +333,4 @@ function makeButtons(keys, data) {
 
 
 // This makes the initial graph
-function makeGraphs(trace, data) {
 
-    param = trace;
-
-    data.forEach(function (d, i) {
-        if (d[trace] == undefined) {
-            d[trace] = null
-        }
-        if (d[trace] == "") {
-            d[trace] = null
-        }
-    })
-
-    var svg = d3.select("svg")
-
-
-    svg.append("rect")
-
-
-}

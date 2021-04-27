@@ -40,7 +40,7 @@ d3.csv('labels.csv', function (err, data) {
     labels = data
 });
 
-d3.csv('http://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/AQHIWeb.csv', function (err, data) {
+d3.csv('https://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/AQHIWeb.csv', function (err, data) {
     //if(err) throw err;
     aqhi_data = data
 });

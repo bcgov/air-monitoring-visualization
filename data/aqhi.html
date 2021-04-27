@@ -112,8 +112,8 @@ var collector = 'spt.apps.gov.bc.ca';
                         <ul class="nav navbar-nav">
                             <li><a href="http://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161">Air Quality Health Index</a></li>
                             <li><a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current air quality data</a></li>
-                            <li><a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air quality advisories</a></li>
-                            <li><a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC air data archive</a></li>
+                            <li><a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air Quality Advisories</a></li>
+                            <li><a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC Air Data Archive</a></li>
                         </ul>
                     </div>
                     <!-- /COLLAPSING NAVBAR -->
@@ -124,8 +124,8 @@ var collector = 'spt.apps.gov.bc.ca';
                     <div class="container">
                         <a href="http://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161">Air Quality Health Index</a>
                         <a href="http://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current air quality data</a>
-                         <a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air quality advisories</a>
-                        <a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC air data archive</a>
+                         <a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air Quality Advisories</a>
+                        <a href="http://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC Air Data Archive</a>
                     </div>
                 </div>
             </div>
@@ -144,7 +144,9 @@ var collector = 'spt.apps.gov.bc.ca';
         <div class="row">
             <div id="main-content" class="contentPageMainColumn col-sm-12">
               
-              <!--  <div class="alert alert-warning" role="alert"><p>Our air monitoring graphs are currently offline and undergoing maintenance. We expect to be back online shortly.</p> </div> -->
+             <!--<div class="alert alert-warning" role="alert"><h3>System maintenance notice</h3>
+    <p><strong>Our Air Quality Monitoring System is currently offline and will be restored shortly.</strong></p></div>-->
+            </div>
                 <div class="info">
                     <div class="date">
                         <h1 class="current-cond"></h1>
@@ -155,7 +157,10 @@ var collector = 'spt.apps.gov.bc.ca';
                         <div class="button"></div>
 
                         <div class="aqhi_banner alert alert-info" role="alert">
-                            <h3>Health message for current conditions:</h3></div>
+                            <h3>Health message for current conditions:</h3>
+                        
+                        </div>
+                        
                     </div>
                     
                 </div>
@@ -184,7 +189,9 @@ var collector = 'spt.apps.gov.bc.ca';
              </div>
                 <div class="row">
                     <div class="col-lg-10">
-                        <div class="table-responsive">
+                        
+
+                        <div class="table-responsive frame" style="width:auto; overflow-x:scroll; white-space: nowrap;padding-bottom:10px;">
                             <table id="chart-area" class="table">
                                 <tbody>
                                     <tr>
@@ -198,7 +205,7 @@ var collector = 'spt.apps.gov.bc.ca';
                                             </div>
 
                                             <p class="selected-date"></p>
-<div><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Tip: Use the grey selection tool above to adjust the date range of the data set or hover over the chart and use your mouse wheel. <img src="images/date-selection.png" alt="selection" /></div>
+
                                         </td>
                                     </tr>
 
@@ -206,6 +213,7 @@ var collector = 'spt.apps.gov.bc.ca';
                             </table>
 
                         </div>
+                        
                         
                     </div>
                     <div class="col-lg-2">
@@ -242,15 +250,23 @@ var collector = 'spt.apps.gov.bc.ca';
                                 </table>
                                 <!--<p><a href="#" data-toggle="modal" data-target="#myModal">See health message related to this AQHI/SO<sup>2</sup> alert.</a></p> -->
                             </div>
-                            <div>If the Air Quality Health Index has increased to 7 (high health risk), it is usually because of high concentrations of smoke particles (PM2.5) in this community. Learn more about <a href="#" data-toggle="modal" data-target="#myModal">AQHI Health messages.</a></div>
+                            <div>If the Air Quality Health Index has increased to 7 (high health risk), it is usually because of high concentrations of smoke particles (PM2.5) in this community. Learn more about <a href="#" data-toggle="modal" data-target="#myModal">AQHI Health messages.</a></div><br/>
+                            <div>Please read our <a href="#data-disclaimer">air quality data disclaimer</a> below.</div>
 
                         </div>
                     
                         </div>
                     </div>
                 </div>
-
+<hr/>
                 <div class="row">
+                    <h3>How to use and read the graphs <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></h3>
+                    <ul>
+                        <li>Use the grey selection tool above to adjust the date range of the data set or hover over the chart and use your mouse wheel.<br/><img src="images/date-selection.png" alt="selection" />
+                        </li>
+                    </ul>
+                    
+                    
                    <div class="alert alert-warning" role="alert">
                         <h3>Disclaimer:</h3><a name="data-disclaimer"></a>
                         <p>Air quality data may be missing for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure.</p>

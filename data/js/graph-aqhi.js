@@ -40,7 +40,7 @@ d3.csv('labels.csv', function (err, data) {
     labels = data
 });
 
-d3.csv('http://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/AQHIWeb.csv', function (err, data) {
+d3.csv('https://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/AQHIWeb.csv', function (err, data) {
     //if(err) throw err;
     aqhi_data = data
 });
@@ -255,7 +255,7 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     } else {
         d3.select(".current-cond").html(data[0]["STATION"]);
     }
-    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. Current and forecasted Air Quality Health Index (AQHI) data is displayed below along with a graph <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> of the last 30-days.<br/>Learn more about <a href="#" data-toggle="modal" data-target="#myModal">AQHI Categories and Explanations.</a> and please read our <a href="#data-disclaimer">air quality data disclaimer</a> below.');
+    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. Current and forecasted Air Quality Health Index (AQHI) data is displayed below along with a graph <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> of the last 30-days.');
     
 document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["AQHI_AREA"] + ' - Air Quality Health Index - Province of British Columbia';
 

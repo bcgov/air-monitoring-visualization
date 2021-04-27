@@ -71,7 +71,7 @@
         $(document).ready(function () {
             $.ajax({
                 type: "GET",
-                url: "http://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/AQHIWeb.csv",
+                url: "../aqo/csv/AQHIWeb.csv",
                 dataType: "text",
                 success: function (data) {
                     processData(data);
@@ -322,12 +322,10 @@ var collector = 'spt.apps.gov.bc.ca';
 
             <h1>Air Quality Health Index - What's the air like today?</h1>
             <div id="pageIntro">
-<!--                  <div class="alert alert-danger" role="alert">
+                <!--  <div class="alert alert-warning" role="alert"><h3>System maintenance notice</h3>
+    <p><strong>Our Air Quality Monitoring System is currently offline and will be restored shortly.</strong></p></div> -->
+            </div>
 
-<h3>NOTICE: System Maintenance</h3>
-    <p>Our Air Quality Monitoring System will be OFFLINE on Saturday, October 19th from 9am to 2pm.</p>
-        </div>
--->
 
 
                 <p>Find the current and forecast Air Quality Health Index (AQHI) values to help you understand what the air quality around you means to your health. </p>

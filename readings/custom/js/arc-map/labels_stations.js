@@ -128,6 +128,14 @@ var horse= new GraphicsLayer();
 		horse.setMinScale(scale2);		
 		horse.add(grahorse);
 		map.addLayer(horse);
+var hudsons= new GraphicsLayer();
+		var pthudsons=  new Point([-121.91118, 56.02686]);		
+		var hudsonshope =  new TextSymbol("Hudsons Hope Dudley Drive").setColor(
+		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_START).setOffset(4,4).setAngle(0);
+        var grahudsons = new Graphic(pthudsons,hudsonshope);
+		hudsons.setMinScale(scale2);		
+		hudsons.add(grahudsons);
+		map.addLayer(hudsons);    
 var lang= new GraphicsLayer();
 		var ptlang=  new Point([-122.5669, 49.0956]);		
 		var langley =  new TextSymbol("Langley Central").setColor(
@@ -248,14 +256,6 @@ var vict= new GraphicsLayer();
 		vict.setMinScale(scale2);		
 		vict.add(gravict);
 		map.addLayer(vict);
-var reef= new GraphicsLayer();
-		var ptreef=  new Point([-123.384311, 48.421589]);		
-		var thereef =  new TextSymbol("Victoria James Bay").setColor(
-		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_START).setOffset(14,-12).setAngle(0);
-        var grareef = new Graphic(ptreef,thereef);
-		reef.setMinScale(scale2);		
-		reef.add(grareef);
-		map.addLayer(reef);	
 var col= new GraphicsLayer();
 		var ptcol=  new Point([-123.49278, 48.42389]);		
 		var colwood =  new TextSymbol("Colwood City Hall").setColor(
@@ -319,15 +319,7 @@ var alb= new GraphicsLayer();
         var graalb = new Graphic(ptalb,alberni);
 		alb.setMinScale(scale2);		
 		alb.add(graalb);
-		map.addLayer(alb);
-var albp= new GraphicsLayer();
-		var ptalba=  new Point([-124.813, 49.2278]);		
-		var albernip =  new TextSymbol("Port Alberni Port Authority").setColor(
-		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_END).setOffset(-10,-6).setAngle(0);
-        var graalbp = new Graphic(ptalba,albernip);
-		albp.setMinScale(scale2);		
-		albp.add(graalbp);
-		map.addLayer(albp);    
+		map.addLayer(alb);   
 var courte= new GraphicsLayer();
 		var ptcourte=  new Point([-124.996222, 49.682603]);		
 		var courtenayel =  new TextSymbol("Courtenay Elementary School").setColor(
@@ -337,7 +329,7 @@ var courte= new GraphicsLayer();
 		courte.add(gracourte);
 		map.addLayer(courte);
 var elk= new GraphicsLayer();
-		var ptelk=  new Point([-125.2844, 50.018425]);		
+		var ptelk=  new Point([-125.2484, 50.018425]);		
 		var elkfalls =  new TextSymbol("Elk Falls Dogwood").setColor(
 		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_END).setOffset(-9,-8).setAngle(0);
         var graelk = new Graphic(ptelk,elkfalls);
@@ -457,14 +449,6 @@ var scot= new GraphicsLayer();
 		scot.setMinScale(scale2);		
 		scot.add(grascot);
 		map.addLayer(scot);
-var kelc= new GraphicsLayer();
-		var ptkelc=  new Point([-119.477367, 49.862336]);		
-		var kelownac =  new TextSymbol("Kelowna Raymer Ave WWTP").setColor(
-		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_END).setOffset(-16,-10).setAngle(0);
-        var grakelc = new Graphic(ptkelc,kelownac);
-		kelc.setMinScale(scale2);		
-		kelc.add(grakelc);
-		map.addLayer(kelc);
 var verns= new GraphicsLayer();
 		var ptverns=  new Point([-119.270723, 50.260617]);		
 		var vernonscience =  new TextSymbol("Vernon Science Centre").setColor(
@@ -508,7 +492,7 @@ var willc= new GraphicsLayer();
 
 var qms= new GraphicsLayer();
 	var ptqms=  new Point([-122.49364, 52.97951]);		
-	var quesnelms =  new TextSymbol("Quesnel Kinchant St").setColor(
+	var quesnelms =  new TextSymbol("Quesnel Kinchant St MAML").setColor(
 	new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_END).setOffset(-16,-10).setAngle(0);
     var graqms = new Graphic(ptqms,quesnelms);
 	qms.setMinScale(scale2);		
@@ -715,14 +699,14 @@ var vandc= new GraphicsLayer();
 		vandc.setMinScale(scale2);		
 		vandc.add(gravandc);
 		map.addLayer(vandc);
-var vandb= new GraphicsLayer();
-		var ptvandb=  new Point([-124.0061, 54.0163]);		
-		var vanbam =  new TextSymbol("Vanderhoof").setColor(
-		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_END).setOffset(-4,-10).setAngle(0);
-        var gravandb = new Graphic(ptvandb,vanbam);
-		vandb.setMinScale(scale2);		
-		vandb.add(gravandb);
-		map.addLayer(vandb);
+//var vandb= new GraphicsLayer();
+//		var ptvandb=  new Point([-124.0061, 54.0163]);		
+//		var vanbam =  new TextSymbol("Vanderhoof").setColor(
+//		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_END).setOffset(-4,-10).setAngle(0);
+//        var gravandb = new Graphic(ptvandb,vanbam);
+//		vandb.setMinScale(scale2);		
+//		vandb.add(gravandb);
+//		map.addLayer(vandb);
 var flem= new GraphicsLayer();
 		var ptflem=  new Point([-125.095833, 54.034444]);		
 		var fraserlake =  new TextSymbol("Fraser Lake Endako Mines").setColor(
@@ -851,14 +835,14 @@ var prfv= new GraphicsLayer();
 		prfv.setMinScale(scale2);		
 		prfv.add(graprfv);
 		map.addLayer(prfv);    
-var kwoen= new GraphicsLayer();
-		var ptkwoen=  new Point([-121.7047, 55.3778]);		
-		var kwoengp =  new TextSymbol("Kwoen Gas Plant").setColor(
-		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_START).setOffset(4,4).setAngle(0);
-        var grakwoen = new Graphic(ptkwoen,kwoengp);
-		kwoen.setMinScale(scale2);		
-		kwoen.add(grakwoen);
-		map.addLayer(kwoen);
+//var kwoen= new GraphicsLayer();
+//		var ptkwoen=  new Point([-121.7047, 55.3778]);		
+//		var kwoengp =  new TextSymbol("Kwoen Gas Plant").setColor(
+//		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_START).setOffset(4,4).setAngle(0);
+//        var grakwoen = new Graphic(ptkwoen,kwoengp);
+//		kwoen.setMinScale(scale2);		
+//		kwoen.add(grakwoen);
+//		map.addLayer(kwoen);
 var prgp= new GraphicsLayer();
 		var ptprgp=  new Point([-121.928814, 55.570022]);		
 		var pinerivergp =  new TextSymbol("Pine River Gas Plant").setColor(
@@ -971,7 +955,26 @@ var vancd= new GraphicsLayer();
         var gravancd = new Graphic(ptvancd,vanclarkdr);
 		vancd.setMinScale(scale2);		
 		vancd.add(gravancd);
-		map.addLayer(vancd);	    
+		map.addLayer(vancd);
+    
+var sfway= new GraphicsLayer();
+		var ptsfway=  new Point([-115.755613, 49.905404]);		
+		var sfarway =  new TextSymbol("Skookumchuck Farstad Way").setColor(
+		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_START).setOffset(4,4).setAngle(0);
+        var grasfway = new Graphic(ptsfway,sfarway);
+		sfway.setMinScale(scale2);		
+		sfway.add(grasfway);
+		map.addLayer(sfway);
+    
+var pentplace= new GraphicsLayer();
+		var ptpentplace=  new Point([-119.59578, 49.47753]);		
+		var penindplace =  new TextSymbol("Penticton Industrial Place").setColor(
+		new Color([0,0,0])).setFont(labelfont).setAlign(TextSymbol.ALIGN_START).setOffset(4,4).setAngle(0);
+        var grapentplace = new Graphic(ptpentplace,penindplace);
+		pentplace.setMinScale(scale2);		
+		pentplace.add(grapentplace);
+		map.addLayer(pentplace);    
+    
     
 //var nels= new GraphicsLayer();
 //		var ptnels=  new Point([-117.290909, 49.489039]);		

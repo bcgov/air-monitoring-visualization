@@ -393,11 +393,11 @@ pre {
     
      }
     .btn {
-    width: 360px;
+    width: auto;
     
     }
     .aqhi_btn {
-    width: 100%;
+    width: 360px;
     }
     
 }
@@ -412,11 +412,14 @@ pre {
         text-align: left;
     }
     .btn {
-    width: 100%;
+    width: auto;
     
     }
     .aqhi_btn {
     width: inherit;
+    }
+    .btn-default-aqhi {
+    width: 100% !important;
     }
 }
 

@@ -520,9 +520,8 @@ p.withBorder {
     .headerStnName {
         width: 30%;
     }
-    .headerStnNameLabel {
-        width: 30%;
-    }
+    .headerStnNameLabel {}
+    
      .tableLg {
         display: none;
         height: 0;
@@ -576,7 +575,7 @@ p.withBorder {
         width: 32%;
     }
     .headerStnNameLabel {
-        width: 32%;
+        width: 44%;
     }
     .aqhiReading {
         width: 45px;
