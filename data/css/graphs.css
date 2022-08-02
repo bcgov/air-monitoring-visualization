@@ -8,7 +8,11 @@ margin-top: 15px;
 /* font-size: 1.25em; */
 }
 
-    #chart {
+.alert-information {
+  padding: 13px;
+}
+
+#chart {
     
 }
 
@@ -43,4 +47,3 @@ background-color: white;
 }
 }
     
-
