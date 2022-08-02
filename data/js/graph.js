@@ -1,12 +1,14 @@
 // Version Jan 18th
 // This gets the station ID from the url
+var tabId;
 var QueryString = function () {
     // This function is anonymous, is executed immediately and 
     // the return value is assigned to QueryString!
     var query_string = {};
     var query = window.location.search.substring(1);
-
-    var vars = query.split("&");
+    var removePlus = query.split("+");
+    tabId = removePlus[1]
+    var vars = removePlus[0].split("&");
 
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split("=");
@@ -250,8 +252,14 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     }
     d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. Current data is displayed below and you can select each one to view a 30-day graph <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> of the analyser.');
 
-document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["STATION"] + ' - Air monitoring station - Province of British Columbia';
+    document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["STATION"] + ' - Air monitoring station - Province of British Columbia';
     
+    if (orderPoll.includes(tabId) || orderMet.includes(tabId)) {
+        tabElement = document.getElementById(tabId);
+        if (tabElement != undefined) {
+            tabElement.click();
+        } 
+    }
 });
 
 

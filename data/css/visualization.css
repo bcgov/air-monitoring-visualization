@@ -60,7 +60,7 @@ body {
     color: black !important;
     background: transparent !important;
     border: black 1px transparent !important;
-    padding: 1% !important;
+    padding: 15px !important;
     margin: 1px !important;
     border-color: none;
 }
@@ -93,9 +93,11 @@ body {
     color: red !important;
 }
 
-#FORECAST_TODAY,
-#FORECAST_TONIGHT,
-#FORECAST_TOMORROW {
+#Today,
+#Tonight,
+#Tomorrow,
+#Tomorrow-Night,
+#Next-Day {
     pointer-events: none;
 }
 
@@ -221,7 +223,7 @@ pre {
     padding-left: 18px;
     margin: 2em 0 2em -20px;
     width: 960px;
-    */ overflow-x: auto;
+    overflow-x: auto;
 }
 
 .grid line {
@@ -251,7 +253,6 @@ pre {
 
 .aqhi_btn {
     /* padding: 5px 10px 5px 10px; */
-    width: 280px;
     background-color: #660000;
     color: #ffffff;
     font-weight: bold;
@@ -363,16 +364,41 @@ pre {
     padding-top: 15px;
 }
 
-.tableLg {
-    display: none;
-    height: 0px;
+.msgBanner {
+    padding-bottom: 5px;
+
 }
 
+.aqhi_banner {
+margin-left: 20px;
 
+}
+
+.tableLg {
+    /** display: none; **/
+    /** height: 0px; **/
+    width: 80%;
+}
+
+.tableMd {
+    display: block;
+}
+
+.tableLg td {
+text-align: center;
+}
 
 .table-responsive {
     overflow-x: scroll;
 }
+
+.handle {border-style: solid;border-width: 2px}
+
+.handle--w {
+ 
+}
+
+.handle--e {}
 
 @media (max-width: 767px) {
     #env-logo {
@@ -397,14 +423,12 @@ pre {
     
     }
     .aqhi_btn {
-    width: 360px;
+    width: 260px;
     }
     
-}
-
-@media (max-width: 700px) {
-    /*  .tableLg { display: inline; height: 0px; } */
-    /*  .tableMd { display: none; height: auto; } */
+@media (max-width: 1200px) {
+    .tableLg { display: none; height: 0px; } 
+    .tableMd { display: inline; height: auto; } 
 }
 
 @media (max-width: 550px) {
@@ -421,7 +445,4 @@ pre {
     .btn-default-aqhi {
     width: 100% !important;
     }
-}
-
-
 }

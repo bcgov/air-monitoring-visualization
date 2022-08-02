@@ -28,8 +28,12 @@ WSPD_SCLR,Wind Speed,m/s,
 WDIR_UVEC,Wind Direction,Degrees (°),0
 BAR_PRESS_HOUR,Barometric pressure,kPa,0
 BAR_PRESS,Barometric pressure,kPa,0
-AQHI,Current AQHI,,0
-FORECAST_TONIGHT,Forecast Tonight,,
-FORECAST_TODAY,Forecast Today,,
-FORECAST_TOMORROW,Forecast Tomorrow,,
-HF,HF,ppb,,
+AQHI,Observed AQHI,,0
+Today,Forecast Today,,
+Tonight,Forecast Tonight,,
+Tomorrow,Forecast Tomorrow,,
+Tomorrow Night,Forecast Tomorrow Night,,
+Next Day,Forecast Next Day,,
+HF,HF,ppb,
+PRESSURE,Pressure,kPa,
+SNOW,Snow Depth,cm,
