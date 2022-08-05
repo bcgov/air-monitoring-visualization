@@ -10,7 +10,7 @@
     <meta name="dc.keywords" content="air quality, ambient readings, meterological readings, AQHI, air quality health index" />
     <meta name="dc.creator" content="Knowledge Management Branch, Ministry of Environment and Climate Change Strategy" />
     <meta name="dc.date.created" content="January 2014" />
-    <meta name="dc.date.modified" content="January, 2022" />
+    <meta name="dc.date.modified" content="August, 2022" />
     <meta name="description" content="Providing the latest ambient and meteorlogical data." />
     <meta name="author" content="Ministry of Environment and Climate Change Strategy" />
     <title>Air Quality Health Index Station Data - BC Air Quality - Province of British Columbia</title>
@@ -166,10 +166,10 @@ var collector = 'spt.apps.gov.bc.ca';
                     </div>
                     <!-- Dynamic Content Section 2 -->
                     <div id="message2" class="dynamic-content">
-                        <!-- <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger" role="alert">
                         <h3>Monitoring status</h3>
-                            <p></p>
-                    </div> -->
+                            <p>AQHI values for South Okanagan will be unavailable until a new permanent air quality monitoring station is established in the South Okanagan. However PM<sub>2.5</sub> measurements from a temporary monitoring site in <a href="https://www.env.gov.bc.ca/epd/bcairquality/data/station.html?id=E317390">Penticton are available</a>. <strong>This page only displays the maximum forecasted AQHI values.</strong></p>
+                    </div>
                         </div>                    
 
              </div>
@@ -182,13 +182,14 @@ var collector = 'spt.apps.gov.bc.ca';
                             <div class="col-sm-2" style="min-width:300px">
                                 <div class="button mainbutton"></div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-8">
                                 <div class="aqhi_banner" role="alert">
                                     <h2>Health message for observed AQHI conditions:</h2>
                                 </div>
-                                <div>Learn more about <a href="#" data-toggle="modal" data-target="#myModal">AQHI Health messages.</a> Please read our <a href="#data-disclaimer">air quality data disclaimer</a> below.</div>
+                                <div class="aqhi_banner">Learn more about <a href="#" data-toggle="modal" data-target="#myModal">AQHI Health messages.</a> Please read our <a href="#data-disclaimer">air quality data disclaimer</a> below.</div>
                             </div>
                         </div>
+                        <h3>Maximum AQHI forecast</h3>
                         <div class="row">
                             <div class="col-sm-1"></div>
                             <div class="col-sm-11">
@@ -197,10 +198,12 @@ var collector = 'spt.apps.gov.bc.ca';
                         </div>
 
                         <div class="row">
+                        <div class="col-sm-1"></div>
                         <div class="col-sm-10">
                              <!-- <div class="alert alert-information" role="alert" aria-live="polite" style="margin-top: 15px;"> -->
      
                                 <h3>Health risk</h3>
+                            
                                 <div class="table-responsive tableMd">
                                     <table class="table aqhiScale table-bordered table-striped">
                                         <tr>
@@ -214,22 +217,23 @@ var collector = 'spt.apps.gov.bc.ca';
                                             <td class="aqhi8 text-center">8</td>
                                             <td class="aqhi9 text-center">9</td>
                                             <td class="aqhi10 text-center">10</td>
-                                            <td class="aqhi11 text-center" colspan="1">10+</td>
-                                            <td class="aqhiNA" colspan="1" style="color:black; text-align: center" background="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg=="></td>
+                                            <td class="aqhi11 text-center">10+</td>
+                                            <td class="aqhiNA text-center" style="color:black; text-align: center" background="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg=="></td>
                                             
                                         </tr>
                                         <tr>
                                             <td class="aqhiRisk text-center" colspan="3"><a href="#" data-toggle="modal" data-target="#myModal">Low (1-3)</a></td>
                                             <td class="aqhiRisk text-center" colspan="3"><a href="#" data-toggle="modal" data-target="#myModal">Moderate (4-6)</a></td>
                                             <td class="aqhiRisk text-center" colspan="4"><a href="#" data-toggle="modal" data-target="#myModal">High&nbsp;(7-10)</a></td>
-                                            <td class="aqhiRisk text-center" colspan="1"><a href="#" data-toggle="modal" data-target="#myModal">Very High</a></td>
-                                            <td class="aqhiRisk text-center" colspan="1" style="width: 180px">No Data Available</td>
+                                            <td class="aqhiRisk text-center"><a href="#" data-toggle="modal" data-target="#myModal">Very High</a></td>
+                                            <td class="aqhiRisk text-center" style="width: auto">No data available</td>
                                         </tr>
                                     </table>
                                  </div>
                                  
      
                              </div>
+                        <div class="col-sm-1"></div>    
                             </div>
                          
                              </div>
@@ -242,7 +246,7 @@ var collector = 'spt.apps.gov.bc.ca';
 
 
                 <div class="row">
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         
 
                         <div class="table-responsive frame" style="width:auto; overflow-x:scroll; white-space: nowrap;padding-bottom:10px;">
@@ -298,7 +302,7 @@ var collector = 'spt.apps.gov.bc.ca';
             </div>
 
         <!-- PAGE CONTENT -->
-    </div>
+    
     <!-- /BODY CONTENT -->
     <!-- FOOTER -->
     <div id="footer" role="contentinfo">

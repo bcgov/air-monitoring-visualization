@@ -51,7 +51,7 @@ d3.csv('https://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/AQHIWeb.csv', functio
 
 
 // use csv-parser to load data using station ID
-d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/outgoing/AIR/Hourly_Raw_Air_Data/Station/' + QueryString + '.csv&format=json', function (err, data) {
+d3.json('https://csv-parser.api.gov.bc.ca/?source=https://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/Hourly_Raw_Air_Data/Station/' + QueryString + '.csv&format=json', function (err, data) {
 
     //console.log(QueryString.includes('AQHI'))
 
@@ -165,7 +165,7 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     var direction = ["N", "E", "S", "W"]
 
     // Don't show these as buttons
-    var exclude = ['DATE_PST', 'LATITUDE', 'LONGITUDE', 'STATION', 'DATE_LOCAL', 'DATE', 'EMS_ID', 'AQHI_AREA', 'STATION_NAME', 'NOx', 'NOX_24', 'NO', 'NO_24', 'SO_24', 'VAPOUR_PRESSURE']
+    var exclude = ['DATE_PST', 'LATITUDE', 'LONGITUDE', 'STATION', 'DATE_LOCAL', 'DATE', 'EMS_ID', 'AQHI_AREA', 'STATION_NAME', 'NOx', 'NOX_24', 'NO', 'NO_24', 'SO_24','NO2_24', 'SO2_24', 'VAPOUR_PRESSURE']
 
 
 
@@ -176,8 +176,8 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/ou
     thres = {
         'PM25_24': 25,
         "PM10_24": 50,
-        'O3_8hr': 63,
-        'NO2': 100,
+        'O3_8hr': 62,
+        'NO2': 60,
         'SO2': 70,
         'TRS': 5
     }

@@ -11,7 +11,9 @@ margin-top: 15px;
 .alert-information {
   padding: 13px;
 }
-
+.text-center {
+width: 35px;
+}
 #chart {
     
 }
