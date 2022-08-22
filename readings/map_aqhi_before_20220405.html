@@ -138,7 +138,7 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
     </style>
       <!-- <script src="https://js.arcgis.com/3.19/"></script> -->
     <!-- <script type="text/javascript" src="custom/js/arc-map/esri-init.js"></script> version 3.19 -->
-    <script type="text/javascript" src="custom/js/arc-map/esri-init.js"></script>
+    <script type="text/javascript" src="https://js.arcgis.com/3.36/init.js"></script>
     <script type="text/javascript" src="custom/js/arc-map/init.js"></script>
     <script type="text/javascript" src="custom/js/arc-map/labels_aqhi.js"></script>
 
@@ -305,11 +305,11 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 
                
             
-                var csv = new CSVLayer("../aqo/csv/AQHIWebMap.csv");
-
+                var csv = new CSVLayer("../aqo/csv/AQHIWeb.csv");
+				<!--var csv = new CSVLayer({url:"https://envistaweb.env.gov.bc.ca/aqo/csv/AQHIWeb.csv",copyright: "BC"});-->
                 var template = new PopupTemplate({
                     title: "<div style='font-size:1.2em;font-weight:bold;'>{AQHI_AREA}</div><div style='font-size:.8em;margin-bottom:5px;font-weight:normal;'>As of {DATE}</div>",
-                    description: "<div style='width:80%'><strong>Observed AQHI</strong><ul><li><strong>Last hour: <span class='aqhi{VALUE:NumberFormat(places:0)}' style='float:right;padding: 5px;'>{VALUE_CHAR}</span></strong></li></ul><p>{AQHIPLUS_Text}</p><strong>Maximum AQHI Forecast</strong><ul><li><p>{FIRST_FORECAST_LABEL}: <span class='aqhi{FIRST_FORECAST:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FIRST_FORECAST_CHAR}</span></p></li><li><p>{SECOND_FORECAST_LABEL}: <span class='aqhi{SECOND_FORECAST:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{SECOND_FORECAST_CHAR}</span></p></li><li><p>{THIRD_FORECAST_LABEL}: <span class='aqhi{THIRD_FORECAST:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{THIRD_FORECAST_CHAR}</span></p></li><li><p>{FOURTH_FORECAST_LABEL}: <span class='aqhi{FOURTH_FORECAST:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FOURTH_FORECAST_CHAR}</span></p></li></ul><p><a href='{URL}'>View Health Messages and Graph</a></p></div>"
+                    description: "<div style='width:80%'><strong>Observed AQHI</strong><ul><li><strong>Last hour: <span class='aqhi{VALUE:NumberFormat(places:0)}' style='float:right;padding: 5px;'>{VALUE_CHAR}</span></strong></li></ul><p>{AQHIPLUS_Text}</p><strong>Maximum AQHI Forecast</strong><ul><li><p>Today: <span class='aqhi{FORECAST_TODAY:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FORECAST_TODAY_CHAR}</span></p></li><li><p>Tonight: <span class='aqhi{FORECAST_TONIGHT:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FORECAST_TONIGHT_CHAR}</span></p></li><li><p>Tomorrow: <span class='aqhi{FORECAST_TOMORROW:NumberFormat(places:0)}' style='padding: 5px;float:right;'>{FORECAST_TOMORROW_CHAR}</span></p></li></ul><p><a href='{URL}'>View Health Messages and Graph</a></p></div>"
 
                 });
 

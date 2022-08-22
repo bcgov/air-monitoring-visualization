@@ -212,7 +212,7 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 	var renderer = new ClassBreaksRenderer(symbol, "NO2");
 		
 	renderer.addBreak({
-          minValue: 100,
+          minValue: 60,
           maxValue: Infinity,
           label: "",
           symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#990000")).setSize(13)
@@ -220,35 +220,35 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
           
     renderer.addBreak({
           minValue: 50,
-          maxValue: 100,
+          maxValue: 60,
           label: "",
           symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ff0000")).setSize(13)
     });
 	
     renderer.addBreak({
-          minValue: 25,
+          minValue: 40,
           maxValue: 50,
           label: "",
           symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ff9933")).setSize(13)
     });	
           
     renderer.addBreak({
-          minValue: 20,
-          maxValue: 25,
+          minValue: 30,
+          maxValue: 40,
           label: "",
           symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ffff00")).setSize(13)
     });	
           
     renderer.addBreak({
-          minValue: 15,
-          maxValue: 20,
+          minValue: 20,
+          maxValue: 30,
           label: "",
           symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#A18A14")).setSize(13)
     });	      
           
 	renderer.addBreak({
           minValue: 10,
-          maxValue: 15,
+          maxValue: 20,
           label: "",
           symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#0099cc")).setSize(13)
     });	
@@ -316,17 +316,17 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 		formatString += "<div class='moreInfo'><strong>NO<sub>2</sub> Data:</strong><ul>";
 		}
   
-  if (no2Test && no2Test >= 100){
-     formatString += "<li>NO<sub>2</sub> (1h): <strong>" + "<font color=#ff0000> "+graphic.attributes.NO2+"</strong> "+graphic.attributes.NO2_UNIT+"</font><br/><font color=#8c8c8c>Objective: 100 ppb</font></li>";
+  if (no2Test && no2Test >= 60){
+     formatString += "<li>NO<sub>2</sub> (1h): <strong>" + "<font color=#ff0000> "+graphic.attributes.NO2+"</strong> "+graphic.attributes.NO2_UNIT+"</font><br/><font color=#8c8c8c>Objective: 60 ppb</font></li>";
    }
    
-   if (no2Test && no2Test < 100){
-     formatString += "<li>NO<sub>2</sub> (1h): <strong>" + graphic.attributes.NO2+"</strong> "+graphic.attributes.NO2_UNIT+"<br/><font color=#8c8c8c>Objective: 100 ppb</font></li>";
+   if (no2Test && no2Test < 60){
+     formatString += "<li>NO<sub>2</sub> (1h): <strong>" + graphic.attributes.NO2+"</strong> "+graphic.attributes.NO2_UNIT+"<br/><font color=#8c8c8c>Objective: 60 ppb</font></li>";
    }
   
-   if (no2Test24 && no2Test24 !== ''){
-     formatString += "<li>NO<sub>2</sub> (24h): <strong>" + graphic.attributes.NO2_24+"</strong> ppb</li>";
-   }
+   //if (no2Test24 && no2Test24 !== ''){
+    // formatString += "<li>NO<sub>2</sub> (24h): <strong>" + graphic.attributes.NO2_24+"</strong> ppb</li>";
+   //}
         
         
       if (no2Test && no2Test || no2Test24 && no2Test24 !== '' ) {
@@ -374,7 +374,7 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 		}
         
         if (no2Test && no2Test || no2Test24 && no2Test24 !== '' ) {
-		formatString += "<small><sup>*</sup>Air Quality Objective for NO<sub>2</sub> is <strong>100 ppb</strong> when averaged over a <strong>1 hour period</strong>.</small>";
+		formatString += "<small><sup>*</sup>Air Quality Objective for NO<sub>2</sub> is <strong>60 ppb</strong> when averaged over a <strong>1 hour period</strong>.</small>";
 		}    
     
 		//Disclaimer in the map pop-up side panel

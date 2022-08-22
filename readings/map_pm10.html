@@ -10,7 +10,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="HandheldFriendly" content="true" />
     <title>PM10 Data - Province of British Columbia</title>
-    <link rel="stylesheet" href="custom/css/esri.css">
+    <link rel="stylesheet" href="custom/css/esri.css" />
 	<link rel="stylesheet" href="custom/css/claro.css" />
 	<!-- <link rel="stylesheet" href="../../templates-env/css/env-main.css" /> -->
 	
@@ -123,7 +123,7 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 }
         
     .moreInfo ul > li {
-    background: transparent url("http://www.env.gov.bc.ca/epd/templates-env/images/bullet.png") no-repeat scroll 0 8px;
+    background: transparent url("https://www.env.gov.bc.ca/epd/templates-env/images/bullet.png") no-repeat scroll 0 8px;
     margin-bottom: 3px;
     padding-left: 15px;
 }    
@@ -332,7 +332,7 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 		}
         
          if (linktest && linktest !== '' ) {
-		formatString += "<div style='font-size:.8em;margin-bottom:5px;'><a href=http://www.env.gov.bc.ca/epd/bcairquality/data/station.html?id="+graphic.attributes.EMS_ID+">Graphs</a> | "+"<a target='_blank' href="+graphic.attributes.URL+">Download Data</a></div><hr/>";
+		formatString += "<div style='font-size:.8em;margin-bottom:5px;'><a href=https://www.env.gov.bc.ca/epd/bcairquality/data/station.html?id="+graphic.attributes.EMS_ID+">Graphs</a> | "+"<a target='_blank' href="+graphic.attributes.URL+">Download Data</a></div><hr/>";
 		}
 	  
 		if (pm10Test && pm10Test || pm10Test24 && pm10Test24 !== '' ) { formatString += "<div class='moreInfo'><strong>PM<sub>10 Data:</strong><ul>";

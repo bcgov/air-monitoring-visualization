@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Northeast Monitoring Station Map - Province of British Columbia</title>
+    <link rel="stylesheet" href="custom/css/esri.css" />
+	<link rel="stylesheet" href="custom/css/claro.css" />
+    <style>
+			
+	
+     html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+	  
+	     .esriPopup .titleButton.maximize {  
+        display: none;  
+    }  
+	
+	
+	.esriPopup .titleButton.next {
+		right: 22px;
+		background-position: -16px 0;
+		width: 9px;
+		height: 17px;
+  
+	}	
+	  
+	 #HomeButton {
+      position: absolute;
+      top: 95px;
+      left: 20px;
+      z-index: 30;
+    }
+	
+	#search {
+         display: block;
+         position: absolute;
+         z-index: 2;
+         top: 20px;
+         left: 74px;
+	}
+
+     body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+
+
+    </style>
+    
+	<script type="text/javascript" src="custom/js/arc-map/esri-init.js"></script>
+      <script type="text/javascript" src="custom/js/arc-map/init_NE.js"></script>
+	<script type="text/javascript" src="custom/js/arc-map/labels_aqhi.js"></script>
+	<script type="text/javascript" src="custom/js/arc-map/labels_stationsNE.js"></script>
+
+	
+    <script>   	  
+
+      require([
+        "esri/map", 
+		"esri/dijit/HomeButton",
+        "esri/layers/CSVLayer",
+		"esri/layers/GraphicsLayer",
+		"esri/layers/KMLLayer",
+		"esri/layers/FeatureLayer",
+        "esri/Color",
+		"esri/graphic",
+        "esri/symbols/SimpleMarkerSymbol",
+		"esri/symbols/TextSymbol",
+		"esri/symbols/Font",
+        "esri/renderers/ClassBreaksRenderer",
+		"esri/renderers/SimpleRenderer",
+        "esri/renderers/UniqueValueRenderer",
+        "esri/InfoTemplate",
+		"esri/dijit/PopupTemplate",
+		"esri/dijit/Popup",
+		"esri/dijit/Legend",
+        "esri/urlUtils",
+		"esri/geometry/Polygon",
+		"esri/geometry/Point",
+		"esri/symbols/SimpleFillSymbol",
+        "esri/symbols/SimpleLineSymbol",
+        "dojo/domReady!"
+      ], function(
+        Map, HomeButton, CSVLayer, GraphicsLayer, KMLLayer, FeatureLayer, Color, Graphic, SimpleMarkerSymbol, TextSymbol, Font, ClassBreaksRenderer, SimpleRenderer, UniqueValueRenderer, InfoTemplate, PopupTemplate, Popup, Legend,urlUtils, Polygon, Point, SimpleFillSymbol, SimpleLineSymbol
+      ) 
+      
+      {
+	
+	var home = new HomeButton({
+		map: map
+		}, "HomeButton");
+		home.startup();
+
+	var symbol = new SimpleMarkerSymbol({
+		"color": [155,155,155],
+		"size": 11,
+		"xoffset": 0,
+		"yoffset": 0,
+		"type": "esriSMS",
+		"style": "esriSMSCircle",
+		"outline": {
+			"color": [255,255,255],
+			"width": .75,
+			"type": "esriSLS",
+			"style": "esriSLSSolid"
+		}
+	});
+	/*var airzones = new KMLLayer ("https://catalogue.data.gov.bc.ca/dataset/e8eeefc4-2826-47bc-8430-85703d328516/resource/80bff6d5-ea82-4cb5-a9f2-d5e7329b1bcd/download/bcairzones.kml");
+	map.addLayer(airzones);*/
+	var renderer = new ClassBreaksRenderer(symbol, "VALUE");
+	renderer.addBreak({
+          minValue: 0,
+          maxValue: 1.49,
+          label: "1 - Low Health Risk",
+          symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#00ccff"))
+    });
+	renderer.addBreak({
+          minValue: 1.5,
+          maxValue: 2.49,
+          label: "2 - Low Health Risk",
+          symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#0099cc"))
+    });
+		
+	renderer.addBreak({
+          minValue: 2.5,
+          maxValue: 3.49,
+          label: "3 - Low Health Risk",
+          symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#006699"))
+    });		
+	renderer.addBreak({
+          minValue: 3.5,
+          maxValue: 4.49,
+          label: "4 - Moderate Health Risk",
+          symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ffff00"))
+    });
+	renderer.addBreak({
+          minValue: 4.5,
+          maxValue: 5.49,
+          label: "5 - Moderate Health Risk",
+          symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ffcc00"))
+    });	
+	renderer.addBreak({
+          minValue: 5.5,
+          maxValue: 6.49,
+          label: "6 - Moderate Health Risk",
+          symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ff9933"))
+    });	
+	renderer.addBreak({
+          minValue: 6.5,
+          maxValue: 7.49,
+          label: "7 - High Health Risk",
+          symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ff6666"))
+    });	
+	renderer.addBreak({
+          minValue: 7.5,
+          maxValue: 8.49,
+          label: "8 - High Health Risk",
+          symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ff0000"))
+    });	
+	renderer.addBreak({
+          minValue: 8.5,
+          maxValue: 9.49,
+          label: "9 - High Health Risk",
+          symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#cc0000"))
+    });	
+	renderer.addBreak({
+          minValue: 9.5,
+          maxValue: 10.49,
+          label: "10 - High Health Risk",
+          symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#990000"))
+    });	
+	renderer.addBreak({
+          minValue: 10.5,
+          maxValue: Infinity,
+          label: "+ - Very High Health Risk",
+          symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#660000"))
+    });
+	renderer.defaultLabel= "Currently Unavailable";
+		
+
+	var csv = new CSVLayer("../aqo/csv/AQHIWeb.csv");
+	var template = new PopupTemplate({
+		title: "<a href={URL} target=_blank>{AQHI_AREA}</a>",
+		description: "<b>AQHI: {VALUE:NumberFormat(places:0)}</b> <br> As of {DATE_PST} PST",
+		fieldInfos: [{
+		fieldName: "VALUE",
+		label: "AQHI Value"}]
+	});
+		
+    csv.setRenderer(renderer);
+    csv.setInfoTemplate(template);
+    var scale=3000000;
+    //csv.setMaxScale(scale);
+	var refresh=5;
+	csv.setRefreshInterval(refresh);
+    map.addLayer(csv);
+	csv.on("click", function(evt) {  
+	map.infoWindow.resize(200, 150);  
+    }); 
+	map.on("click", function(event) {  
+            map.centerAt(event.mapPoint)
+		});
+   
+    
+	var csvair = new CSVLayer("../aqo/csv/bc_air_monitoring_stations.csv", {
+    });
+	var station = new Color("#000000"); 
+    var markerair = new SimpleMarkerSymbol({
+		"color": [255,255,255],
+		"size": 8,
+		"xoffset": 0,
+		"yoffset": 0,
+		"type": "esriSMS",
+		"style": "esriSMSCircle",
+		"outline": {
+			"color": [0,0,0],
+			"width": .75,
+			"type": "esriSLS",
+			"style": "esriSLSSolid"
+		}
+	});
+    var rendererair = new SimpleRenderer(markerair);
+	csvair.setRenderer(rendererair);
+	var infoTemplate = new InfoTemplate();
+	
+	infoTemplate.setTitle("Station Summary");
+	infoTemplate.setContent(generateInfoContent);
+
+	function generateInfoContent(graphic){
+
+		var formatString = "";  
+
+		var pm25Test = graphic.attributes.PM25;
+
+		var pm10Test = graphic.attributes.PM10;
+
+		var noTest = graphic.attributes.NO;
+	
+		var no2Test = graphic.attributes.NO2;
+	
+		var noxTest = graphic.attributes.NOX;
+	
+		var o3Test = graphic.attributes.O3;
+	
+		var so2Test = graphic.attributes.SO2;
+	
+		var pm25Test24 = graphic.attributes.PM25_24;
+
+		var pm10Test24 = graphic.attributes.PM10_24;
+
+		var noTest24 = graphic.attributes.NO_24;
+	
+		var no2Test24 = graphic.attributes.NO2_24;
+	
+		var noxTest24 = graphic.attributes.NOX_24;
+	
+		var o3Test24 = graphic.attributes.O3_8;
+	
+		var so2Test24 = graphic.attributes.SO2_24;
+	
+		var trsTest = graphic.attributes.TRS;
+	
+		var trsTest24 = graphic.attributes.TRS_24;
+	
+		var h2sTest = graphic.attributes.H2S;
+		
+		var coTest = graphic.attributes.CO;
+	
+		var h2sTest24 = graphic.attributes.H2S_24;
+	
+		var dirTest = graphic.attributes.WDIR_VEC;
+	
+		var spdTest = graphic.attributes.WSPD_VEC;
+	
+		var tempTest = graphic.attributes.TEMP;
+	
+		var humTest = graphic.attributes.HUMIDITY;
+		
+		var barTest = graphic.attributes.BAR_PRESSURE;
+		
+		var precipTest = graphic.attributes.PRECIPITATION;
+		
+		var snowTest = graphic.attributes.SNOWDEPTH;
+	
+		var footertest = graphic.attributes.SERIAL_CODE;
+	
+		var datetest = graphic.attributes.DATE;
+
+
+		formatString = "<b>"+graphic.attributes.STATION_NAME+"</b>";
+	
+		if (datetest && datetest !== '' ) {
+		formatString += "</br>As of: "+graphic.attributes.DATE+" PST";
+		}
+  
+		if (pm25Test && pm25Test || pm10Test && pm10Test || trsTest && trsTest || h2sTest && h2sTest || noTest && noTest || no2Test && no2Test || noxTest && noxTest || o3Test && o3Test || so2Test && so2Test || coTest && coTest !==''){
+		formatString += "</br></br><b><u>Hourly Averages:</u></br></b>";
+		}
+
+		if (pm25Test && pm25Test !==''){
+		formatString += "</br><b>PM 2.5: " + graphic.attributes.PM25+"</b> µg/m<sup>3</sup>";
+		}
+   
+  
+		if (pm10Test && pm10Test !== '' ) {
+		formatString += "</br><b>PM 10:  " + graphic.attributes.PM10+" </b> µg/m<sup>3</sup>";
+		}
+  
+		if (noTest && noTest !== '' ) {
+		formatString += "</br><b> NO:</b>  <b>" + graphic.attributes.NO+"</b> "+graphic.attributes.NO_UNIT;
+		}
+  
+		if (no2Test && no2Test !== '' ) {
+		formatString += "</br><b>NO<sub>2</sub>:</b> <b>" + graphic.attributes.NO2+"</b> "+graphic.attributes.NO2_UNIT+"<font color=#8c8c8c>. Objective: 100 ppb</font> ";
+		}
+  
+		if (noxTest && noxTest !== '' ) {
+		formatString += "</br><b>NO<sub>x</sub>:</b> <b>" + graphic.attributes.NOX+"</b> "+graphic.attributes.NOX_UNIT;
+		}
+  
+		if (o3Test && o3Test !== '' ) {
+		formatString += "</br><b>O<sub>3</sub>:</b> <b>" + graphic.attributes.O3+"</b> "+graphic.attributes.O3_UNIT+"<font color=#8c8c8c>. Objective: 82 ppb</font>";
+		}
+  
+		if (so2Test && so2Test !== '' ) {
+		formatString += "</br><b>SO<sub>2</sub>:</b> <b>" + graphic.attributes.SO2+"</b> "+graphic.attributes.SO2_UNIT+"<font color=#8c8c8c>. Objective: 70 ppb</font> ";
+		}
+  
+  
+		if (trsTest && trsTest !== '' ) {
+		formatString += "</br><b>TRS: " + graphic.attributes.TRS+"</b> "+graphic.attributes.TRS_UNIT;
+		}		
+  
+		if (h2sTest && h2sTest !== '' ) {
+		formatString += "</br><b>H<sub>2</sub>S: " + graphic.attributes.H2S+"</b> "+graphic.attributes.H2S_UNIT;
+		}
+		
+		if (coTest && coTest !== '' ) {
+		formatString += "</br><b>CO: " + graphic.attributes.CO+"</b> "+graphic.attributes.CO_UNIT;
+		}
+  
+		if (pm25Test24 && pm25Test24 || noTest24 && noTest24 || no2Test24 && no2Test24 || noxTest24 && noxTest24 || o3Test24 && o3Test24 || so2Test24 && so2Test24 || trsTest24 && trsTest24|| h2sTest24 && h2sTest24 !==''){
+		formatString += "</br></br><b><u>Rolling Averages (24 or 8 hours)</u></br></b>";
+		}
+   
+		if (pm25Test24 && pm25Test24 !==''){
+		formatString += "</br><b>PM 2.5 </b>(24h): <b>" + graphic.attributes.PM25_24+"</b> µg/m<sup>3</sup>.  <font color=#8c8c8c>Objective: 25 µg/m<sup>3</sup></font> ";
+		}
+   
+  
+		if (pm10Test24 && pm10Test24 !== '' ) {
+		formatString += "</br><b>PM 10 </b>(24h):  <b>" + graphic.attributes.PM10_24+"</b> µg/m<sup>3</sup>.  <font color=#8c8c8c>Objective: 50 µg/m<sup>3</sup></font> ";
+		}
+  
+  
+		if (noTest24 && noTest24 !== '' ) {
+		formatString += "</br><b> NO </b>(24h):  <b>" + graphic.attributes.NO_24+"</b> ppb";
+		}
+  
+		if (no2Test24 && no2Test24 !== '' ) {
+		formatString += "</br><b>NO<sub>2</sub></b> (24h): <b>" + graphic.attributes.NO2_24+"</b> ppb";
+		}
+  
+		if (noxTest24 && noxTest24 !== '' ) {
+		formatString += "</br><b>NO<sub>x</sub></b> (24h): <b>" + graphic.attributes.NOX_24+"</b> ppb";
+		}
+  
+		if (o3Test24 && o3Test24 !== '' ) {
+		formatString += "</br><b>O<sub>3</sub></b> (8h): <b>" + graphic.attributes.O3_8+"</b> ppb"+"<font color=#8c8c8c>. Objective: 62 ppb</font> ";
+		}
+  
+		if (so2Test24 && so2Test24 !== '' ) {
+		formatString += "</br><b>SO<sub>2</sub></b> (24h): <b>" + graphic.attributes.SO2_24+"</b> ppb";
+		}
+  
+		if (trsTest24 && trsTest24 !== '' ) {
+		formatString += "</br><b>TRS </b>(24h): <b>" + graphic.attributes.TRS_24+"</b> ppb";
+		}
+  
+		if (h2sTest24 && h2sTest24 !== '' ) {
+		formatString += "</br><b>H<sub>2</sub>S</b> (24h): <b>" + graphic.attributes.H2S_24+"</b> ppb";
+		}
+  
+
+		if (dirTest && dirTest || spdTest && spdTest || tempTest && tempTest|| precipTest && precipTest|| snowTest && snowTest|| humTest && humTest!==''){
+		formatString += "</br></br><b><u>Meteorological Readings:</u></br></b>";
+		}
+  
+		if (dirTest && dirTest !== '' ) {
+		formatString += "</br><b>Wind Direction</b>: <b>" + graphic.attributes.WDIR_VEC+"</b>°";
+		}
+  
+		if (spdTest && spdTest !== '' ) {
+		formatString += "</br><b>Wind Speed </b>: <b>" + graphic.attributes.WSPD_VEC+"</b> "+graphic.attributes.WSPD_UNIT;
+		}
+  
+		if (tempTest && tempTest !== '' ) {
+		formatString += "</br><b>Temperature</b>: <b>" + graphic.attributes.TEMP+"</b> °C";
+		}
+  
+		if (humTest && humTest !== '' ) {
+		formatString += "</br><b>Humidity</b>: <b>" + graphic.attributes.HUMIDITY+"</b>%";
+		}
+		
+		if (barTest && barTest !== '' ) {
+		formatString += "</br><b>Barometric Pressure</b>: <b>" + graphic.attributes.BAR_PRESSURE+"</b> "+graphic.attributes.PRESSURE_UNIT;
+		}
+		
+		if (precipTest && precipTest !== '' ) {
+		formatString += "</br><b>Precipitation</b>: <b>" + graphic.attributes.PRECIPITATION+"</b> "+graphic.attributes.PRECIPITATION_UNIT;
+		}
+		
+		if (snowTest && snowTest !== '' ) {
+		formatString += "</br><b>Snow Depth</b>: <b>" + graphic.attributes.SNOWDEPTH+"</b> "+graphic.attributes.SNOWDEPTH_UNIT;
+		}
+  
+		if (footertest && footertest !== '' ) {
+		formatString += "<br/><br/><a target='_blank' href=https://www.env.gov.bc.ca/epd/bcairquality/readings/map/station.html#"+graphic.attributes.EMS_ID+">Current Data and Graphs</a>"+"</br><a target='_blank' href=https://envistaweb.env.gov.bc.ca/StationInfo3a.aspx?ST_ID="+graphic.attributes.SERIAL_CODE+">Data Archive</a>"+"<br/><a target='_blank' href=https://www2.gov.bc.ca/gov/content?id=600BAE148BE642AE9CEED16BAD6BAA45>Learn more about BC's air quality objectives</a>"+"<br/>"
+		}
+    
+
+    return formatString;} 
+	
+	csvair.setInfoTemplate(infoTemplate);
+	csvair.setMinScale(scale);
+	csvair.setRefreshInterval(refresh);
+	map.addLayer(csvair);
+	csvair.on("click", function(evt) {  
+		map.infoWindow.resize(325, 600)
+		});	
+	map.infoWindow.set('anchor', 'upper-right');	
+  });
+  
+    </script>
+  </head>
+
+  <body>
+    <div id="map"></div>
+	<div id="HomeButton"></div>
+  </body>
+
+</html>

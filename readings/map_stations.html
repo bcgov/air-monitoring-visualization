@@ -313,11 +313,11 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 		}
   
 		if (no2Test && no2Test >= 100 ) {
-		formatString += "<li>NO<sub>2</sub>: <strong>" + "<font color=#ff0000> "+graphic.attributes.NO2+ "</strong> "+graphic.attributes.NO2_UNIT+"</font>"+"<br /><font color=#8c8c8c>. Objective: 100 ppb</font></li>";
+		formatString += "<li>NO<sub>2</sub>: <strong>" + "<font color=#ff0000> "+graphic.attributes.NO2+ "</strong> "+graphic.attributes.NO2_UNIT+"</font>"+"<br /><font color=#8c8c8c>. Objective: 70 ppb</font></li>";
 		}
 		
 		if (no2Test && no2Test < 100 ) {
-		formatString += "<li>NO<sub>2</sub>: <strong>" + graphic.attributes.NO2 + "</strong> "+graphic.attributes.NO2_UNIT+". <font color=#8c8c8c>Objective: 100 ppb</font></li>";
+		formatString += "<li>NO<sub>2</sub>: <strong>" + graphic.attributes.NO2 + "</strong> "+graphic.attributes.NO2_UNIT+". <font color=#8c8c8c>Objective: 70 ppb</font></li>";
 		}
   
 		if (noxTest && noxTest !== '' ) {
@@ -385,9 +385,9 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 		formatString += "<li>NO (24h): <strong>" + graphic.attributes.NO_24+"</strong> ppb</li>";
 		}
   
-		if (no2Test24 && no2Test24 !== '' ) {
-		formatString += "<li>NO<sub>2</sub> (24h): <strong>" + graphic.attributes.NO2_24+"</strong> ppb</li>";
-		}
+		//if (no2Test24 && no2Test24 !== '' ) {
+		//formatString += "<li>NO<sub>2</sub> (24h): <strong>" + graphic.attributes.NO2_24+"</strong> ppb</li>";
+		//}
   
 		if (noxTest24 && noxTest24 !== '' ) {
 		formatString += "<li>NO<sub>x</sub> (24h): <strong>" + graphic.attributes.NOX_24+"</strong> ppb</li>";
@@ -403,9 +403,9 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 		formatString += "<li>O<sub>3</sub> (8hr): <strong>" + graphic.attributes.O3_8+"</strong> "+graphic.attributes.O3_UNIT+". <font color=#8c8c8c>Objective: 63 ppb</font></li>";
 		}
   
-		if (so2Test24 && so2Test24 !== '' ) {
-		formatString += "<li>SO<sub>2</sub> (24h): <strong>" + graphic.attributes.SO2_24+"</strong> ppb</li>";
-		}
+		//if (so2Test24 && so2Test24 !== '' ) {
+		//formatString += "<li>SO<sub>2</sub> (24h): <strong>" + graphic.attributes.SO2_24+"</strong> ppb</li>";
+		//}
   
 		if (trsTest24 && trsTest24 !== '' ) {
 		formatString += "<li>TRS (24h): <strong>" + graphic.attributes.TRS_24+"</strong> ppb</li>";

@@ -213,7 +213,7 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 
 
 	renderer.addBreak({
-          minValue: 63,
+          minValue: 62,
           maxValue: Infinity,
           label: "8 - High Health Risk",
           symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ff0000")).setSize(13)
@@ -222,7 +222,7 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 	
 	renderer.addBreak({
           minValue: 31,
-          maxValue: 63,
+          maxValue: 62,
           label: "5 - Moderate Health Risk",
           symbol: new SimpleMarkerSymbol(symbol).setColor(new Color("#ffff00")).setSize(13)
     });	
@@ -293,12 +293,12 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 			}
 			
 			
-		if (o3Test24 && o3Test24 >=63){
-		formatString += "<li>O<sub>3</sub> (8h): <strong>" + "<font color=#ff0000> "+ graphic.attributes.O3_8+"</strong> ppb</font>.  <font color=#8c8c8c>Objective: 63 ppb</font></li>";
+		if (o3Test24 && o3Test24 >=62){
+		formatString += "<li>O<sub>3</sub> (8h): <strong>" + "<font color=#ff0000> "+ graphic.attributes.O3_8+"</strong> ppb</font>.  <font color=#8c8c8c>Objective: 62 ppb</font></li>";
 		}
 		
-		if (o3Test24 && o3Test24 < 63){
-		formatString += "<li>O<sub>3</sub> (8h): <strong>" + graphic.attributes.O3_8+"</strong> ppb</sup>.  <font color=#8c8c8c>Objective: 63 ppb</font></li> ";
+		if (o3Test24 && o3Test24 < 62){
+		formatString += "<li>O<sub>3</sub> (8h): <strong>" + graphic.attributes.O3_8+"</strong> ppb</sup>.  <font color=#8c8c8c>Objective: 62 ppb</font></li> ";
 		}
 		
 		if (o3Test && o3Test !== ''){
@@ -352,7 +352,7 @@ url('../../templates-env/fonts/BCSans-BoldItalic.woff2') format('woff2'); /** Op
 		}
     
         if (o3Test && o3Test || o3Test24 && o3Test24 !== '' ) {
-			formatString += "<small><sup>*</sup>Air Quality Objective for O<sub>3</sub> is <strong>63 ppb when averaged over an <strong>8 hour period</strong>.</small>";
+			formatString += "<small><sup>*</sup>Air Quality Objective for O<sub>3</sub> is <strong>62 ppb when averaged over an <strong>8 hour period</strong>.</small>";
 			}
         
 		//Disclaimer in the map pop-up side panel

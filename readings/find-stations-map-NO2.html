@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="HandheldFriendly" content="true" />
-    <meta name="description" content="View current Nitrogen Dioxide (NO2) data." />
+    <meta name="description" content="View latest Nitrogen Dioxide (NO2) data." />
     <meta name="author" content="Ministry of Environment" />
     <link rel="apple-touch-icon" sizes="57x57" href="../../templates-env/icons/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="../../templates-env/icons/apple-icon-60x60.png" />
@@ -28,7 +28,7 @@
     <meta name="msapplication-TileImage" content="../../templates-env/icons/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
 
-    <title>Current Nitrogen Dioxide (NO2) - BC Air Quality - Province of British Columbia</title>
+    <title>Latest Nitrogen Dioxide (NO2) - BC Air Quality - Province of British Columbia</title>
 
     <!-- Bootstrap core CSS v3.3.6 -->
     <link rel="stylesheet" href="../../templates-env/css/bootstrap.min.css" />
@@ -123,9 +123,9 @@ var collector = 'spt.apps.gov.bc.ca';
                         <a id="main-content-anchor"></a>
                         <ul class="nav navbar-nav">
                             <li><a href="https://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161">Air Quality Health Index</a></li>
-                            <li><a href="https://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current air quality data</a></li>
-                            <li><a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air Quality Advisories</a></li>
-                            <li><a href="https://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC Air Data Archive</a></li>
+                            <li><a href="https://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Latest air quality data</a></li>
+                            <li><a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air quality advisories</a></li>
+                            <li><a href="https://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">Air Data Archive</a></li>
                         </ul>
                     </div>
                     <!-- /COLLAPSING NAVBAR -->
@@ -135,9 +135,9 @@ var collector = 'spt.apps.gov.bc.ca';
                 <div class="level2Navigation">
                     <div class="container">
                         <a href="https://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161">Air Quality Health Index</a>
-                        <a href="https://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Current air quality data</a>
-                        <a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air Quality Advisories</a>
-                        <a href="https://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">BC Air Data Archive</a>
+                        <a href="https://www2.gov.bc.ca/gov/content?id=292EC5BD62A149A192B7DD2CE155E33E">Latest air quality data</a>
+                        <a href="https://www2.gov.bc.ca/gov/content?id=92C667E752E847978060C6EC70EDD57A">Air quality advisories</a>
+                        <a href="https://www2.gov.bc.ca/gov/content?id=AAC0F931795D44E794702332A37D81F5">Air Data Archive</a>
                     </div>
                 </div>
             </div>
@@ -160,14 +160,14 @@ var collector = 'spt.apps.gov.bc.ca';
 		-->
         <div class="row">
             <div id="main-content" class="contentPageMainColumn col-sm-12">
-                <h1>Current nitrogen dioxide - NO<sub>2</sub> data map</h1>
+                <h1>Latest nitrogen dioxide - NO<sub>2</sub> data map</h1>
 
                 <div id="introduction">
                   <!--  <div class="alert alert-warning" role="alert"><h3>System maintenance notice</h3>
     <p>Our air quality monitoring system will be <strong>OFFLINE on Thursday, October 29th from 3pm to 8pm.</strong></p>
         </div> -->
                     <p>View the latest NO<sub>2</sub> data. Data is refreshed every 60 minutes. <a href="#instructions">Instructions on how to use the map are below</a>.</p>
-                    <p><strong>Please note that air quality data may be missing for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure.</strong></p>
+                    <p><strong>Please note that air quality data may be missing or delayed for many reasons that are beyond our control including local power or communications outages, instrument calibration cycles or failure.</strong></p>
                 </div>
                 <div id="body">
 
@@ -226,31 +226,31 @@ var collector = 'spt.apps.gov.bc.ca';
                                             <table class="table aqhiScale table-bordered table-striped">
                                                 <tr>
                                                     <td class="aqhi10" style="border-bottom: 1px solid #ff0000;"></td>
-                                                    <td class="aqhiRisk" style="border-bottom: 1px solid #ff0000;">100+
+                                                    <td class="aqhiRisk" style="border-bottom: 1px solid #ff0000;">60+
                                                         <br/><span style="font-size:.8em;"><sup><strong>*</strong></sup> Exceeding 1-hr Objective.</span></td>
 
                                                 </tr>
                                                 <tr>
                                                     <td class="aqhi8"></td>
-                                                    <td class="aqhiRisk">50 - 100</td>
+                                                    <td class="aqhiRisk">50 - 60</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="aqhi6"></td>
-                                                    <td class="aqhiRisk">25 - 50</td>
+                                                    <td class="aqhiRisk">40 - 50</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="aqhi4"></td>
-                                                    <td class="aqhiRisk">20 - 25</td>
+                                                    <td class="aqhiRisk">30 - 40</td>
                                                 </tr>
                                                 <tr>
 
                                                     <td style="background-color:#A18A14"></td>
-                                                    <td class="aqhiRisk">15 - 20 </td>
+                                                    <td class="aqhiRisk">20 - 30 </td>
 
                                                 </tr>
                                                 <tr>
                                                     <td class="aqhi2"></td>
-                                                    <td class="aqhiRisk">10 - 15</td>
+                                                    <td class="aqhiRisk">10 - 20</td>
 
                                                 </tr>
                                                 <tr>
@@ -267,7 +267,7 @@ var collector = 'spt.apps.gov.bc.ca';
 
                                         </div>
                                         <h3><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Pollutant Objective</h3>
-                                        <p><span style="font-size:1.5em;font-weight:bold;">100 ppb</span></p>
+                                        <p><span style="font-size:1.5em;font-weight:bold;">60 ppb</span></p>
                                         <p>An Air Quality Objective is the provincial acceptable limit for NO<sub>2</sub> concentration, averaged over a 1-hour period.</p>
                                         <p><a href="http://www2.gov.bc.ca/gov/content?id=600BAE148BE642AE9CEED16BAD6BAA45" target="_blank">Read more about the province's Air Quality Objectives and Standards</a>.</p>
                                         
@@ -305,8 +305,8 @@ var collector = 'spt.apps.gov.bc.ca';
 
                             <h3><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Abbreviations</h3>
                             <ul>
-                                <li>PM<sub>2.5</sub> = fine particles with a diameter of 2.5 microns (millionths of a metre)</li>
-                                <li>PM<sub>10</sub> = small particles with a diameter of 10 microns</li>
+                                <li>PM<sub>2.5</sub> = fine particles with diameters of 2.5 microns (millionths of a metre) and smaller</li>
+                        <li>PM<sub>10</sub> = small particles (including PM<sub>2.5</sub>) with diameters of 10 microns and smaller</li>
                                 <li>O<sub>3</sub> = ozone</li>
                                 <li>NO<sub>2</sub> = nitrogen dioxide</li>
                                 <li>SO<sub>2</sub> = sulphur dioxide</li>
