@@ -1,6 +1,5 @@
-// Version Apr 6 2022 - JQ
-
-// This gets the AQHI area name from the url
+// Version Sept. 1, 2020 - RJT
+// This gets the station ID from the url
 var QueryString = function () {
     // This function is anonymous, is executed immediately and 
     // the return value is assigned to QueryString!
@@ -27,8 +26,12 @@ var QueryString = function () {
     return query_string.id;
 }();
 
-var aqhi, focus, context, height,focus1, parseTime, formatTime, bisectDate;
-var xScale, x, y, x2, y2, y_domain_max, labels, aqhiwebmap_data, aqhi_area_data;
+
+var aqhi, test, x, y, x2, y2, height, focus, context, line, line2, labels, bisectDate, focus1, parseTime, formatTime, ylab, met, thesLine, param, selected_domain, scatter, aqhi_data;
+
+var lowIndex, moderateIndex, hightIndex, veryHighIndex;
+
+var list_of_aq_measures = []
 
 var aqhi_banner_key = ['AQHI_PLUS', 'AQHI_RP', 'AQHI_GP']
 
@@ -37,16 +40,16 @@ d3.csv('labels.csv', function (err, data) {
     labels = data
 });
 
-d3.csv('https://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/AQHIWebMap.csv', function (err, data) {
+d3.csv('https://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/AQHIWeb.csv', function (err, data) {
     //if(err) throw err;
-    aqhiwebmap_data = data
+    aqhi_data = data
 });
 
 
 
 
-// use csv-parser to load data using AQHI area name (csv named using AQHI area name, ex. AQHI-COMOX_VALLEY.csv)
-d3.json('https://csv-parser.api.gov.bc.ca/?source=https://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/Hourly_Raw_Air_Data/Station/' + QueryString + '.csv&format=json', function (err, data) {
+// use csv-parser to load data using station ID
+d3.json('https://csv-parser.api.gov.bc.ca/?source=ftp://ftp.env.gov.bc.ca/pub/outgoing/AIR/Hourly_Raw_Air_Data/Station/' + QueryString + '.csv&format=json', function (err, data) {
 
     //console.log(QueryString.includes('AQHI'))
 
@@ -60,211 +63,258 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=https://www.env.gov.bc.ca/epd/
     formatMonth = d3.timeFormat("%b %d %H:%M");
     formatFullDate = d3.timeFormat("%B %d, %Y %H:%M");
 
+    // if (!(initGas in data[1]))
+    //     initGas = Object.keys(data[0])[1]
+
     data.forEach(function (d, i) {
 
         d.DATE_LOCAL = parseTime(d.DATE_LOCAL)
     })
     data.sort((a, b) => a.DATE_LOCAL - b.DATE_LOCAL);
-	
-    if (QueryString.includes('AQHI')) {		
-        
-		// initial aqhi_text and aqhi_label objects
-		aqhi_btn_label = {}
-		
-        aqhi_btn_text = {}
+    // console.log(data)
+
+    if (QueryString.includes('AQHI')) {
+        initGas = ''
+
+        // initial aqhi_text object
+        aqhi_btn_text = {
+            'AQHI': 'NA',
+            'FORECAST_TODAY': 'NA',
+            'FORECAST_TONIGHT': 'NA',
+            'FORECAST_TOMORROW': 'NA'
+        }
 
         aqhi_banner_text = {
-			'AQHI_PLUS': 'NA',
+            'AQHI_PLUS': 'NA',
             'AQHI_RP': 'NA',
             'AQHI_GP': 'NA'
-		}
-		
-		//get data from AQHIWebMap.csv
+        }
+
         initAQHIText(QueryString.replace("AQHI-", ""));
 
-		/*####################################
-		//AQHI station csv files data already padded, probably do not need code below 
+
+        //get the date range 
+        var xx_min = d3.min(data, function (d) { return new Date(d.DATE_LOCAL); });
+        var xx_max = d3.max(data, function (d) { return new Date(d.DATE_LOCAL); });
+		//get date range, use PST time to fix DST issues
+        //var xx_min_PST = d3.min(data, function (d) { return new Date(d.DATE_PST); });
+        //var xx_max_PST = d3.max(data, function (d) { return new Date(d.DATE_PST); });
+
+        //find an AQHI item as template
+        var template = null;
+        for (var l = 0; l < data.length; l++) {
+            if (data[l].AQHI != undefined && data[l].AQHI != null) {
+                template = data[l];
+                break;
+            }
+        }
+
+        //calculate how many item should be in the data set based on the date range
+        var diff_hours = Math.abs(xx_min - xx_max) / 36e5;
+		//revised: assumes input data length is number of hours
+        //var diff_hours = data.length + 1; 
 		
-        // //get the date range 
-        // var xx_min = d3.min(data, function (d) { return new Date(d.DATE_LOCAL); });
-        // var xx_max = d3.max(data, function (d) { return new Date(d.DATE_LOCAL); });
-		// //get date range, use PST time to fix DST issues
-        // //var xx_min_PST = d3.min(data, function (d) { return new Date(d.DATE_PST); });
-        // //var xx_max_PST = d3.max(data, function (d) { return new Date(d.DATE_PST); });
-
-        // //find an AQHI item as template
-        // var template = null;
-        // for (var l = 0; l < data.length; l++) {
-            // if (data[l].AQHI_INT != undefined && data[l].AQHI_INT != null) {
-                // template = data[l];
-                // break;
-            // }
-        // }
-
-        // //calculate how many item should be in the data set based on the date range
-        // var diff_hours = Math.abs(xx_min - xx_max) / 36e5;
-		// //revised: assumes input data length is number of hours
-        // //var diff_hours = data.length + 1; 
+        //populate a new date array with each time slot
+        var date_array = [];
+        date_array.push(xx_min);
+        for (var i = 0; i <= diff_hours; i++) {	 
 		
-        // //populate a new date array with each time slot
-        // var date_array = [];
-        // date_array.push(xx_min);
-        // for (var i = 0; i <= diff_hours; i++) {	 
-		
-            // date_array.push(d3.timeHour.offset(xx_min, i));
-        // }
+            date_array.push(d3.timeHour.offset(xx_min, i));
+        }
 
-        // //loop through the new date array and find the missing data item  
-        // var new_data = [];
-        // for (var i = 0; i < date_array.length; i++) {
-            // var aqhi_data = null;
-            // for (var x = 0; x < data.length; x++) {
-                // var org_date_local = data[x].DATE_LOCAL;
-                // var new_date_local = date_array[i];
-                // if (org_date_local.getDate() == new_date_local.getDate() &&
-                    // org_date_local.getMonth() == new_date_local.getMonth() &&
-                    // org_date_local.getHours() == new_date_local.getHours() &&
-                    // org_date_local.getFullYear() == new_date_local.getFullYear()) {
+        //loop through the new date array and find the missing data item  
+        var new_data = [];
+        for (var i = 0; i < date_array.length; i++) {
+            var aqhi_data = null;
+            for (var x = 0; x < data.length; x++) {
+                var org_date_local = data[x].DATE_LOCAL;
+                var new_date_local = date_array[i];
+                if (org_date_local.getDate() == new_date_local.getDate() &&
+                    org_date_local.getMonth() == new_date_local.getMonth() &&
+                    org_date_local.getHours() == new_date_local.getHours() &&
+                    org_date_local.getFullYear() == new_date_local.getFullYear()) {
 
-                    // aqhi_data = data[x];
-                    // break;
-                // }
-            // }
-            // if (aqhi_data && aqhi_data.AQHI_INT !== '') {
-                // //if an item exist for the time slot, add it into the new data set
-                // new_data.push(aqhi_data);
-            // } else {
-                // //if not existing item found, use the template item with new time slot and set null to AQHI, add it into the new data set
-                // var new_item = template;
-                // new_item.AQHI_INT = null;
-                // new_item.DATE_LOCAL = date_array[i];
-                // new_data.push(new_item);
-            // }
-        // }
-        // data = new_data;
-		####################################*/
+                    aqhi_data = data[x];
+                    break;
+                }
+            }
+            if (aqhi_data && aqhi_data.AQHI !== '') {
+                //if an item exist for the time slot, add it into the new data set
+                new_data.push(aqhi_data);
+            } else {
+                //if not existing item found, use the template item with new time slot and set null to AQHI, add it into the new data set
+                var new_item = template;
+                new_item.AQHI = null;
+                new_item.DATE_LOCAL = date_array[i];
+                new_data.push(new_item);
+            }
+        }
+        data = new_data;
+    }
 
+    bisectDate = d3.bisector(function (d) {
+        return d.DATE_LOCAL;
+    }).left;
+    test = data
 
-		bisectDate = d3.bisector(function (d) {
-			return d.DATE_LOCAL;
-		}).left;
+    meas = [];
 
-		var list_of_aq_measures = []
-		meas = [];
+    //Order of buttons - Not in use for AQHI. Use graph.js
+    var orderPoll = ["PM25", "PM25_24", "PM10", "PM10_24", "O3", "O3_8HR", "NO2", "NO2_24", "SO2", "SO_24", "TRS", "CO","CO_8HR"]
 
-		// define index level data for background color
-		index_lvl = {
-			'very_high': { 'max': 12.5, 'min': 10.5, 'color': '#660000', 'opac': 0.1 },
-			'high': { 'max': 10.5, 'min': 6.5, 'color': '#FF0000', 'opac': 0.05 },
-			'moderate': { 'max': 6.5, 'min': 3.5, 'color': '#FFCC00', 'opac': 0.05 },
-			'low': { 'max': 3.5, 'min': 0, 'color': '#00BFFF', 'opac': 0.05 }
-		}
+    var orderMet = ["WSPD_SCLR", "WSPD_VECT", "TEMP_MEAN", "WDIR_VECT"]
+
+    var direction = ["N", "E", "S", "W"]
+
+    // Don't show these as buttons
+    var exclude = ['DATE_PST', 'LATITUDE', 'LONGITUDE', 'STATION', 'DATE_LOCAL', 'DATE', 'EMS_ID', 'AQHI_AREA', 'STATION_NAME', 'NOx', 'NOX_24', 'NO', 'NO_24', 'NO2_24', 'SO_24', 'SO2_24','AQHI_CHAR','AQHIPLUSPARAMETER','SO2_OVER']
 
 
-		//aqhi_btn_label keys are pulled from AQHIWebMap.csv
-		$.each(aqhi_btn_label, function (key, value) {
-			if(key !== 'undefined'){
-				ind = _(labels).filter(function (d) {
-					return d['Data Source'] === key;
-				});
-				if (ind.length > 0) {
-					meas.push({
-						source: ind[0]['Data Source'],
-						short: ind[0]['Short Name'],
-						unit: ind[0]['Units'],
-						decimal: ind[0]['Decimal']
-					})
-				}
-				list_of_aq_measures.push(key)
-			}
-		});
 
-		//aqhi_area_data represents a single line aqhi area with its data in AQHIWebMap.csv
-		//list_of_aq_measures - AQHI, Today, Tonight, Tomorrow, Tomorrow Night, Next Day
-		makeButtonsAQHI(list_of_aq_measures, aqhi_area_data);
-		//this function uses the 30 day AQHI station csv file, values in int (AQHI_INT)
-		makeGraphs('AQHI_INT', data)
-	
-		//Title and date range titles
+    // Meteorology measurements - Not in use for AQHI. Use graph.js
+    met = ['TEMP_MEAN', 'WDIR_UVEC', 'WDIR_VECT', 'WSPD_SCLR', 'WSPD_VECT', 'HUMIDITY']
+
+    // Threshold values for horizontal lines
+    thres = {
+        'PM25_24': 25,
+        "PM10_24": 50,
+        'O3_8hr': 63,
+        'NO2': 100,
+        'SO2': 70,
+        'TRS': 5
+    }
+
+    // define index level data for background color
+    index_lvl = {
+        'very_high': { 'max': 11.5, 'min': 10.5, 'color': '#660000', 'opac': 0.1 },
+        'high': { 'max': 10.5, 'min': 6.5, 'color': '#FF0000', 'opac': 0.05 },
+        'moderate': { 'max': 6.5, 'min': 3.5, 'color': '#FFCC00', 'opac': 0.05 },
+        'low': { 'max': 3.5, 'min': 0, 'color': '#00BFFF', 'opac': 0.05 }
+    }
+
+
+
+
+    $.each(data[0], function (key, value) {
+        if (!(exclude.includes(key))) {
+            ind = _(labels).filter(function (d) {
+                return d['Data Source'] === key;
+            });
+            // unicode for some units
+            if (ind.length > 0) {
+                if (ind[0]['Data Source'] == 'TEMP_MEAN') {
+                    ind[0]['Units'] = '\xB0C'
+                } else if (ind[0]['Data Source'] == 'PM25') {
+                    ind[0]['Units'] = '\u03BC g/m3'
+
+                } else if (ind[0]['Data Source'] == 'WDIR_UVEC' || ind[0]['Data Source'] == 'WDIR_VECT') {
+                    ind[0]['Units'] = '\xB0'
+                }
+                meas.push({
+                    source: ind[0]['Data Source'],
+                    short: ind[0]['Short Name'],
+                    unit: ind[0]['Units'],
+                    decimal: ind[0]['Decimal']
+                })
+            }
+            list_of_aq_measures.push(key)
+        }
+    });
+
+    var result = []
+    orderPoll.forEach(function (key) {
+        list_of_aq_measures.forEach(function (item) {
+            if (item == key) {
+                result.push(item)
+            }
+        })
+    })
+
+    orderMet.forEach(function (key) {
+        list_of_aq_measures.forEach(function (item) {
+            if (item == key) {
+                result.push(item)
+            }
+        })
+    })
+
+    arr3 = result.concat(list_of_aq_measures)
+    list_of_aq_measures = [...new Set(arr3)]
+    initGas = list_of_aq_measures[0]
+
+    colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+    makeButtons(list_of_aq_measures, data);
+    makeGraphs(initGas, data)
+
+    //Title and date range titles
+    
+    
+    
+    if (QueryString.includes('AQHI')) {
         d3.select(".current-cond").html(data[0]["AQHI_AREA"] + ' - Air Quality Health Index');
-		d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. Current and forecasted Air Quality Health Index (AQHI) data is displayed below along with a graph <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> of the last 30-days.');
-		document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["AQHI_AREA"] + ' - Air Quality Health Index - Province of British Columbia';
-	
-	}
+    } else {
+        d3.select(".current-cond").html(data[0]["STATION"]);
+    }
+    d3.select(".current-date").html('Latest data at: <strong>' + data[data.length - 1].DATE + '</strong>. Current and forecasted Air Quality Health Index (AQHI) data is displayed below along with a graph <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> of the last 30-days.');
+    
+document.querySelector.apply(document,['title']).innerHTML = ''+ data[0]["AQHI_AREA"] + ' - Air Quality Health Index - Province of British Columbia';
+
 });
 
+// custom station message
 
+function getParameterByName(name, url) {
+	    if (!url) url = window.location.href;
+	    name = name.replace(/[\[\]]/g, "\\$&");
+	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+	        results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+	// Give the parameter a variable name
+	var dynamicContent = getParameterByName('id');
+ 
+	 $(document).ready(function() {
+ 
+		// Check if the URL parameter is stationID1 = replace with e.g. AQHI-Central_Okanagan
+		if (dynamicContent == 'AQHI-Quesnel') {
+			$('#message1').show();
+		} 
+		// Check if the URL parameter is stationID2
+		else if (dynamicContent == 'stationID2') {
+			$('#message2').show();
+		} 
+		// Check if the URL parameter is stationID3
+		else if (dynamicContent == 'stationID3') {
+			$('#message3').show();
+		} 
+		// Check if the URL parmeter is empty or not defined, display default content
+		else {
+			$('#default-content').show();
+		}
+	});
+
+//
 
 function initAQHIText(region) {
-    if (aqhiwebmap_data) {
-        aqhiwebmap_data.forEach(function (a) {
+    if (aqhi_data) {
+        aqhi_data.forEach(function (a) {
             var region_lc = a["AQHI_AREA"].toLowerCase();
             if (region_lc == region.toLowerCase().replace(/_/g, " ")) {
-				
-				//keys are "AQHI", "Today", "Tonight", "Tomorrow", "Tomorrow Night" or "Next Day", used to create labels on top of buttons
-				
-				//aqhi_btn_label - keys are label names on top of buttons (before transformed by labels.csv), values are column names of data columns in AQHIWebMap.csv that have the actual values
-				aqhi_btn_label['AQHI'] = 'VALUE';
-				aqhi_btn_label[a['FIRST_FORECAST_LABEL']] = 'FIRST_FORECAST';
-                aqhi_btn_label[a['SECOND_FORECAST_LABEL']] = 'SECOND_FORECAST';
-                aqhi_btn_label[a['THIRD_FORECAST_LABEL']] = 'THIRD_FORECAST';
-                aqhi_btn_label[a['FOURTH_FORECAST_LABEL']] = 'FOURTH_FORECAST';
-				
-				//aqhi_btn_text - values are used to create text on buttons
                 aqhi_btn_text['AQHI'] = a['VALUE_CHAR'] + " - " + a['AQHICURRENT_Text1'];
-				aqhi_btn_text[a['FIRST_FORECAST_LABEL']] = a['FIRST_FORECAST_CHAR'] + " - " + a['FIRST_FORECAST_Text1'];
-                aqhi_btn_text[a['SECOND_FORECAST_LABEL']] = a['SECOND_FORECAST_CHAR'] + " - " + a['SECOND_FORECAST_Text1'];
-                aqhi_btn_text[a['THIRD_FORECAST_LABEL']] = a['THIRD_FORECAST_CHAR'] + " - " + a['THIRD_FORECAST_Text1'];
-                aqhi_btn_text[a['FOURTH_FORECAST_LABEL']] = a['FOURTH_FORECAST_CHAR'] + " - " + a['FOURTH_FORECAST_Text1'];
-				
-				//used to create health msg banner
+                aqhi_btn_text['FORECAST_TODAY'] = a['FORECAST_TODAY_CHAR'] + " - " + a['AQHITODAY_Text1'];
+                aqhi_btn_text['FORECAST_TONIGHT'] = a['FORECAST_TONIGHT_CHAR'] + " - " + a['AQHITONIGHT_Text1'];
+                aqhi_btn_text['FORECAST_TOMORROW'] = a['FORECAST_TOMORROW_CHAR'] + " - " + a['AQHITOMORROW_Text1'];
+
                 aqhi_banner_text['AQHI_PLUS'] = "" + a['AQHIPLUS_Text'];
                 aqhi_banner_text['AQHI_RP'] = "<strong>At risk population</strong> - " + a['AQHICURRENT_Text2'];
                 aqhi_banner_text['AQHI_GP'] = "<strong>General population</strong> - " + a['AQHICURRENT_Text3'];
-				
-				aqhi_area_data = a;
-				
             }
         });
     }
 };
 
-
-// Dynamic Content - custom station message
-
-function getParameterByName(name, url) {
-	if (!url) url = window.location.href;
-	name = name.replace(/[\[\]]/g, "\\$&");
-	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-		results = regex.exec(url);
-	if (!results) return null;
-	if (!results[2]) return '';
-	return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-
-// Give the parameter a variable name
-var dynamicContent = getParameterByName('id');
-
- $(document).ready(function() {
-
-	// Check if the URL parameter is stationID1 = replace with e.g. AQHI-Central_Okanagan
-	if (dynamicContent == 'AQHI-SOUTH_OKANAGAN') {
-		$('#message2').show();
-	} 
-	// Check if the URL parameter is stationID2
-	else if (dynamicContent == 'AQHI-SPARWOOD') {
-		$('#message1').show();
-	} 
-	// Check if the URL parameter is stationID3
-	else if (dynamicContent == 'stationID3') {
-		$('#message3').show();
-	} 
-	// Check if the URL parmeter is empty or not defined, display default content
-	else {
-		$('#default-content').show();
-	}
-});
-	
 
 // make button active
 function makeActive(selection) {
@@ -276,129 +326,127 @@ function makeActive(selection) {
         })
 }
 
-//AQHI graph buttons on top of the graph
-function makeButtonsAQHI(keys,data) {
-    var temp = [];
-    var i = 0;
-    for (let k of keys) {
-        temp[i] = k;
-        i++;
-    }
-    var mainkey = [temp[0]]
-    temp.shift();
-    var secondarykeys = temp;
+t = 0
 
-    // main forecast button, rendered in a different spot on the page
-    d3.select('.mainbutton').selectAll('.mainbutton')
-    .data(mainkey)
-    .enter()
-    .append("button")
-    .attr("class", "btn btn-default-aqhi")
-    .attr('id', function (d, i) {
-        // console.log(d)
-        //change id of buttons - space becomes "-", ex. Next Day -> Next-Day
-        //for visualization.css prevent pointer-events for these buttons
-        return d.replace(/\s+/g, "-");
-    })
-    .text(function (d, i) {
-        lab = d
-        //change label ex. AQHI -> Observed AQHI using labels.csv mapping
-        meas.forEach(function (j) {
-            if (d == j['source']) {
-                lab = j['short'];
-            }
+function makeButtons(keys, data) {
+    var isAqhi = false;
+    var buttons = d3.select('.button').selectAll('.button')
+        .data(keys)
+        .enter()
+        .append("button")
+        .attr("class", "btn btn-default-aqhi")
+        .attr('id', function (d, i) {
+            // console.log(d)
+            return d;
         })
-        return lab
-    })
-    .on("click", function (d) {
-        //console.log(d)
-        if (d === 'AQHI') {
-            makeActive(d3.select(this));
-        } 
-    })
-
-    // secondary forecast buttons
-    d3.select('.secondarybutton').selectAll('.secondarybutton')
-    .data(secondarykeys)
-    .enter()
-    .append("button")
-    .attr("class", "btn btn-default-aqhi")
-    .attr('id', function (d, i) {
-        // console.log(d)
-        //change id of buttons - space becomes "-", ex. Next Day -> Next-Day
-        //for visualization.css prevent pointer-events for these buttons
-        return d.replace(/\s+/g, "-");
-    })
-    .text(function (d, i) {
-        lab = d
-        //change label ex. AQHI -> Observed AQHI using labels.csv mapping
-        meas.forEach(function (j) {
-            if (d == j['source']) {
-                lab = j['short'];
-            }
+        .text(function (d, i) {
+            lab = d
+            meas.forEach(function (j) {
+                if (d == j['source']) {
+                    lab = j['short'];
+                }
+            })
+            return lab
         })
-        return lab
-    })
+        .on("click", function (d) {
+            // console.log(d)
+            if (d !== 'FORECAST_TONIGHT' && d !== 'FORECAST_TODAY' && d !== 'FORECAST_TOMORROW') {
+                t += 1
+                makeActive(d3.select(this));
 
-    // select all the buttons
-    var buttons = d3.selectAll('.button').selectAll('.btn');
-		
+                //updateGraph(d, data)  
+
+            }
+
+        })
     // append values to buttons
     buttons.append("div")
         .attr("class", function (d, i) {
-			if (d === 'AQHI' || d === 'Today' || d === 'Tonight' || d === 'Tomorrow' || d === 'Tomorrow Night' || d === 'Next Day') {
-				decimal = '';
 
-				meas.forEach(function (j) {
-					// console.log(j)
-					if (d == j['source']) {
-						decimal = j['decimal'];
-					}
-				})
+            if (d === 'AQHI' || d === 'FORECAST_TONIGHT' || d === 'FORECAST_TODAY' || d === 'FORECAST_TOMORROW') {
+                isAqhi = true;
+                decimal = '';
 
-				if (data[aqhi_btn_label[d]] == undefined) {
-					var curr = 'NA';
-				} else {
-					if (decimal !== undefined && decimal != '') {
-						//if predefined decimal exists, round value to the predefined decimal place
-						var curr = parseFloat(Math.round(data[aqhi_btn_label[d]] * 100) / 100).toFixed(decimal);
-					} else {
-						var curr = data[aqhi_btn_label[d]];
-					}
-				}
-				return 'val aqhi_btn aqhi' + curr;
-			}
-        })
-        .data(keys)
-		//put text on buttons
-        .html(function (d, i) {
-            if (d === 'AQHI' || d === 'Today' || d === 'Tonight' || d === 'Tomorrow' || d === 'Tomorrow Night' || d === 'Next Day') {
-                return aqhi_btn_text[d];
+                meas.forEach(function (j) {
+                    // console.log(j)
+                    if (d == j['source']) {
+                        decimal = j['decimal'];
+                    }
+                })
+
+                if (data[data.length - 1][d] == undefined) {
+                    var curr = 'NA';
+                } else {
+                    if (decimal !== undefined && decimal != '') {
+                        //if predefined decimal exists, round value to the predefined decimal place
+                        var curr = parseFloat(Math.round(data[data.length - 1][d] * 100) / 100).toFixed(decimal);
+                    } else {
+                        var curr = data[data.length - 1][d];
+                    }
+                }
+
+                return 'val aqhi_btn aqhi' + curr;
+            } else {
+                return 'val';
             }
         })
-	
-	//adding health messages
-	var aqhi_banner = d3.select('.aqhi_banner')
-		.selectAll('div')
-		.data(aqhi_banner_key)
-		.enter()
-		.append("div")
-		.html(function (d) {
-			return aqhi_banner_text[d];
-		});
+        .data(keys)
+        .html(function (d, i) {
 
-	//Yellow box around "Observed AQHI" button
+            if (d === 'AQHI' || d === 'FORECAST_TONIGHT' || d === 'FORECAST_TODAY' || d === 'FORECAST_TOMORROW') {
+                return aqhi_btn_text[d];
+            } else {
+                lab = '';
+                decimal = '';
+                meas.forEach(function (j) {
+                    // console.log(j)
+                    if (d == j['source']) {
+                        lab = j['unit'];
+                        decimal = j['decimal'];
+                    }
+                })
+
+
+                if (data[data.length - 1][d] == undefined) {
+                    var curr = 'N/A';
+                } else {
+                    if (decimal !== undefined && decimal != '') {
+                        //if predefined decimal exists, round value to the predefined decimal place
+                        var curr = parseFloat(Math.round(data[data.length - 1][d] * 100) / 100).toFixed(decimal);
+                    } else {
+                        var curr = data[data.length - 1][d];
+                    }
+                }
+
+                return curr + ' ' + '<span style="font-size:10pt">' + lab + '<span>';
+            }
+        })
+
+    if (isAqhi) {
+        var aqhi_banner = d3.select('.aqhi_banner')
+            .selectAll('div')
+            .data(aqhi_banner_key)
+            .enter()
+            .append("div")
+            .html(function (d) {
+                return aqhi_banner_text[d];
+            });
+    }
+
     makeActive(buttons.filter(function (d) {
-        return d == 'AQHI'
+        return d == initGas
     }))
 
 }
 
+
+
 // This makes the initial graph
 function makeGraphs(trace, data) {
-	
-	//trace is 'AQHI_INT'
-	data.forEach(function (d, i) {
+
+    param = trace;
+
+    data.forEach(function (d, i) {
         if (d[trace] == undefined) {
             d[trace] = null
         }
@@ -406,7 +454,7 @@ function makeGraphs(trace, data) {
             d[trace] = null
         }
     })
-	
+
     var svg = d3.select("svg"),
         margin = {
             top: 10,
@@ -423,39 +471,26 @@ function makeGraphs(trace, data) {
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
         height2 = +svg.attr("height") - margin2.top - margin2.bottom;
-	
-	xScale = d3.scaleBand().range([0, width]).padding(0.001);
+
     x = d3.scaleTime().range([0, width])
     x2 = d3.scaleTime().range([0, width])
     y = d3.scaleLinear().range([height, 0])
     y2 = d3.scaleLinear().range([height2, 0])
 
-    // create a crosshatch pattern which is used for sections where no data exists
-    const defs = svg.append("defs");
-    defs
-        .append("svg:pattern")
-        .attr("id", "xhatch")
-        .attr("patternUnits", "userSpaceOnUse")
-        .attr("width", 6)
-        .attr("height", 6)
-        .append("svg:image")
-        .attr("xlink:href","data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2aWV3Qm94PSIwLjM3OSAwLjMyMiA0LjIwOCA0LjIwOCIgd2lkdGg9IjQuMjA4IiBoZWlnaHQ9IjQuMjA4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIHg9IjAuNTEyIiB5PSIwLjMyMiIvPgogIDxwYXRoIGQ9Ik0gMC41MTIgMC4zMjIgTCA0LjQ1NCA0LjM5NyBMIDAuNTEyIDAuMzIyIFogTSA0LjU4NyAwLjMyMiBMIDAuMzc5IDQuNTMgTCA0LjU4NyAwLjMyMiBaIiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlPSIjNTU1Ii8+Cjwvc3ZnPg==")
-        .attr("width", 6)
-        .attr("height", 6)
-        .attr("x", 0)
-        .attr("y", 0);
-	
-	//initiate brush
+    var xAxis = d3.axisBottom(x),
+        xAxis2 = d3.axisBottom(x2),
+        yAxis = d3.axisLeft(y),
+        yAxisRight = d3.axisRight(y);
+
     var brush = d3.brushX()
         .extent([
             [0, 0],
             [width, height2]
         ])
         .on("brush end", brushed);
-	
-	//initiate zoom, zoom in with max scale 100
+
     var zoom = d3.zoom()
-        .scaleExtent([1, 100])
+        .scaleExtent([1, Infinity])
         .translateExtent([
             [0, 0],
             [width, height]
@@ -465,8 +500,29 @@ function makeGraphs(trace, data) {
             [width, height]
         ])
         .on("zoom", zoomed);
-	
-	//initiate grey box for clipping on small bar graph
+
+    line = d3.line()
+        .defined(function (d) {
+            return d[trace] != null;
+        })
+        .x(function (d) {
+            return x(d.DATE_LOCAL);
+        })
+        .y(function (d) {
+            return y(+d[trace]);
+        });
+
+    line2 = d3.line()
+        .defined(function (d) {
+            return d[trace] != null;
+        })
+        .x(function (d) {
+            return x2(d.DATE_LOCAL);
+        })
+        .y(function (d) {
+            return y2(+d[trace]);
+        });
+
     var clip = svg.append("defs").append("svg:clipPath")
         .attr("id", "clip")
         .append("svg:rect")
@@ -474,58 +530,57 @@ function makeGraphs(trace, data) {
         .attr("height", height)
         .attr("x", 0)
         .attr("y", 0);
-	
-	//initiate bars on main bar chart graph (top)
-    var Bar_chart = svg.append("g")
+
+    thesLine = d3.line()
+        .x(function (d) {
+            return x(d.DATE_LOCAL);
+        })
+        .y(function (d) {
+            return y(thres[trace])
+        })
+
+    thesLine1 = d3.line()
+        .x(function (d) {
+            // console.log(d)
+            return x(d.DATE_LOCAL);
+        })
+        .y(function (d) {
+            return y(0)
+        })
+
+    var Line_chart = svg.append("g")
         .attr("class", "focus")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .attr("clip-path", "url(#clip)");
 
-	//initiate area for main bar chart graph (top)
+
     var focus = svg.append("g")
         .attr("class", "focus")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	//initiate area for small bar chart graph (bottom)
     var context = svg.append("g")
         .attr('id', 'context')
         .attr("class", "context")
         .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
 
-	//define domains, xScale only for bars
-    xScale.domain(data.map(function(d){ return d.DATE_LOCAL }));
-	x.domain(d3.extent(data, d => d.DATE_LOCAL));
-	x2.domain(x.domain());
 
+
+    x.domain(d3.extent(data, d => d.DATE_LOCAL));
     var not_null = data.filter(function (d) { return d[trace] != null; });
+	//adding more filter to account for blanks -JAR
 	not_null = not_null.filter(function (d) { return d[trace] !== ''; });
- 
-	y_domain_min = 0;
+    
+
+    //y_domain_min = d3.min(not_null, function (d) { return +d[trace] });
+	y_domain_min = 1;
     y_domain_max = d3.max(not_null, function (d) { return +d[trace] });
-	
-    y.domain([y_domain_min, y_domain_max + 1]);
+
+    y.domain([Math.floor(y_domain_min), (Math.ceil(y_domain_max)+0.5)]);
+
+    x2.domain(x.domain());
     y2.domain(y.domain());
-	    
-	
-	//initiate axes
-	var xAxis = d3.axisBottom(x);
-    var xAxis2 = d3.axisBottom(x2);
-	var yAxis = d3.axisLeft(y)
-			.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
-			.tickFormat(function (d) { if (d >= 11) { return '10+'; } else { return d; } });
-    var yAxisRight = d3.axisRight(y)
-			.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
-			.tickFormat(function (d) { if (d >= 11) { return '10+'; } else { return d; } });
-	
-	
-	//initiate bar colours
-	var barColours = d3.scaleOrdinal()
-		.domain([1,2,3,4,5,6,7,8,9,10,11])
-		.range(['#00ccff', '#0099cc', '#006699', '#ffff00', '#ffcc00', '#ff9933', '#ff6666', '#ff0000', '#cc0000', '#990000', '#660000'])
-	
-  
-	//add x axis grid
+
     xGrid = focus.append("g")
         .attr("class", "grid")
         .attr("transform", "translate(0," + height + ")")
@@ -533,69 +588,83 @@ function makeGraphs(trace, data) {
             .tickSize(-height)
             .tickFormat("")
         );
-	
-	//add y axis grid
+
     yGrid = focus.append("g")
         .attr("class", "grid")
         .call(d3.axisLeft(y)
-			.tickValues(y.ticks().filter(tick => Number.isInteger(tick)))
             .tickSize(-width)
             .tickFormat("")
         );
-		
-		
-	//add axes to main bar chart graph (top)
+
     focus.append("g")
         .attr("class", "axis axis--x")
-		.attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
-	
-    focus.append("g")
-        .attr("class", "axis axis--y")
-		.call(yAxis);
 
-    focus.append("g")
+    yaxe = focus.append("g")
+        .attr("class", "axis axis--y")
+        .call(yAxis.tickFormat(function (d) { if (d >= 11 && trace === 'AQHI') { return '10+'; } else { return d; } }));
+
+    yaxeR = focus.append("g")
         .attr("class", "axis axis--y right")
-		.call(yAxisRight)
+        .call(yAxisRight.tickFormat(function (d) { if (d >= 11 && trace === 'AQHI') { return '10+'; } else { return d; } }))
         .attr("transform", "translate(" + width + ",0)");
 
-	//add bars to main bar chart graph (top)
-	Bar_chart.selectAll("bar")
-			.data(data)
-			.enter().append("svg:rect")
-			.attr("class", "bar")
-			.attr("x", function(d) { return x(d.DATE_LOCAL) - xScale.bandwidth(); }) //shift bars to change to hour ending AQHI
-			.attr("y", function (d) { if (d[trace] != null) { return y(d[trace]); } else { return y(y_domain_max + 1); } }) //if missing AQHI, bars appear grey and extend to top of graph
-			.attr("width", xScale.bandwidth())
-			.attr("height", function (d) { if (d[trace] != null) { return height - y(d[trace]); } else { return height - y(y_domain_max + 1); } }) 
-			.attr("fill", function (d) { if (d[trace] != null) { return "#2b8cbe"; } else { return "url(#xhatch)"; } }) 
-			.attr("opacity", function (d) { if (d[trace] != null) { return 1; } else { return 0.3; } }) 
+    //main graph
+    Line_chart.append("path")
+        .datum(data)
+        .attr("class", "line")
+        .attr("d", line)
+        .style("stroke", function () {
+            if (met.includes(trace)) {
+                c = '#de2d26'
+            } else {
+                c = '#2b8cbe'
+            }
+            return c
+        });
 
-	//add bars to small bar chart graph (bottom)
-	context.selectAll("bar")
-		.data(data)
-		.enter().append("svg:rect")
-		.attr("class", "barContext")
-		.attr("x", function(d) { return x(d.DATE_LOCAL) - xScale.bandwidth(); })
-		.attr("y", function (d) { if (d[trace] != null) { return y2(d[trace]); } else { return y2(y_domain_max + 1); } }) 
-		.attr("width", xScale.bandwidth())
-		.attr("height", function (d) { if (d[trace] != null) { return height2 - y2(d[trace]); } else { return height2 - y2(y_domain_max + 1); } }) 
-		.attr("fill", function (d) { if (d[trace] != null) { return "#2b8cbe"; } else { return "url(#xhatch)"; } }) 
-		.attr("opacity", function (d) { if (d[trace] != null) { return 1; } else { return 0.3; } }) 
-			
-	//add x axis to small bar chart graph (bottom)		
+    threshold = svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr("class", "focus")
+        .attr("clip-path", "url(#clip)");
+
+    if (trace in thres && (thres[trace] * .8 < d3.max(data, d => +d[trace]))) {
+        threshold.append('path')
+            .attr('class', 'line1')
+            .attr("d", thesLine(data));
+    } else {
+        threshold.append('path')
+            .datum(data)
+            .attr('d', thesLine1);
+    }
+
+    //mini graph
+    context.append("path")
+        .datum(data)
+        .attr("class", "line")
+        .attr("id", "line2")
+        .attr("d", line2)
+        .style("stroke", function () {
+            if (met.includes(trace)) {
+                c = '#de2d26'
+            } else {
+                c = '#2b8cbe'
+            }
+            return c
+        });;
+
+
     context.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height2 + ")")
         .call(xAxis2);
 
-	//add brush feature to small bar chart graph (bottom)
     context.append("g")
         .attr("class", "brush")
         .call(brush)
         .call(brush.move, x.range());
 
-	//add red circle when hovering on each data point and initiate DATE/TIME & AQHI texts beside it 
     focus1 = focus.append("g")
         .attr("class", "focus1")
         .style("display", "none");
@@ -609,9 +678,10 @@ function makeGraphs(trace, data) {
         .attr("dy", "-1em");
 
     //draw background color for AQHI
-	drawIndexLevelBackgroundColor(height, width, margin.left, margin.top, svg);
+    if (trace == 'AQHI') {
+        drawIndexLevelBackgroundColor(height, width, margin.left, margin.top, svg);
+    }
 
-	//add zoom feature to main bar chart graph (top)
     svg.append("rect")
         .attr("class", "zoom")
         .attr("id", "overlay")
@@ -626,8 +696,30 @@ function makeGraphs(trace, data) {
             focus1.style("display", "none");
         })
         .on("mousemove", mousemove);
-	
-	//add text/red circle on mousemove/hover
+
+
+    un = d3.values(meas).filter(function (vals) {
+        return vals['source'] == initGas
+    })
+
+    ylab = svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text(un[0]["unit"]);
+
+    function getIndexLevelHeight(h2, h1, max_height) {
+        if (h1 < 0 && h2 < 0) {
+            return 0;
+        } else if (h2 < 0) {
+            return h1;
+        } else {
+            return h1 > max_height ? max_height - h2 : h1 - h2;
+        }
+    }
+
     function mousemove() {
         var x0 = x.invert(d3.mouse(this)[0])
         i = bisectDate(data, x0, 1)
@@ -641,59 +733,31 @@ function makeGraphs(trace, data) {
             .attr('dy', "1em")
             .attr('dx', "-2em")
             .style("font-size", "20px")
-            .text((d[trace] >= 11) ? '10+' : d[trace]);
+            .text((trace === 'AQHI' && d[trace] >= 11) ? '10+' : d[trace]);
+
+
     };
 
     // These control the brusing and zooming
     function brushed() {
         if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
         var s = d3.event.selection || x2.range();
-		var scale = width / (s[1] - s[0]);
-		
-		//allow brushing only if scale <= 100, and only if AQHI is present for time period selected
-		if (scale <= 100 && y_domain_max != null){
-			x.domain(s.map(x2.invert, x2));
-			
-			//recreate bar chart with new x scale and change bar width and shift bar according to scale
-			Bar_chart.selectAll(".bar")
-				.attr("x", function(d) { return x(d.DATE_LOCAL) - xScale.bandwidth() * scale; })
-				.attr("y", function (d) { if (d[trace] != null) { return y(d[trace]); } else { return y(y_domain_max + 1); } })
-				.attr("height", function (d) { if (d[trace] != null) { return height - y(d[trace]); } else { return height - y(y_domain_max + 1); } })
-				.attr("width",xScale.bandwidth() * scale)
-				.attr("stroke","black")
-				.attr("opacity", function (d) { if (d[trace] != null) { return 1; } else { return 0.3; } });
-				
-			//show bar colours and border around bars only if scale >= 3, does not apply for hours with missing AQHI
-			if (scale >=3) {
-				Bar_chart.selectAll(".bar")
-					.attr("fill", function (d) { if (d[trace] != null) { return barColours(d[trace]); } else { return "url(#xhatch)"; } })
-					.attr("stroke-width", function (d) { if (d[trace] != null) { return 1; } else { return 0; } })	
-			} else {
-				Bar_chart.selectAll(".bar")
-					.attr("fill", function (d) { if (d[trace] != null) { return "#2b8cbe"; } else { return "url(#xhatch)"; } }) 
-					.attr("stroke-width",0)
-			}
-					
-			focus.select(".axis--x").call(xAxis);
-			
-			//call zoom
-			svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
-				.scale(scale)
-				.translate(-s[0], 0));
-			
-				
-		} else {
-			//time period selected by brush too small or time period selected has missing AQHI for all hours, zoom out to full graph
-			svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
-				.scale(1));
-		}
+
+        x.domain(s.map(x2.invert, x2));
+
+        Line_chart.select(".line").attr("d", line);
+        focus.select(".axis--x").call(xAxis);
+
+        svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
+            .scale(width / (s[1] - s[0]))
+            .translate(-s[0], 0));
+
     }
 
     function zoomed() {
         if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
         var t = d3.event.transform;
-		
-		//filter data based on zoomed time period
+
         var dataFiltered = data.filter(function (d, i) {
             if ((d.DATE_LOCAL >= t.rescaleX(x2).domain()[0]) && (d.DATE_LOCAL <= t.rescaleX(x2).domain()[1])) {
                 return d.DATE_LOCAL;
@@ -701,81 +765,305 @@ function makeGraphs(trace, data) {
         });
 
         dataFiltered = dataFiltered.filter(function (d) { return d[trace] != null; });
-		
-		//find new y domain and x domain
-		var y_domain_min = 0
-        var y_domain_max = d3.max(dataFiltered.map(function (d) { return +d[trace] }));
-		
-        y.domain([y_domain_min, y_domain_max + 1]);
+
+        //var y_domain_min = Math.floor(d3.min(dataFiltered.map(function (d) { return +d[param] })));
+		var y_domain_min = 1
+        var y_domain_max = Math.ceil(d3.max(dataFiltered.map(function (d) { return +d[param] })))+0.5;
+
+        if (param == "WDIR_VECT") {
+            y_domain_max = 378;
+            y_domain_min = 0;
+
+            yAxisRight.tickValues([0, 90, 180, 270, 360])
+                .tickFormat(function (d) { if (d == 0) { return "N" } else if (d == 90) { return "E"; } else if (d == 180) { return "S"; } else if (d == 270) { return "W" } else if (d == 360) { return "N" } else { return "" } });
+
+            yAxis.tickValues([0, 90, 180, 270, 360])
+                .tickFormat(function (d) { if (d == 0) { return "0" } else if (d == 90) { return "90"; } else if (d == 180) { return "180"; } else if (d == 270) { return "270" } else if (d == 360) { return "360" } else { return "" } });
+        } else {
+            yAxisRight = d3.axisRight(y);
+            yAxis = d3.axisLeft(y);
+        }
+
+        y.domain([y_domain_min, y_domain_max]);
+
+        selected_domain = t.rescaleX(x2).domain();
 
         x.domain(t.rescaleX(x2).domain());
-		
-		//zoom and recreate chart only if AQHI is present for time period selected
-		if(y_domain_max != null) {
-			d3.select(".selected-date").html('Selected date range from: <strong>' + formatTime(t.rescaleX(x2).domain()[0]) + ' to: ' + formatTime(t.rescaleX(x2).domain()[1]) + '</strong>');
-			
-			//redraw axes based on zoomed time period and data
-			yAxisRight = d3.axisRight(y)
-				.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
-				.tickFormat(function (d) { if (d >= 11) { return '10+'; } else { return d; } });
-			yAxis = d3.axisLeft(y)
-				.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
-				.tickFormat(function (d) { if (d >= 11) { return '10+'; } else { return d; } });
-			
-			focus.select(".axis--x").call(xAxis);
-			focus.select(".axis--y").call(yAxis);
-			focus.select(".axis--y.right").call(yAxisRight);
-			
-			//recreate bar chart with new x scale and change bar width according to scale
-			Bar_chart.selectAll(".bar")
-				.attr("y", function (d) { if (d[trace] != null) { return y(d[trace]); } else { return y(y_domain_max + 1); } })
-				.attr("height", function (d) { if (d[trace] != null) { return height - y(d[trace]); } else { return height - y(y_domain_max + 1); } })
-				.attr("stroke","black")
-				.attr("opacity", function (d) { if (d[trace] != null) { return 1; } else { return 0.3; } });
-				
-			//update brush clip box
-			context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
+        d3.select(".selected-date").html('Selected date range from: <strong>' + formatTime(t.rescaleX(x2).domain()[0]) + ' to: ' + formatTime(t.rescaleX(x2).domain()[1]) + '</strong>');
+        Line_chart.select(".line").attr("d", line);
+        focus.select(".axis--x").call(xAxis);
+        focus.select(".axis--y").call(yAxis.tickFormat(function (d) { if (d >= 11 && trace === 'AQHI') { return '10+'; } else { return d; } }));
+        focus.select(".axis--y.right").call(yAxisRight.tickFormat(function (d) { if (d >= 11 && trace === 'AQHI') { return '10+'; } else { return d; } }));
+        context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
 
-			drawIndexLevelBackgroundColor(height, width, margin.left, margin.top, svg);
+        if (trace == 'AQHI') {
+            drawIndexLevelBackgroundColor(height, width, margin.left, margin.top, svg);
+        }
 
-			
-			//update grids
-			xGrid.transition().call(
-				d3.axisBottom(x)
-					.tickSize(-height)
-					.tickFormat("")
-			);
+        if (scatter != undefined) {
+            scatter.selectAll(".dot").transition(t).attr("cx", function (d) { return x(d.DATE_LOCAL) });
+        }
 
-			yGrid.transition().call(d3.axisLeft(y)
-				.tickValues(y.ticks().filter(tick => Number.isInteger(tick)))
-				.tickSize(-width)
-				.tickFormat(""));
+        //update threshold line
+        threshold.selectAll("path")
+            .attr('class', 'line1')
+            .transition()
+            .duration(1000)
+            .attr("d", thesLine(data));
 
-			
-			var scale = d3.event.transform.k; //find scale of zoom
-			
-			//changing bar width and shift bar based on scale
-			Bar_chart.selectAll(".bar")
-				.attr("width",xScale.bandwidth() * scale)
-				.attr("x", function(d) { return x(d.DATE_LOCAL) - xScale.bandwidth() * scale; })
+        xGrid.transition().call(
+            d3.axisBottom(x)
+                .tickSize(-height)
+                .tickFormat("")
+        );
 
-			//show bar colours and border around bars only if scale >= 3, does not apply for hours with missing AQHI
-			if (scale >=3) {
-				Bar_chart.selectAll(".bar")
-					.attr("fill", function (d) { if (d[trace] != null) { return barColours(d[trace]); } else { return "url(#xhatch)"; } })
-					.attr("stroke-width", function (d) { if (d[trace] != null) { return 1; } else { return 0; } })	
-			} else {
-				Bar_chart.selectAll(".bar")
-					.attr("fill", function (d) { if (d[trace] != null) { return "#2b8cbe"; } else { return "url(#xhatch)"; } }) 
-					.attr("stroke-width",0)
-			}
-		} else {
-			//time period selected has missing AQHI for all hours, zoom out to full graph
-			svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
-				.scale(1));
-		}
-	
+        if (param != "WDIR_VECT" && param != "WDIR_UVEC") {
+            yGrid.transition().call(d3.axisLeft(y)
+                .tickSize(-width)
+                .tickFormat(""));
+        };
     }
+
+}
+
+
+// Update the graph when selecting another measure
+function updateGraph(trace, data) {
+
+    param = trace;
+
+    data.forEach(function (d) {
+        if (d[trace] == undefined) {
+            d[trace] = null
+        }
+        if (d[trace] == "") {
+            d[trace] = null
+        }
+    })
+
+
+    function mousemove() {
+        var x0 = x.invert(d3.mouse(this)[0])
+        i = bisectDate(data, x0, 1)
+        d0 = data[i - 1],
+            d1 = data[i],
+            d = x0 - d0.DATE_LOCAL > d1.DATE_LOCAL - x0 ? d1 : d1;
+
+        focus1.attr("transform", "translate(" + x(d.DATE_LOCAL) + "," + y(d[trace]) + ")");
+        focus1.append("circle")
+        .attr("r", 4)
+        .classed("dot", true);
+        focus1.select("text").text(formatMonth(d.DATE_LOCAL))
+            .append('tspan')
+            .attr('dy', "1em")
+            .attr('dx', "-2em")
+            .style("font-size", "20px")
+            .text(d[trace]);
+
+    };
+
+    var y_domain_min, y_domain_max, y2_domain_min, y2_domain_max;
+    var not_null = data.filter(function (d) { return d[trace] != null; });
+    y2_domain_min = d3.min(not_null, function (d) { return +d[trace] });
+    y2_domain_max = d3.max(not_null, function (d) { return +d[trace] });
+
+
+    if (selected_domain != null && selected_domain !== undefined) {
+        var dataFiltered = data.filter(function (d, i) {
+            if ((d.DATE_LOCAL >= selected_domain[0]) && (d.DATE_LOCAL <= selected_domain[1])) {
+                return d.DATE_LOCAL;
+            }
+        });
+
+        //y_domain_min = d3.min(dataFiltered, function (d) { return +d[trace] });
+		y_domain_min = 1;
+        y_domain_max = d3.max(dataFiltered, function (d) { return +d[trace] });
+    } else {
+        y_domain_min = y2_domain_min;
+        y_domain_max = y2_domain_max;
+    }
+
+    if (trace === "WDIR_VECT" || trace === "WDIR_UVEC") {
+        y_domain_max = 378;
+        y_domain_min = 0;
+        y2_domain_max = 378;
+        y2_domain_min = 0;
+
+        y.domain([y_domain_min, y_domain_max]);
+        y2.domain([y2_domain_min, y2_domain_max]);
+    } else {
+
+        y.domain([Math.floor(y_domain_min), Math.ceil(y_domain_max)]);
+        y2.domain([Math.floor(y2_domain_min), Math.ceil(y2_domain_max)]);
+    }
+
+
+
+
+    yAxis = d3.axisLeft(y);
+    if (trace === "WDIR_VECT") {
+        yAxisRight = d3.axisRight(y)
+            .tickValues([0, 90, 180, 270, 360])
+            .tickFormat(function (d) { if (d == 0) { return "N" } else if (d == 90) { return "E"; } else if (d == 180) { return "S"; } else if (d == 270) { return "W" } else if (d == 360) { return "N" } else { return "" } });
+
+        yAxis.tickValues([0, 90, 180, 270, 360])
+            .tickFormat(function (d) { if (d == 0) { return "0" } else if (d == 90) { return "90"; } else if (d == 180) { return "180"; } else if (d == 270) { return "270" } else if (d == 360) { return "360" } else { return "" } });
+        yGrid.call(d3.axisLeft(y)
+            .tickValues([0, 90, 180, 270, 360])
+            .tickSize(-870)
+            .tickFormat("")
+        );
+    } else {
+        yAxisRight = d3.axisRight(y);
+        yGrid.transition().call(d3.axisLeft(y)
+            .tickSize(-870)
+            .tickFormat(""));
+    }
+
+
+    yaxe.transition()
+        .call(yAxis);
+
+    yaxeR.transition()
+        .call(yAxisRight);
+
+    un = d3.values(meas).filter(function (vals) {
+        return vals['source'] == trace
+    })
+
+    ylab.transition()
+        .text(un[0]["unit"])
+
+
+    line = d3.line()
+        .defined(function (d) {
+            return d[trace] != null;
+        })
+        .x(function (d) {
+            return x(d.DATE_LOCAL);
+        })
+        .y(function (d) {
+            // console.log(d[trace])
+            return y(d[trace]);
+        });
+
+
+    line2 = d3.line()
+        .defined(function (d) {
+            return d[trace] != null;
+        })
+        .x(function (d) {
+            return x2(d.DATE_LOCAL);
+        })
+        .y(function (d) {
+            return y2(+d[trace]);
+        });
+
+
+    Line_chart = d3.select("g").transition();
+    context = d3.select("#context").transition();
+
+
+    if (trace === "WDIR_VECT") {
+
+        if (scatter == undefined) {
+            scatter = d3.select("svg")
+                .append("g")
+                .attr('id', 'scatter')
+                .attr("transform", "translate(50,20)")
+                .attr("clip-path", "url(#clip)");
+        }
+
+        scatter.selectAll(".dot")
+            .data(data)
+            .enter().append("svg:circle")
+            .classed("dot", true)
+            .attr("cx", function (d, i) { return x(d.DATE_LOCAL); })
+            .attr("cy", function (d) { return y(d[trace]); })
+            .attr("r", 3)
+            .style("fill", '#de2d26')
+            .style("opacity", "0");
+
+        scatter.selectAll(".dot")
+            .transition()
+            .duration(1000)
+            .style("opacity", "1");
+        Line_chart.select(".line")
+            .transition()
+            .duration(1000)
+            .style("opacity", "0");
+
+    } else {
+        d3.selectAll("circle").transition().duration(250).remove();
+
+        Line_chart.select(".line")
+            .style("opacity", "1");
+
+        context.select("#line2")
+            .style("opacity", "1");
+    }
+
+
+
+    // console.log(trace)
+    Line_chart.select(".line")
+        .duration(750)
+        .attr("d", line)
+        .style("stroke", function (d) {
+            // console.log(d)
+            if (met.includes(trace)) {
+                c = '#de2d26'
+            } else {
+                c = '#2b8cbe'
+            }
+            return c
+        });
+    context.select("#line2")
+        .duration(750)
+        .attr("d", line2)
+        .style("stroke", function (d) {
+            if (met.includes(trace)) {
+                c = '#de2d26'
+            } else {
+                c = '#2b8cbe'
+            }
+            return c
+        });
+
+    thesLine = d3.line()
+        .x(function (d) {
+            return x(d.DATE_LOCAL);
+        })
+        .y(function (d) {
+            return y(thres[trace])
+        })
+
+
+    thesLine1 = d3.line()
+        .x(function (d) {
+            return x(d.DATE_LOCAL);
+        })
+        .y(function (d) {
+            return y(0)
+        })
+
+
+    if (trace in thres) {
+        threshold.selectAll("path")
+            .attr('class', 'line1')
+            .transition()
+            .duration(1000)
+            .attr("d", thesLine(data));
+    } else {
+        threshold.selectAll("path")
+            .attr('class', 'out')
+            .transition()
+            .duration(1)
+            .attr("d", thesLine1(data));
+    }
+
+    d3.select(".zoom")
+        .on("mousemove", mousemove);
 
 }
 

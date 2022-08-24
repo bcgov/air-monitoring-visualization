@@ -321,11 +321,18 @@ function initAQHIText(region) {
 // make button active
 function makeActive(selection) {
 
-    d3.selectAll(".active").classed("active", false).attr('style', 'border: solid 0px black !important;')
+    d3.selectAll(".active").classed("active", false).attr('style', 'border: solid 1px lightgray !important;')
     selection.classed("active", true).attr('style',
         function (d) {
             return 'border: solid 2px ' + '#ff7f0e' + ' !important;'
         })
+}
+
+// update the url when a button is clicked
+function updateUrl(selection) {
+    const id = selection.attr('id');
+    newUrl = window.location.href.split("+")[0]+"+"+id;
+    history.pushState({}, null, newUrl);
 }
 
 t = 0
@@ -356,7 +363,8 @@ function makeButtons(keys, data) {
                 t += 1
                 makeActive(d3.select(this));
 
-                updateGraph(d, data)
+                updateGraph(d, data);
+                updateUrl(d3.select(this));
             }
 
         })
