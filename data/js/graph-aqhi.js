@@ -37,7 +37,7 @@ d3.csv('labels.csv', function (err, data) {
     labels = data
 });
 
-d3.csv('AQHIWebMap.csv', function (err, data) {
+d3.csv('https://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/AQHIWebMap.csv', function (err, data) {
     //if(err) throw err;
     aqhiwebmap_data = data
 });
