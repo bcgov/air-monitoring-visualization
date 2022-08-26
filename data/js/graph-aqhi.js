@@ -285,7 +285,6 @@ function makeButtonsAQHI(keys,data) {
         i++;
     }
     var mainkey = [temp[0]]
-    temp.shift();
     var secondarykeys = temp;
 
     // main forecast button, rendered in a different spot on the page
@@ -391,6 +390,9 @@ function makeButtonsAQHI(keys,data) {
     makeActive(buttons.filter(function (d) {
         return d == 'AQHI'
     }))
+
+    // the main button is renderered twice, remove the secondary version of it. 
+    d3.select('.secondarybutton').select('#AQHI').remove();
 
 }
 
