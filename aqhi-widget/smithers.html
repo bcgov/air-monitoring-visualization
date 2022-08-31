@@ -1,0 +1,144 @@
+<!-- Copyright 2022 Province of British Columbia -->
+
+<!-- Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="author" content="Ministry of Environment and Climate Change Strategy" />
+    <meta name="dcterms.publisher" content="Province of British Columbia" />
+    <meta name="dcterms.created" content="2022-01-14" />
+    <meta name="dcterms.modified" content="2022-01-14" />
+    <meta name="security_label" content="Public" />
+    <meta name="security_classification" content="Low" />
+
+    <title>Air Quality Health Index for Smithers - BC Air Quality - Province of British Columbia</title>
+
+    <!-- BOOTSTRAP CORE CSS v3.3.6 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- FONTS -->
+    <link href="css/aqhi_widget.css" rel="stylesheet" />
+    
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+       $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                url: "https://envistaweb.env.gov.bc.ca/aqo/csv/AQHIWeb-Smithers.csv",
+                dataType: "text",
+                success: function(data) {
+                    processData(data);
+                },
+                error: function(data) {
+                    processError();
+                }
+            });
+        });
+
+        function processData(allText) {
+            var datarows = allText.split(/\r\n|\n/);
+			
+            //column index from the CSV file - For PST & PDT, change column number in var pst_date_ind to point to correct time
+            var station_url_ind = 11;
+            var station_name_ind = 0;
+            var pst_date_ind = 3;
+            var current_ind = 20;
+            var first_forecast_ind = 12;
+            var second_forecast_ind = 13;
+            var third_forecast_ind = 14;
+            var fourth_forecast_ind = 15;
+			
+			//see aqhi-table.html for dev notes.
+			var is_error = false;
+			
+			var headers = datarows[0].split(',');
+			for(var i = first_forecast_ind; i <= fourth_forecast_ind; i++) {
+				switch(headers[i]) {
+					case 'URL':
+						//checks for 'URL' in forecast column indices, indication of shift caused by error
+						is_error= true;
+						break;
+					case 'FORECAST_TODAY_CHAR':
+						headers[i]= "Today";
+						break;
+					case 'FORECAST_TONIGHT_CHAR':
+						headers[i]= "Tonight";
+						break;						
+					case 'FORECAST_TOMORROW_CHAR':
+						headers[i]= "Tomorrow";
+						break;
+					case 'FORECAST_TOMORROW_NIGHT_CHAR':
+						headers[i]= "Tomorrow night";
+						break;
+					case 'FORECAST_DAY_3_CHAR':
+						headers[i]= "Next day";
+						break;						
+				}
+			}
+			
+			if(!is_error){
+				var header_first_forecast = headers[first_forecast_ind];
+				var header_second_forecast = headers[second_forecast_ind];
+				var header_third_forecast = headers[third_forecast_ind];
+				var header_fourth_forecast = headers[fourth_forecast_ind];
+				
+								
+				var div = document.createElement('div');
+				
+				var ele = document.getElementById("aqhi_table");
+				ele.parentNode.insertBefore(div,ele);
+									
+									
+				for (var i = 1; i < datarows.length - 1; i++) {
+					var datacells = datarows[i].split(',');
+
+					addAqhiTableRow(datacells[station_url_ind],
+						datacells[station_name_ind], datacells[current_ind], datacells[first_forecast_ind],
+						datacells[second_forecast_ind], datacells[third_forecast_ind], datacells[fourth_forecast_ind], datacells[pst_date_ind],header_first_forecast,header_second_forecast,header_third_forecast,header_fourth_forecast);
+				}
+			} else {
+				processError();
+			}
+        }
+
+        function processError() {
+            $('#aqhi_table').append('<p><strong>Air Quality Health Index data is not available at this moment. Please try again later or visit <a href="https://weather.gc.ca/airquality/pages/provincial_summary/bc_e.html" target="_blank">Environment Canada and Climate Change website for the latest AQHI values.</a></strong></p>');
+        }
+     
+
+    </script>
+    <script src="js/aqhi-widget-display.js"></script>
+    
+</head>
+
+<body>
+
+    <!-- WIDGET BODY CONTENT -->
+    <div class="content">
+            <!-- AQHI content -->
+        <div id="aqhiContent">
+
+                        <div class="blue-heading-bar">BC Air Quality Heath Index</div>
+                    
+                        <div class="clearAll"></div>
+                        <div id="aqhi_table">
+                            <!-- aqhi index main table -->
+                        </div>
+                        
+                        <div id="footer-content">
+                            <hr/><div id="bcLogo"><a href="https://gov.bc.ca/"><img src="images/BCID_H_rgb_pos_200w.png" alt="Government of B.C." /></a></div>
+                                 <div><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <a href="https://www2.gov.bc.ca/gov/content?id=956DEE07D8F744D2B8A7620FD241C161" target="_blank">Learn more about the Air Quality Health Index and related health messages</a>. This <a href="https://www2.gov.bc.ca/gov/content?id=063D315EBDCB45BEA4AF964259C0D6FC" target="_blank">AQHI data widget (beta)</a> is provided by the Ministry of Environment and Climate Change Strategy, Province of British Columbia.</div>
+                            </div>
+                    </div>
+    </div>    
+    <!-- /WIDGET BODY CONTENT -->
+
+</body>
+
+</html>

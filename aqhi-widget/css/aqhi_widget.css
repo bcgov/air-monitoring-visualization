@@ -1,0 +1,251 @@
+/** Custom AQHI Widget CSS by RJT **/
+
+h1, h2 {
+font-weight: bold;
+margin: 10px 0 5px 0; 
+}
+
+h1 {
+font-size: 1.5em;
+}
+
+h2 {
+font-size: 1.15em;   
+}
+
+ .blue-heading-bar {
+    background-color: #385a8a;
+    color: #fff;
+    font-size: larger;
+    padding: 10px;
+    font-weight: bold;  
+    }
+
+.aqhi1 {
+    background-color: #00ccff;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi2 {
+    background-color: #0099cc;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi3 {
+    background-color: #006699;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi4 {
+    background-color: #ffff00;
+    font-weight: bold;
+    color: #000000;
+}
+
+.aqhi5 {
+    background-color: #ffcc00;
+    font-weight: bold;
+    color: #000000;
+}
+
+.aqhi6 {
+    background-color: #ff9933;
+    font-weight: bold;
+    color: #000000;
+}
+
+.aqhi7 {
+    background-color: #ff6666;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi8 {
+    background-color: #ff0000;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi9 {
+    background-color: #cc0000;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi10 {
+    background-color: #990000;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi11 {
+    background-color: #660000;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhiNA {
+    background-color: #EBEBEB;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhiSO {
+    background-color: #fff;
+    font-weight: bold;
+    color: #494949;
+}
+
+.unavailable {
+    padding-bottom: 5px;
+    padding-top: 15px;
+    border: medium none !important;
+}
+
+#aqhiContent {
+    width: 100%;
+}
+
+#aqhi_table {
+padding: 5px;
+}
+
+.headerStnName {
+    float: left;
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#aqhiReadingContainer {
+    float: none;
+    position: relative;
+}
+
+.aqhiReading {
+    float: none;
+    width: auto;
+    text-align: center;
+    border: 1px solid #EBEBEB;
+    height: auto;
+    overflow: hidden;
+    padding: 10px;
+}
+
+
+.clearAll {
+    clear: both;
+}
+
+#blockLeft {
+    width: 40%;
+    float: left;
+    padding: 5px;
+}
+
+#blockRight {
+    width: 60%;
+    float: right;
+    padding: 5px;
+}
+
+.aqhiRowDate {
+    left: 0px;
+    bottom: 5px;
+    font-size: small;
+    color: #494949;
+}
+
+
+.forecastLabel {
+    display: block;
+    text-align: center;
+}
+
+.forecastLabel2 {
+    display: block;
+    text-align: center;
+    padding:3px;
+}
+
+.maximumLabel {
+        text-align: center;
+    }
+
+#footer-content {font-weight:normal;text-align:center;font-size: small;margin: 30px 10px 0 10px;} 
+
+@media (max-width: 1200px) {
+
+    #aqhiReadingContainer {
+        float: none;
+
+    }
+    
+
+    .aqhiReading {
+        float: none;
+        width: auto;
+    }
+
+    .maximumLabel {
+        display: block;
+        text-align: center;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+    #blockLeft {
+        width: 100%;
+        float: left;
+    }
+
+    #blockRight {
+        width: 100%;
+        float: left;
+    }
+
+    .forecastLabel {
+        display: block;
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    .forecastLabel2 {
+        display: block;
+        text-align: center;
+        padding:3px;
+    }   
+
+    .maximumLabel {
+        display: block;
+        text-align: center;
+    }  
+
+    .aqhiRowDate {
+        width: auto;
+        font-size: smaller;
+    }
+    
+    .aqhiGraph {
+        font-size: smaller;
+    }
+
+    .headerStnName {
+        width: 100%;
+    }
+
+
+    #aqhiReadingContainer {
+        float: none;
+        width: 100%;
+    }
+
+    .aqhiReading {
+        width: 100%;
+    }
+

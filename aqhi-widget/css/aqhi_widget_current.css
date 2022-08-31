@@ -1,0 +1,403 @@
+/** Custom AQHI Widget CSS by RJT **/
+
+
+
+
+
+
+
+table {
+    padding: 0px;
+    margin: 0;
+    border: 1px solid #666666;
+}
+
+table.aqhiScale {
+    padding: 0px;
+    margin: 0;
+    border-spacing: 0;
+    font: inherit;
+    font-weight: bold;
+    color: #FFFFFF;
+    border: none;
+    width: 100%;
+}
+
+td {
+    text-align: center;
+    padding-left: 5px;
+    font-style: normal;
+    padding-top: 6px;
+    padding-bottom: 4px;
+}
+
+td.left {
+    text-align: left;
+}
+
+.aqhi1 {
+    background-color: #00ccff;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi2 {
+    background-color: #0099cc;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi3 {
+    background-color: #006699;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi4 {
+    background-color: #ffff00;
+    font-weight: bold;
+    color: #000000;
+}
+
+.aqhi5 {
+    background-color: #ffcc00;
+    font-weight: bold;
+    color: #000000;
+}
+
+.aqhi6 {
+    background-color: #ff9933;
+    font-weight: bold;
+    color: #000000;
+}
+
+.aqhi7 {
+    background-color: #ff6666;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi8 {
+    background-color: #ff0000;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi9 {
+    background-color: #cc0000;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi10 {
+    background-color: #990000;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhi11 {
+    background-color: #660000;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhiNA {
+    background-color: #EBEBEB;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.aqhiSO {
+    background-color: #fff;
+    font-weight: bold;
+    color: #494949;
+}
+
+.unavailable {
+    padding-bottom: 5px;
+    padding-top: 15px;
+    border: medium none !important;
+}
+
+td.aqhiRisk {
+    color: #000000;
+    font-weight: bold;
+}
+
+p.subtitle {}
+
+td.stationName {}
+
+td.aqhiDate {
+    text-align: left;
+    border: none
+}
+
+table.aqhiTable {
+    position: absolute;
+    float: right;
+    top: 0px;
+    right: 0px;
+    border: none;
+}
+
+.tableMd {
+    display: none;
+    height: 0;
+}
+
+#aqhiContent {
+    width: 100%;
+}
+
+#aqhiStation {
+    min-height: 54px;
+    position: relative;
+    padding-left: 5px;
+    padding-top: 2px;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+#aqhiStationHeader {
+    position: relative;
+    padding-left: 0;
+    padding-top: 2px;
+}
+
+th {
+    text-align: center;
+}
+
+.headerStnName {
+    float: left;
+    width: 205px;
+    font-weight: bold;
+    padding-top: 5px;
+    font-size: 18px;
+}
+
+.headerStnNameLabel {
+    float: left;
+    width: 20%;
+    font-weight: bold;
+}
+
+.headerForecast {
+    float: right;
+    width: 292px;
+    text-align: center;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.headerOther {
+    float: left;
+    width: 95px;
+    text-align: center;
+    padding-left: 3px;
+}
+
+#aqhiReadingContainer {
+    float: right;
+    position: relative;
+}
+
+.aqhiReading {
+    float: left;
+    width: 130px;
+    text-align: center;
+    border: 1px solid #EBEBEB;
+    height: auto;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.aqhiReadingLabel {
+    float: left;
+    width: 130px;
+    text-align: center;
+    border: none;
+    height: inherit;
+}
+
+.clearAll {
+    clear: both;
+}
+
+.aqhiRow {
+    border-bottom: 1px solid #EBEBEB;
+    position: relative;
+}
+
+#blockLeft {
+    width: 30%;
+    float: left;
+    padding: 5px;
+}
+
+#blockRight {
+    width: 70%;
+    float: right;
+    padding: 5px;
+}
+
+.aqhiLabel {
+    border-bottom: 1px solid #EBEBEB;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.aqhiRowDate {
+    left: 0px;
+    bottom: 5px;
+    font-size: small;
+    color: #494949;
+    float: left;
+}
+
+.forecastLabel {
+    display: none;
+}
+
+#SelectCommunity {
+    display: none;
+}
+
+.maximumLabel {
+        display: none;
+    }
+
+@media (max-width: 1200px) {
+    .headerStnName {}
+
+    .headerStnNameLabel {
+        display: block;
+        width: 25%;
+    }
+
+    .aqhiReadingLabel {
+        display: block;
+        width: 25%;
+    }
+
+    .tableLg {
+        display: none;
+        height: 0;
+    }
+
+    .tableMd {
+        display: inline;
+        height: auto;
+    }
+
+    .aqhiRowLabel {
+        float: right;
+        width: 69%;
+    }
+
+    #aqhiReadingContainer {
+        float: none;
+
+    }
+
+    .aqhiReading {
+        float: left;
+        width: 50%;
+    }
+
+    .maximumLabel {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 400px) {
+    #SelectCommunity {
+        display: block;
+    }
+    
+    #blockLeft {
+        width: 100%;
+        float: left;
+        padding: 5px;
+    }
+
+    #blockRight {
+        width: 100%;
+        float: left;
+        padding: 5px;
+    }
+    
+    .aqhiMaxLabel {
+        display: none;
+    }
+
+    .forecastLabel {
+        display: block;
+        text-align: center;
+    }
+
+    .aqhiRow {
+        width: 100%;
+        min-height: auto;
+        margin-top: 20px;
+    }
+
+    .maximumLabel {
+        display: block;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 75px;
+    }
+
+    .aqhiLabel {
+        width: 100%;
+        min-height: 85px;
+    }
+
+    .aqhiReadingLabel {
+        display: none;
+    }
+
+    .aqhiRowDate {
+        float: left;
+        width: auto;
+        font-size: medium;
+    }
+
+    .headerStnName {
+        width: 100%;
+        font-size: larger;
+    }
+
+    .headerStnNameLabel {
+        width: 44%;
+    }
+
+    #aqhiReadingContainer {
+        float: left;
+        width: 100%;
+    }
+
+    .aqhiReading {
+        width: 100%;
+    }
+
+    .headerOther {
+        width: 50px;
+        font-size: small;
+        padding-left: 2px;
+    }
+
+    #aqhiStationHeader {
+        padding-left: 0;
+    }
+
+    #aqhiHeaderRow1 {
+        display: none;
+    }
+
+    #aqhiHeaderRow2 {
+        text-align: left;
+    }
+}
