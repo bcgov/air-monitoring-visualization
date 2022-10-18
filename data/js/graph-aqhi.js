@@ -154,8 +154,8 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=https://www.env.gov.bc.ca/epd/
 
 		// define index level data for background color
 		index_lvl = {
-			'very_high': { 'max': 12.5, 'min': 10.5, 'color': '#660000', 'opac': 0.1 },
-			'high': { 'max': 10.5, 'min': 7.0, 'color': '#FF0000', 'opac': 0.05 },
+			'very_high': { 'max': 12.5, 'min': 10.0, 'color': '#660000', 'opac': 0.1 },
+			'high': { 'max': 10.0, 'min': 7.0, 'color': '#FF0000', 'opac': 0.05 },
 			'moderate': { 'max': 7.0, 'min': 4.0, 'color': '#FFCC00', 'opac': 0.05 },
 			'low': { 'max': 4.0, 'min': 0, 'color': '#00BFFF', 'opac': 0.05 }
 		}
