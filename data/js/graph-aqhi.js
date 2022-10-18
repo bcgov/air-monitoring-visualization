@@ -672,7 +672,7 @@ function makeGraphs(trace, data) {
 					.attr("stroke-width", function (d) { if (d[trace] != null) { return 1; } else { return 0; } })	
 			} else {
 				Bar_chart.selectAll(".bar")
-					.attr("fill", function (d) { if (d[trace] != null) { return "#2b8cbe"; } else { return "url(#xhatch)"; } }) 
+					.attr("fill", function (d) { if (d[trace] != null) { return barColours(d[trace]); } else { return "url(#xhatch)"; } }) 
 					.attr("stroke-width",0)
 			}
 					
@@ -768,7 +768,7 @@ function makeGraphs(trace, data) {
 					.attr("stroke-width", function (d) { if (d[trace] != null) { return 1; } else { return 0; } })	
 			} else {
 				Bar_chart.selectAll(".bar")
-					.attr("fill", function (d) { if (d[trace] != null) { return "#2b8cbe"; } else { return "url(#xhatch)"; } }) 
+					.attr("fill", function (d) { if (d[trace] != null) { return barColours(d[trace]); } else { return "url(#xhatch)"; } }) 
 					.attr("stroke-width",0)
 			}
 		} else {
