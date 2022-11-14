@@ -154,10 +154,10 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=https://www.env.gov.bc.ca/epd/
 
 		// define index level data for background color
 		index_lvl = {
-			'very_high': { 'max': 12.5, 'min': 10.5, 'color': '#660000', 'opac': 0.1 },
-			'high': { 'max': 10.5, 'min': 6.5, 'color': '#FF0000', 'opac': 0.05 },
-			'moderate': { 'max': 6.5, 'min': 3.5, 'color': '#FFCC00', 'opac': 0.05 },
-			'low': { 'max': 3.5, 'min': 0, 'color': '#00BFFF', 'opac': 0.05 }
+			'very_high': { 'max': 12.5, 'min': 10.0, 'color': '#660000', 'opac': 0.1 },
+			'high': { 'max': 10.0, 'min': 7.0, 'color': '#FF0000', 'opac': 0.05 },
+			'moderate': { 'max': 7.0, 'min': 4.0, 'color': '#FFCC00', 'opac': 0.05 },
+			'low': { 'max': 4.0, 'min': 0, 'color': '#00BFFF', 'opac': 0.05 }
 		}
 
 
@@ -570,7 +570,7 @@ function makeGraphs(trace, data) {
 			.attr("y", function (d) { if (d[trace] != null) { return y(d[trace]); } else { return y(y_domain_max + 1); } }) //if missing AQHI, bars appear grey and extend to top of graph
 			.attr("width", xScale.bandwidth())
 			.attr("height", function (d) { if (d[trace] != null) { return height - y(d[trace]); } else { return height - y(y_domain_max + 1); } }) 
-			.attr("fill", function (d) { if (d[trace] != null) { return "#2b8cbe"; } else { return "url(#xhatch)"; } }) 
+			.attr("fill", function (d) { if (d[trace] != null) { return barColours(d[trace]); } else { return "url(#xhatch)"; } }) 
 			.attr("opacity", function (d) { if (d[trace] != null) { return 1; } else { return 0.3; } }) 
 
 	//add bars to small bar chart graph (bottom)
@@ -582,7 +582,7 @@ function makeGraphs(trace, data) {
 		.attr("y", function (d) { if (d[trace] != null) { return y2(d[trace]); } else { return y2(y_domain_max + 1); } }) 
 		.attr("width", xScale.bandwidth())
 		.attr("height", function (d) { if (d[trace] != null) { return height2 - y2(d[trace]); } else { return height2 - y2(y_domain_max + 1); } }) 
-		.attr("fill", function (d) { if (d[trace] != null) { return "#2b8cbe"; } else { return "url(#xhatch)"; } }) 
+		.attr("fill", function (d) { if (d[trace] != null) { return barColours(d[trace]); } else { return "url(#xhatch)"; } }) 
 		.attr("opacity", function (d) { if (d[trace] != null) { return 1; } else { return 0.3; } }) 
 			
 	//add x axis to small bar chart graph (bottom)		
@@ -672,7 +672,7 @@ function makeGraphs(trace, data) {
 					.attr("stroke-width", function (d) { if (d[trace] != null) { return 1; } else { return 0; } })	
 			} else {
 				Bar_chart.selectAll(".bar")
-					.attr("fill", function (d) { if (d[trace] != null) { return "#2b8cbe"; } else { return "url(#xhatch)"; } }) 
+					.attr("fill", function (d) { if (d[trace] != null) { return barColours(d[trace]); } else { return "url(#xhatch)"; } }) 
 					.attr("stroke-width",0)
 			}
 					
@@ -768,7 +768,7 @@ function makeGraphs(trace, data) {
 					.attr("stroke-width", function (d) { if (d[trace] != null) { return 1; } else { return 0; } })	
 			} else {
 				Bar_chart.selectAll(".bar")
-					.attr("fill", function (d) { if (d[trace] != null) { return "#2b8cbe"; } else { return "url(#xhatch)"; } }) 
+					.attr("fill", function (d) { if (d[trace] != null) { return barColours(d[trace]); } else { return "url(#xhatch)"; } }) 
 					.attr("stroke-width",0)
 			}
 		} else {
