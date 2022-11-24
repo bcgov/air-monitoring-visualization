@@ -48,4 +48,8 @@ background-color: white;
     display:block;
 }
 }
-    
+
+/* Used to hide the ticks for the month axis */
+.axis--month .tick line {
+    opacity: 0;
+  }
