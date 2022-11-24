@@ -153,12 +153,19 @@ d3.json('https://csv-parser.api.gov.bc.ca/?source=https://www.env.gov.bc.ca/epd/
 		meas = [];
 
 		// define index level data for background color
-		index_lvl = {
-			'very_high': { 'max': 12.5, 'min': 10.0, 'color': '#660000', 'opac': 0.1 },
-			'high': { 'max': 10.0, 'min': 7.0, 'color': '#FF0000', 'opac': 0.05 },
-			'moderate': { 'max': 7.0, 'min': 4.0, 'color': '#FFCC00', 'opac': 0.05 },
-			'low': { 'max': 4.0, 'min': 0, 'color': '#00BFFF', 'opac': 0.05 }
-		}
+		// index_lvl = {
+		// 	'very_high': { 'max': 12.5, 'min': 10.0, 'color': '#660000', 'opac': 0.1 },
+		// 	'high': { 'max': 10.0, 'min': 7.0, 'color': '#FF0000', 'opac': 0.05 },
+		// 	'moderate': { 'max': 7.0, 'min': 4.0, 'color': '#FFCC00', 'opac': 0.05 },
+		// 	'low': { 'max': 4.0, 'min': 0, 'color': '#00BFFF', 'opac': 0.05 }
+		// }
+        // all backgrounds set to white
+        index_lvl = {
+        	'very_high': { 'max': 12.5, 'min': 10.0, 'color': '#FFFFFF', 'opac': 0.1 },
+        	'high': { 'max': 10.0, 'min': 7.0, 'color': '#FFFFFF', 'opac': 0.05 },
+        	'moderate': { 'max': 7.0, 'min': 4.0, 'color': '#FFFFFF', 'opac': 0.05 },
+        	'low': { 'max': 4.0, 'min': 0, 'color': '#FFFFFF', 'opac': 0.05 }
+        }
 
 
 		//aqhi_btn_label keys are pulled from AQHIWebMap.csv
@@ -420,7 +427,7 @@ function makeGraphs(trace, data) {
             top: 430,
             right: 5,
             bottom: 30,
-            left: 5
+            left: 20
         },
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
@@ -511,14 +518,30 @@ function makeGraphs(trace, data) {
 	    
 	
 	//initiate axes
-	var xAxis = d3.axisBottom(x);
-    var xAxis2 = d3.axisBottom(x2);
+	var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%a %d"));
+    var xAxis2 = d3.axisBottom(x2).tickFormat(d3.timeFormat("%a %d"));
 	var yAxis = d3.axisLeft(y)
 			.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
 			.tickFormat(function (d) { if (d >= 11) { return '10+'; } else { return d; } });
     var yAxisRight = d3.axisRight(y)
 			.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
 			.tickFormat(function (d) { if (d >= 11) { return '10+'; } else { return d; } });
+    // add month axis
+    xMonth = focus.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .attr("class", "axis axis--month")
+        .selectAll('text')
+            .style("text-anchor", "start")
+            .attr('dx', 5)
+            .attr('dy', 12);
+    var xMonthAxis = d3.axisBottom(x)
+        .ticks(d3.timeMonth, 1)
+        .tickFormat(d3.timeFormat('%B'))
+        .tickSize(24, 0, 0);
+    var xMonthAxis2 = d3.axisBottom(x)
+        .ticks(d3.timeMonth, 1)
+        .tickFormat(d3.timeFormat('%B'))
+        .tickSize(18, 0, 0);
 	
 	
 	//initiate bar colours
@@ -551,7 +574,11 @@ function makeGraphs(trace, data) {
         .attr("class", "axis axis--x")
 		.attr("transform", "translate(0," + height + ")")
         .call(xAxis);
-	
+
+    focus.append("g")
+        .attr("class", "axis axis--month")
+        .attr("transform", "translate(0," + height + ")")
+    
     focus.append("g")
         .attr("class", "axis axis--y")
 		.call(yAxis);
@@ -590,6 +617,14 @@ function makeGraphs(trace, data) {
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height2 + ")")
         .call(xAxis2);
+    context.append("g")
+        .attr("class", "axis axis--month")
+        .attr("transform", "translate(0," + height2 + ")")
+        .call(xMonthAxis2)
+        .selectAll('text')
+        .style("text-anchor", "start")
+        .attr('dx', 5)
+        .attr('dy', 12)
 
 	//add brush feature to small bar chart graph (bottom)
     context.append("g")
@@ -677,6 +712,7 @@ function makeGraphs(trace, data) {
 			}
 					
 			focus.select(".axis--x").call(xAxis);
+            focus.select(".axis--month").call(xMonthAxis);
 			
 			//call zoom
 			svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
@@ -725,6 +761,7 @@ function makeGraphs(trace, data) {
 				.tickFormat(function (d) { if (d >= 11) { return '10+'; } else { return d; } });
 			
 			focus.select(".axis--x").call(xAxis);
+            focus.select(".axis--month").call(xMonthAxis);
 			focus.select(".axis--y").call(yAxis);
 			focus.select(".axis--y.right").call(yAxisRight);
 			
