@@ -531,27 +531,18 @@ function makeGraphs(trace, data) {
         .attr("transform", "translate(0," + height + ")")
         .attr("class", "axis axis--month")
     var xMonthAxis = d3.axisBottom(x)
-        .ticks(d3.timeDay, 1)
-        .tickFormat((d) => {
-            if (d.getDate() == 14) {
-                formatter = d3.timeFormat('%B')
-                return formatter(d)
-            } else {
-                return null
-            }
+        .tickFormat(function(d, i){
+            var tickCenter = Math.round((x.ticks().length+1) / 2)-1;
+            return i == tickCenter ? d3.timeFormat("%B")(d) : "";
         })
         .tickSize(24, 0, 0);
     var xMonthAxis2 = d3.axisBottom(x)
         .ticks(d3.timeDay, 1)
-        .tickFormat((d) => {
-            if (d.getDate() == 14) {
-                formatter = d3.timeFormat('%B')
-                return formatter(d)
-            } else {
-                return null
-            }
-        })
-        .tickSize(18, 0, 0);
+        .tickSize(18, 0, 0)
+        .tickFormat(function(d, i){
+            var tickCenter = x.ticks().length;
+            return i == tickCenter ? d3.timeFormat("%B")(d) : "";
+        });
 	
 	//initiate bar colours
 	var barColours = d3.scaleOrdinal()
