@@ -530,19 +530,28 @@ function makeGraphs(trace, data) {
     xMonth = focus.append("g")
         .attr("transform", "translate(0," + height + ")")
         .attr("class", "axis axis--month")
-        .selectAll('text')
-            .style("text-anchor", "start")
-            .attr('dx', 5)
-            .attr('dy', 12);
     var xMonthAxis = d3.axisBottom(x)
-        .ticks(d3.timeMonth, 1)
-        .tickFormat(d3.timeFormat('%B'))
+        .ticks(d3.timeDay, 1)
+        .tickFormat((d) => {
+            if (d.getDate() == 14) {
+                formatter = d3.timeFormat('%B')
+                return formatter(d)
+            } else {
+                return null
+            }
+        })
         .tickSize(24, 0, 0);
     var xMonthAxis2 = d3.axisBottom(x)
-        .ticks(d3.timeMonth, 1)
-        .tickFormat(d3.timeFormat('%B'))
+        .ticks(d3.timeDay, 1)
+        .tickFormat((d) => {
+            if (d.getDate() == 14) {
+                formatter = d3.timeFormat('%B')
+                return formatter(d)
+            } else {
+                return null
+            }
+        })
         .tickSize(18, 0, 0);
-	
 	
 	//initiate bar colours
 	var barColours = d3.scaleOrdinal()
@@ -621,10 +630,6 @@ function makeGraphs(trace, data) {
         .attr("class", "axis axis--month")
         .attr("transform", "translate(0," + height2 + ")")
         .call(xMonthAxis2)
-        .selectAll('text')
-        .style("text-anchor", "start")
-        .attr('dx', 5)
-        .attr('dy', 12)
 
 	//add brush feature to small bar chart graph (bottom)
     context.append("g")
