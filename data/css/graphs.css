@@ -51,5 +51,6 @@ background-color: white;
 
 /* Used to hide the ticks for the month axis */
 .axis--month .tick line {
-    opacity: 0;
+    visibility: hidden !important;
   }
+
