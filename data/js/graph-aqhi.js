@@ -708,6 +708,14 @@ function makeGraphs(trace, data) {
 					
 			focus.select(".axis--x").call(xAxis);
             focus.select(".axis--month").call(xMonthAxis);
+            var styles = `
+            .axis--month .tick line {
+                visibility: hidden !important;
+              }            
+            `
+            var styleSheet = document.createElement("style")
+            styleSheet.innerText = styles
+            document.head.appendChild(styleSheet)
 			
 			//call zoom
 			svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
