@@ -467,11 +467,11 @@ function makeGraphs(trace, data) {
         .scaleExtent([1, 100])
         .translateExtent([
             [0, 0],
-            [width, height]
+            [width, 11]
         ])
         .extent([
             [0, 0],
-            [width, height]
+            [width, 11]
         ])
         .on("zoom", zoomed);
 	
@@ -511,7 +511,7 @@ function makeGraphs(trace, data) {
 	not_null = not_null.filter(function (d) { return d[trace] !== ''; });
  
 	y_domain_min = 0;
-    y_domain_max = d3.max(not_null, function (d) { return +d[trace] });
+    y_domain_max = 10;
 	
     y.domain([y_domain_min, y_domain_max + 1]);
     y2.domain(y.domain());
@@ -745,7 +745,7 @@ function makeGraphs(trace, data) {
 		
 		//find new y domain and x domain
 		var y_domain_min = 0
-        var y_domain_max = d3.max(dataFiltered.map(function (d) { return +d[trace] }));
+        var y_domain_max = 10;
 		
         y.domain([y_domain_min, y_domain_max + 1]);
 
