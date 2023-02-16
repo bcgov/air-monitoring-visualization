@@ -415,19 +415,19 @@ function makeGraphs(trace, data) {
             d[trace] = null
         }
     })
-	
+	var currentZoomLevel = 1;
     var svg = d3.select("svg"),
         margin = {
             top: 10,
             right: 90,
             bottom: 140,
-            left: 20
+            left: 50
         },
         margin2 = {
             top: 430,
             right: 5,
             bottom: 30,
-            left: 20
+            left: 50
         },
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
@@ -519,6 +519,7 @@ function makeGraphs(trace, data) {
 	
 	//initiate axes
 	var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%a %d"));
+	var xAxisZoomed = d3.axisBottom(x).tickFormat(d3.timeFormat("%I %p"));
     var xAxis2 = d3.axisBottom(x2).tickFormat(d3.timeFormat("%a %d"));
 	var yAxis = d3.axisLeft(y)
 			.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
@@ -529,13 +530,9 @@ function makeGraphs(trace, data) {
     // add month axis
     xMonth = focus.append("g")
         .attr("transform", "translate(0," + height + ")")
+        .attr("x", width / 2)
+        .attr("y", height + 40)
         .attr("class", "axis axis--month")
-    var xMonthAxis = d3.axisBottom(x)
-        .tickSize(24, 0, 0)
-        .tickFormat(function(d, i){
-            var tickCenter = Math.round((x.ticks().length+1) / 2)-1;
-            return i == tickCenter ? d3.timeFormat("%B")(d) : "";
-        })
     var xMonthAxis2 = d3.axisBottom(x)
         .tickSize(20, 0, 0)
         .tickFormat(function(d, i){
@@ -581,6 +578,25 @@ function makeGraphs(trace, data) {
     focus.append("g")
         .attr("class", "axis axis--y")
 		.call(yAxis);
+
+    focus.append("g")         // Add the Y Axis
+        .attr("class", "axis axis--y2")
+        .call(yAxis);
+
+    // Add the text label for the Y axis
+    focus.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("AQHI");
+    const xAxisLabel = focus.append("text")
+        .attr("class", "x-axis-label")
+        .attr("style", "font-size: 12px")
+        .attr("y", height + 40)
+        .attr("x", width / 2)
+        .style("text-anchor", "middle");
 
     focus.append("g")
         .attr("class", "axis axis--y right")
@@ -685,6 +701,8 @@ function makeGraphs(trace, data) {
 		//allow brushing only if scale <= 100, and only if AQHI is present for time period selected
 		if (scale <= 100 && y_domain_max != null){
 			x.domain(s.map(x2.invert, x2));
+            const newDomain = d3.event.selection.map(x.invert);
+            updateXAxisLabel(newDomain);
 			
 			//recreate bar chart with new x scale and change bar width and shift bar according to scale
 			Bar_chart.selectAll(".bar")
@@ -705,9 +723,13 @@ function makeGraphs(trace, data) {
 					.attr("fill", function (d) { if (d[trace] != null) { return barColours(d[trace]); } else { return "url(#xhatch)"; } }) 
 					.attr("stroke-width",0)
 			}
-					
-			focus.select(".axis--x").call(xAxis);
-            focus.select(".axis--month").call(xMonthAxis);
+			
+            if (currentZoomLevel > 18) {
+			    focus.select(".axis--x").call(xAxisZoomed);
+            } else {
+			    focus.select(".axis--x").call(xAxis);
+            }
+            // focus.select(".axis--month").call(xMonthAxis);
             var styles = `
             .axis--month .tick line {
                 visibility: hidden !important;
@@ -731,6 +753,8 @@ function makeGraphs(trace, data) {
     }
 
     function zoomed() {
+        const tf = d3.event.transform;
+        currentZoomLevel = tf.k;
         if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
         var t = d3.event.transform;
 		
@@ -750,6 +774,8 @@ function makeGraphs(trace, data) {
         y.domain([y_domain_min, y_domain_max + 1]);
 
         x.domain(t.rescaleX(x2).domain());
+        const newDomain = d3.event.transform.rescaleX(x).domain();
+        updateXAxisLabel(newDomain);
 		
 		//zoom and recreate chart only if AQHI is present for time period selected
 		if(y_domain_max != null) {
@@ -763,8 +789,12 @@ function makeGraphs(trace, data) {
 				.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
 				.tickFormat(function (d) { if (d >= 11) { return '10+'; } else { return d; } });
 			
-			focus.select(".axis--x").call(xAxis);
-            focus.select(".axis--month").call(xMonthAxis);
+            if (currentZoomLevel > 18) {
+                focus.select(".axis--x").call(xAxisZoomed)
+            } else {
+                focus.select(".axis--x").call(xAxis);
+            }
+            // focus.select(".axis--month").call(xMonthAxis);
 			focus.select(".axis--y").call(yAxis);
 			focus.select(".axis--y.right").call(yAxisRight);
 			
@@ -818,6 +848,33 @@ function makeGraphs(trace, data) {
 		}
 	
     }
+
+    // Updates the month label for the x-axis
+    function updateXAxisLabel(domain) {
+        const startDate = domain[0];
+        const endDate = domain[1];
+
+        if (startDate.getMonth() === endDate.getMonth()) {
+          // If start and end dates are the same month, just display that month
+          xAxisLabel.text(d3.timeFormat('%B')(startDate));
+        } else {
+          // Otherwise, compute the number of days in each month within the domain
+          const monthDays = {};
+      
+          d3.timeDays(startDate, endDate).forEach(date => {
+            const month = d3.timeFormat('%B')(date);
+            monthDays[month] = (monthDays[month] || 0) + 1;
+          });
+      
+          // Find the month with the most days in the domain
+          const month = Object.keys(monthDays).reduce((acc, cur) => {
+            return monthDays[cur] > monthDays[acc] ? cur : acc;
+          });
+      
+          // Update the x-axis label text to show the name of the selected month
+          xAxisLabel.text(month);
+        }
+      }
 
 }
 
