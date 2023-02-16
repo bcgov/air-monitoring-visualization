@@ -421,13 +421,13 @@ function makeGraphs(trace, data) {
             top: 10,
             right: 90,
             bottom: 140,
-            left: 20
+            left: 50
         },
         margin2 = {
             top: 430,
             right: 5,
             bottom: 30,
-            left: 20
+            left: 50
         },
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
@@ -519,6 +519,7 @@ function makeGraphs(trace, data) {
 	
 	//initiate axes
 	var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%a %d"));
+	var xAxisZoomed = d3.axisBottom(x).tickFormat(d3.timeFormat("%I %p"));
     var xAxis2 = d3.axisBottom(x2).tickFormat(d3.timeFormat("%a %d"));
 	var yAxis = d3.axisLeft(y)
 			.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
@@ -581,6 +582,19 @@ function makeGraphs(trace, data) {
     focus.append("g")
         .attr("class", "axis axis--y")
 		.call(yAxis);
+
+    focus.append("g")         // Add the Y Axis
+        .attr("class", "axis axis--y2")
+        .call(yAxis);
+
+    // Add the text label for the Y axis
+    focus.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("AQHI");
 
     focus.append("g")
         .attr("class", "axis axis--y right")
@@ -731,6 +745,8 @@ function makeGraphs(trace, data) {
     }
 
     function zoomed() {
+        const tf = d3.event.transform;
+        const currentZoomLevel = tf.k;
         if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
         var t = d3.event.transform;
 		
@@ -763,7 +779,11 @@ function makeGraphs(trace, data) {
 				.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
 				.tickFormat(function (d) { if (d >= 11) { return '10+'; } else { return d; } });
 			
-			focus.select(".axis--x").call(xAxis);
+            if (currentZoomLevel > 15) {
+                focus.select(".axis--x").call(xAxisZoomed)
+            } else {
+                focus.select(".axis--x").call(xAxis);
+            }
             focus.select(".axis--month").call(xMonthAxis);
 			focus.select(".axis--y").call(yAxis);
 			focus.select(".axis--y.right").call(yAxisRight);
