@@ -415,7 +415,7 @@ function makeGraphs(trace, data) {
             d[trace] = null
         }
     })
-	
+	var currentZoomLevel = 1;
     var svg = d3.select("svg"),
         margin = {
             top: 10,
@@ -530,6 +530,8 @@ function makeGraphs(trace, data) {
     // add month axis
     xMonth = focus.append("g")
         .attr("transform", "translate(0," + height + ")")
+        .attr("x", width / 2)
+        .attr("y", height + 40)
         .attr("class", "axis axis--month")
     var xMonthAxis = d3.axisBottom(x)
         .tickSize(24, 0, 0)
@@ -719,8 +721,12 @@ function makeGraphs(trace, data) {
 					.attr("fill", function (d) { if (d[trace] != null) { return barColours(d[trace]); } else { return "url(#xhatch)"; } }) 
 					.attr("stroke-width",0)
 			}
-					
-			focus.select(".axis--x").call(xAxis);
+			
+            if (currentZoomLevel > 18) {
+			    focus.select(".axis--x").call(xAxisZoomed);
+            } else {
+			    focus.select(".axis--x").call(xAxis);
+            }
             focus.select(".axis--month").call(xMonthAxis);
             var styles = `
             .axis--month .tick line {
@@ -746,7 +752,7 @@ function makeGraphs(trace, data) {
 
     function zoomed() {
         const tf = d3.event.transform;
-        const currentZoomLevel = tf.k;
+        currentZoomLevel = tf.k;
         if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
         var t = d3.event.transform;
 		
@@ -779,7 +785,7 @@ function makeGraphs(trace, data) {
 				.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
 				.tickFormat(function (d) { if (d >= 11) { return '10+'; } else { return d; } });
 			
-            if (currentZoomLevel > 15) {
+            if (currentZoomLevel > 18) {
                 focus.select(".axis--x").call(xAxisZoomed)
             } else {
                 focus.select(".axis--x").call(xAxis);
