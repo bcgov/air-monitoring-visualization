@@ -533,12 +533,6 @@ function makeGraphs(trace, data) {
         .attr("x", width / 2)
         .attr("y", height + 40)
         .attr("class", "axis axis--month")
-    var xMonthAxis = d3.axisBottom(x)
-        .tickSize(24, 0, 0)
-        .tickFormat(function(d, i){
-            var tickCenter = Math.round((x.ticks().length+1) / 2)-1;
-            return i == tickCenter ? d3.timeFormat("%B")(d) : "";
-        })
     var xMonthAxis2 = d3.axisBottom(x)
         .tickSize(20, 0, 0)
         .tickFormat(function(d, i){
@@ -597,6 +591,12 @@ function makeGraphs(trace, data) {
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .text("AQHI");
+    const xAxisLabel = focus.append("text")
+        .attr("class", "x-axis-label")
+        .attr("style", "font-size: 12px")
+        .attr("y", height + 40)
+        .attr("x", width / 2)
+        .style("text-anchor", "middle");
 
     focus.append("g")
         .attr("class", "axis axis--y right")
@@ -701,6 +701,8 @@ function makeGraphs(trace, data) {
 		//allow brushing only if scale <= 100, and only if AQHI is present for time period selected
 		if (scale <= 100 && y_domain_max != null){
 			x.domain(s.map(x2.invert, x2));
+            const newDomain = d3.event.selection.map(x.invert);
+            updateXAxisLabel(newDomain);
 			
 			//recreate bar chart with new x scale and change bar width and shift bar according to scale
 			Bar_chart.selectAll(".bar")
@@ -727,7 +729,7 @@ function makeGraphs(trace, data) {
             } else {
 			    focus.select(".axis--x").call(xAxis);
             }
-            focus.select(".axis--month").call(xMonthAxis);
+            // focus.select(".axis--month").call(xMonthAxis);
             var styles = `
             .axis--month .tick line {
                 visibility: hidden !important;
@@ -772,6 +774,8 @@ function makeGraphs(trace, data) {
         y.domain([y_domain_min, y_domain_max + 1]);
 
         x.domain(t.rescaleX(x2).domain());
+        const newDomain = d3.event.transform.rescaleX(x).domain();
+        updateXAxisLabel(newDomain);
 		
 		//zoom and recreate chart only if AQHI is present for time period selected
 		if(y_domain_max != null) {
@@ -790,7 +794,7 @@ function makeGraphs(trace, data) {
             } else {
                 focus.select(".axis--x").call(xAxis);
             }
-            focus.select(".axis--month").call(xMonthAxis);
+            // focus.select(".axis--month").call(xMonthAxis);
 			focus.select(".axis--y").call(yAxis);
 			focus.select(".axis--y.right").call(yAxisRight);
 			
@@ -844,6 +848,33 @@ function makeGraphs(trace, data) {
 		}
 	
     }
+
+    // Updates the month label for the x-axis
+    function updateXAxisLabel(domain) {
+        const startDate = domain[0];
+        const endDate = domain[1];
+
+        if (startDate.getMonth() === endDate.getMonth()) {
+          // If start and end dates are the same month, just display that month
+          xAxisLabel.text(d3.timeFormat('%B')(startDate));
+        } else {
+          // Otherwise, compute the number of days in each month within the domain
+          const monthDays = {};
+      
+          d3.timeDays(startDate, endDate).forEach(date => {
+            const month = d3.timeFormat('%B')(date);
+            monthDays[month] = (monthDays[month] || 0) + 1;
+          });
+      
+          // Find the month with the most days in the domain
+          const month = Object.keys(monthDays).reduce((acc, cur) => {
+            return monthDays[cur] > monthDays[acc] ? cur : acc;
+          });
+      
+          // Update the x-axis label text to show the name of the selected month
+          xAxisLabel.text(month);
+        }
+      }
 
 }
 
