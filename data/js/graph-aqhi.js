@@ -519,7 +519,6 @@ function makeGraphs(trace, data) {
 	
 	//initiate axes
 	var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%a %d"));
-	var xAxisZoomed = d3.axisBottom(x).tickFormat(d3.timeFormat("%I %p"));
     var xAxis2 = d3.axisBottom(x2).tickFormat(d3.timeFormat("%a %d"));
 	var yAxis = d3.axisLeft(y)
 			.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
@@ -724,12 +723,7 @@ function makeGraphs(trace, data) {
 					.attr("stroke-width",0)
 			}
 			
-            if (currentZoomLevel > 18) {
-			    focus.select(".axis--x").call(xAxisZoomed);
-            } else {
-			    focus.select(".axis--x").call(xAxis);
-            }
-            // focus.select(".axis--month").call(xMonthAxis);
+            focus.select(".axis--x").call(d3.axisBottom(x).tickFormat(xAxisTickFormat(xScale.domain())));
             var styles = `
             .axis--month .tick line {
                 visibility: hidden !important;
