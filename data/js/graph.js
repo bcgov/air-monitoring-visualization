@@ -48,17 +48,7 @@ d3.csv('https://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/AQHIWeb.csv', functio
 });
 
 
-
-
-// use csv-parser to load data using station ID
-d3.json('https://csv-parser.api.gov.bc.ca/?source=https://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/Hourly_Raw_Air_Data/Station/' + QueryString + '.csv&format=json', function (err, data) {
-
-    //console.log(QueryString.includes('AQHI'))
-
-    //remove header
-    data.pop(1)
-
-
+d3.csv(`https://www.env.gov.bc.ca/epd/bcairquality/aqo/csv/Hourly_Raw_Air_Data/Station/${QueryString}.csv`, function (err, data) {
     // Format the timestamp and presentations
     parseTime = d3.timeParse("%Y-%m-%d %H:%M");
     formatTime = d3.timeFormat("%Y-%m-%d %H:%M");
