@@ -519,7 +519,6 @@ function makeGraphs(trace, data) {
 	
 	//initiate axes
 	var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%a %d"));
-	var xAxisZoomed = d3.axisBottom(x).tickFormat(d3.timeFormat("%I %p"));
     var xAxis2 = d3.axisBottom(x2).tickFormat(d3.timeFormat("%a %d"));
 	var yAxis = d3.axisLeft(y)
 			.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
@@ -724,12 +723,7 @@ function makeGraphs(trace, data) {
 					.attr("stroke-width",0)
 			}
 			
-            if (currentZoomLevel > 18) {
-			    focus.select(".axis--x").call(xAxisZoomed);
-            } else {
-			    focus.select(".axis--x").call(xAxis);
-            }
-            // focus.select(".axis--month").call(xMonthAxis);
+            focus.select(".axis--x").call(d3.axisBottom(x).tickFormat(xAxisTickFormat(xScale.domain())));
             var styles = `
             .axis--month .tick line {
                 visibility: hidden !important;
@@ -788,13 +782,7 @@ function makeGraphs(trace, data) {
 			yAxis = d3.axisLeft(y)
 				.tickValues(y.ticks().filter(tick => Number.isInteger(tick) && tick !== 0 && tick <= 11))
 				.tickFormat(function (d) { if (d >= 11) { return '10+'; } else { return d; } });
-			
-            if (currentZoomLevel > 18) {
-                focus.select(".axis--x").call(xAxisZoomed)
-            } else {
-                focus.select(".axis--x").call(xAxis);
-            }
-            // focus.select(".axis--month").call(xMonthAxis);
+            focus.select(".axis--x").call(d3.axisBottom(x).tickFormat(xAxisTickFormat(xScale.domain())));
 			focus.select(".axis--y").call(yAxis);
 			focus.select(".axis--y.right").call(yAxisRight);
 			
@@ -918,3 +906,27 @@ function drawIndexLevelBackgroundColor(height, width, margin_left, margin_top, s
         }
     }
 }
+
+// This function formats x-axis ticks to place the day/day number at 12am
+// and hours everywhere else.
+function xAxisTickFormat(domain) {
+    const bisect = d3.bisector(d => d).left;
+    const format12Hour = d3.timeFormat("%I %p");
+    const formatDay = d3.timeFormat("%a %d");
+
+    return function(date) {
+        const index = bisect(domain, date);
+        const isDuplicate = domain[index - 1] && domain[index - 1].getDate() === date.getDate();
+
+        if (isDuplicate) {
+            if (date.getHours() === 0) {
+                return formatDay(date);
+            } else {
+                return format12Hour(date);
+            }
+        } else {
+            return formatDay(date);
+        }
+    }
+  }
+  
